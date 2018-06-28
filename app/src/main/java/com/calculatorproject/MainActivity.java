@@ -8,8 +8,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    EditText output;
+    String equation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +50,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button enterDECIMAL = findViewById(R.id.enterDECIMAL);
         enterDECIMAL.setOnClickListener(this);
         Button enterANS = findViewById(R.id.enterANS);
-
+        enterANS.setOnClickListener(this);
         Button enterEQUALS = findViewById(R.id.enterEQUALS);
-
+        enterEQUALS.setOnClickListener(this);
         Button enterADD = findViewById(R.id.enterADD);
-
+        enterADD.setOnClickListener(this);
         Button enterMINUS = findViewById(R.id.enterMINUS);
-
+        enterMINUS.setOnClickListener(this);
         Button enterMULT = findViewById(R.id.enterMULT);
-
+        enterMULT.setOnClickListener(this);
         Button enterDIVIDE = findViewById(R.id.enterDIVIDE);
-
+        enterDIVIDE.setOnClickListener(this);
         Button enterDEL = findViewById(R.id.enterDEL);
-
+        enterDEL.setOnClickListener(this);
         Button enterAC = findViewById(R.id.enterAC);
+        enterAC.setOnClickListener(this);
+
+        // initialise output EditText
+        output = findViewById(R.id.output);
+
+        // TODO: set up SharedPreferences for all values that need to be saved, e.g. equation, ANS, etc.
+        equation = "";
+
     }
 
     @Override
@@ -85,8 +97,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /** Finds button by ID and will perform a different function depending on the ID.*/
+
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()) {
+
+            case R.id.enter0:
+
+                equation = equation +  "0";
+                break;
+
+            case R.id.enter1:
+
+                equation = equation + "1";
+                break;
+
+            case R.id.enter2:
+
+                equation = equation + "2";
+                break;
+
+            case R.id.enter3:
+
+                equation = equation + "3";
+                break;
+
+            case R.id.enter4:
+
+                equation = equation + "4";
+                break;
+
+            case R.id.enter5:
+
+                equation = equation + "5";
+                break;
+
+            case R.id.enter6:
+
+                equation = equation + "6";
+                break;
+
+            case R.id.enter7:
+
+                equation = equation + "7";
+                break;
+
+            case R.id.enter8:
+
+                equation = equation + "8";
+                break;
+
+            case R.id.enter9:
+
+                equation = equation + "9";
+                break;
+
+            case R.id.enterDEL:
+
+                equation = equation.substring(0, equation.length() - 1);
+        }
+
+        output.setText(equation);
     }
 }
