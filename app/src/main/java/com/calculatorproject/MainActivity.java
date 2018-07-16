@@ -9,11 +9,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText output;
-    String equation;
+    EditText calculatorDisplay;
+    Boolean userIsTypingNumber = false;
+    String DIGITS = "01234567890.";
+    private Calculations mCalculations;
+
+    DecimalFormat decimalFormat = new DecimalFormat("@###########");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,52 +33,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
 
+        decimalFormat.setMinimumFractionDigits(0);
+        decimalFormat.setMinimumIntegerDigits(1);
+        decimalFormat.setMaximumIntegerDigits(8);
+
+
         // Make button variables
-        // WARNING - no listener on Button enterBLANK - WARNING //
-        Button enter0 = findViewById(R.id.enter0);
-        enter0.setOnClickListener(this);
-        Button enter1 = findViewById(R.id.enter1);
-        enter1.setOnClickListener(this);
-        Button enter2 = findViewById(R.id.enter2);
-        enter2.setOnClickListener(this);
-        Button enter3 = findViewById(R.id.enter3);
-        enter3.setOnClickListener(this);
-        Button enter4 = findViewById(R.id.enter4);
-        enter4.setOnClickListener(this);
-        Button enter5 = findViewById(R.id.enter5);
-        enter5.setOnClickListener(this);
-        Button enter6 = findViewById(R.id.enter6);
-        enter6.setOnClickListener(this);
-        Button enter7 = findViewById(R.id.enter7);
-        enter7.setOnClickListener(this);
-        Button enter8 = findViewById(R.id.enter8);
-        enter8.setOnClickListener(this);
-        Button enter9 = findViewById(R.id.enter9);
-        enter9.setOnClickListener(this);
-        Button enterDECIMAL = findViewById(R.id.enterDECIMAL);
-        enterDECIMAL.setOnClickListener(this);
-        Button enterANS = findViewById(R.id.enterANS);
-        enterANS.setOnClickListener(this);
-        Button enterEQUALS = findViewById(R.id.enterEQUALS);
-        enterEQUALS.setOnClickListener(this);
-        Button enterADD = findViewById(R.id.enterADD);
-        enterADD.setOnClickListener(this);
-        Button enterMINUS = findViewById(R.id.enterMINUS);
-        enterMINUS.setOnClickListener(this);
-        Button enterMULT = findViewById(R.id.enterMULT);
-        enterMULT.setOnClickListener(this);
-        Button enterDIVIDE = findViewById(R.id.enterDIVIDE);
-        enterDIVIDE.setOnClickListener(this);
-        Button enterDEL = findViewById(R.id.enterDEL);
-        enterDEL.setOnClickListener(this);
-        Button enterAC = findViewById(R.id.enterAC);
-        enterAC.setOnClickListener(this);
+        findViewById(R.id.enter0).setOnClickListener(this);
+        findViewById(R.id.enter1).setOnClickListener(this);
+        findViewById(R.id.enter2).setOnClickListener(this);
+        findViewById(R.id.enter3).setOnClickListener(this);
+        findViewById(R.id.enter4).setOnClickListener(this);
+        findViewById(R.id.enter5).setOnClickListener(this);
+        findViewById(R.id.enter6).setOnClickListener(this);
+        findViewById(R.id.enter7).setOnClickListener(this);
+        findViewById(R.id.enter8).setOnClickListener(this);
+        findViewById(R.id.enter9).setOnClickListener(this);
+        findViewById(R.id.enterDECIMAL).setOnClickListener(this);
+        findViewById(R.id.enterANS).setOnClickListener(this);
+        findViewById(R.id.enterEQUALS).setOnClickListener(this);
+        findViewById(R.id.enterADD).setOnClickListener(this);
+        findViewById(R.id.enterMINUS).setOnClickListener(this);
+        findViewById(R.id.enterMULT).setOnClickListener(this);
+        findViewById(R.id.enterDIVIDE).setOnClickListener(this);
+        findViewById(R.id.enterDEL).setOnClickListener(this);
+        findViewById(R.id.enterAC).setOnClickListener(this);
 
-        // initialise output EditText
-        output = findViewById(R.id.output);
+        mCalculations = new Calculations();
 
-        // TODO: set up SharedPreferences for all values that need to be saved, e.g. equation, ANS, etc.
-        equation = "";
+        // initialise calculatorDisplay EditText
+        calculatorDisplay = findViewById(R.id.output);
 
     }
 
@@ -102,63 +94,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()) {
+        String buttonPressed = ( (Button) view).getText().toString();
+        Toast.makeText(this, buttonPressed,+ Toast.LENGTH_SHORT).show();
 
-            case R.id.enter0:
+        if (DIGITS.contains(buttonPressed)) {
 
-                equation = equation +  "0";
-                break;
+            // a digit is entered
+            if (userIsTypingNumber) {
 
-            case R.id.enter1:
+                if (buttonPressed.equals(".") && calculatorDisplay.getText().toString().contains(".")) {
+                    // prevents multiple decimals
+                } else {
+                    calculatorDisplay.append(buttonPressed);
+                }
 
-                equation = equation + "1";
-                break;
+            } else {
 
-            case R.id.enter2:
+                if (buttonPressed.equals(".")) {
+                    calculatorDisplay.setText(0 + buttonPressed);
+                } else {
+                    calculatorDisplay.setText(buttonPressed);
+                }
 
-                equation = equation + "2";
-                break;
+                userIsTypingNumber = true;
+            }
+        } else {
+            // operator has been entered
 
-            case R.id.enter3:
+            if (userIsTypingNumber) {
+                mCalculations.setOperand(Double.parseDouble(calculatorDisplay.getText().toString()));
+                userIsTypingNumber = false;
+            }
 
-                equation = equation + "3";
-                break;
-
-            case R.id.enter4:
-
-                equation = equation + "4";
-                break;
-
-            case R.id.enter5:
-
-                equation = equation + "5";
-                break;
-
-            case R.id.enter6:
-
-                equation = equation + "6";
-                break;
-
-            case R.id.enter7:
-
-                equation = equation + "7";
-                break;
-
-            case R.id.enter8:
-
-                equation = equation + "8";
-                break;
-
-            case R.id.enter9:
-
-                equation = equation + "9";
-                break;
-
-            case R.id.enterDEL:
-
-                equation = equation.substring(0, equation.length() - 1);
+            mCalculations.performOperation(buttonPressed);
+            calculatorDisplay.setText(decimalFormat.format(mCalculations.getResult()));
         }
-
-        output.setText(equation);
     }
 }
