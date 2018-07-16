@@ -35,7 +35,7 @@
 
     <Button
         android:id="@+id/enterBLANK"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:textSize="24sp"
@@ -46,7 +46,7 @@
 
     <Button
         android:id="@+id/enterDECIMAL"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
@@ -58,7 +58,7 @@
 
     <Button
         android:id="@+id/enter0"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:textSize="24sp"
@@ -70,7 +70,7 @@
 
     <Button
         android:id="@+id/enterAC"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -82,7 +82,7 @@
 
     <Button
         android:id="@+id/enterDIVIDE"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/enterMINUS"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -106,7 +106,7 @@
 
     <Button
         android:id="@+id/enterEQUALS"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -118,7 +118,7 @@
 
     <Button
         android:id="@+id/enterDEL"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -130,7 +130,7 @@
 
     <Button
         android:id="@+id/enterMULT"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -142,7 +142,7 @@
 
     <Button
         android:id="@+id/enterADD"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -154,19 +154,19 @@
 
     <Button
         android:id="@+id/enterANS"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="ANS"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/enterEQUALS" />
 
     <Button
         android:id="@+id/enter6"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:textSize="24sp"
@@ -178,7 +178,7 @@
 
     <Button
         android:id="@+id/enter5"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
@@ -190,7 +190,7 @@
 
     <Button
         android:id="@+id/enter9"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:textSize="24sp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
@@ -202,7 +202,7 @@
 
     <Button
         android:id="@+id/enter8"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:textSize="24sp"
         android:layout_marginBottom="8dp"
@@ -214,7 +214,7 @@
 
     <Button
         android:id="@+id/enter7"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:textSize="24sp"
         android:layout_marginBottom="8dp"
@@ -226,7 +226,7 @@
 
     <Button
         android:id="@+id/enter4"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:textSize="24sp"
         android:layout_marginBottom="8dp"
@@ -238,7 +238,7 @@
 
     <Button
         android:id="@+id/enter1"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:textSize="24sp"
         android:layout_marginBottom="8dp"
@@ -250,7 +250,7 @@
 
     <Button
         android:id="@+id/enter3"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
@@ -262,7 +262,7 @@
 
     <Button
         android:id="@+id/enter2"
-        android:layout_width="60dp"
+        android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
