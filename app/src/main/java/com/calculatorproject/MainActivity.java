@@ -10,18 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Stack;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String equation;
+    private String expression;
     private TextView mCalculatorDisplay;
+    private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
-    private String mAnswer;
-    private String mInfix;
+    private double mAnswer;
+    private String mPostfix;
+    private Boolean mNumberIsBeingWritten = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.rightBracket).setOnClickListener(this);
 
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
+        mOutputDisplay = findViewById(R.id.outputDisplay);
 
-        equation = "";
+        expression = "";
 
         mShuntingYard = new ShuntingYard();
 
@@ -95,85 +95,116 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.enterDEL:
-                equation = equation.substring(equation.length() -1 );
+                expression = expression.substring(expression.length() -1 );
                 break;
 
+                /*
+                TODO: Should only add a space after it if the user is not currently in
+                todo: the middle of writing a number.
+                */
+
             case R.id.enterAC:
-                equation = "";
+                expression = "";
+                mOutputDisplay.setText("");
                 break;
 
             case R.id.enter0:
-                equation = equation + "0 ";
+                expression = expression + "0 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter1:
-                equation = equation + "1 ";
+                expression = expression + "1 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter2:
-                equation = equation + "2 ";
+                expression = expression + "2 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter3:
-                equation = equation + "3 ";
+                expression = expression + "3 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter4:
-                equation = equation + "4 ";
+                expression = expression + "4 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter5:
-                equation = equation + "5 ";
+                expression = expression + "5 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter6:
-                equation = equation + "6 ";
+                expression = expression + "6 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter7:
-                equation = equation + "7 ";
+                expression = expression + "7 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter8:
-                equation = equation + "8 ";
+                expression = expression + "8 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter9:
-                equation = equation + "9 ";
+                expression = expression + "9 ";
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.leftBracket:
-                equation = equation + "( ";
+                expression = expression + " ( ";
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.rightBracket:
-                equation = equation + ") ";
+                expression = expression + " ) ";
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterADD:
-                equation = equation + "+ ";
+                expression = expression + " + ";
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterMULT:
-                equation = equation + "× ";
+                expression = expression + " × ";
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterDIVIDE:
-                equation = equation + "÷ ";
+                expression = expression + " ÷ ";
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterMINUS:
-                equation = equation + "- ";
+                expression = expression + " - ";
+                mNumberIsBeingWritten = false;
                 break;
 
-            case R.id.enterEQUALS:
-                // TODO: use ShuntingYard class to convert infix to postfix
+                //TODO: add further operations, e.g. square
 
-                mInfix = ShuntingYard.infixToPostfix(equation);
+            case R.id.enterEQUALS:
+
+                mPostfix = ShuntingYard.infixToPostfix(expression);
+                mAnswer = ShuntingYard.evaluateRPN(mPostfix);
+
+                mOutputDisplay.setText("= " + String.valueOf(mAnswer));
 
         }
 
-        mCalculatorDisplay.setText(equation);
+        if(mNumberIsBeingWritten) {
+            // removes trailing whitespace if a number is written to allow multi-digit numbers
+            expression = expression.replaceFirst("\\s++$", "");
+        }
+
+        mCalculatorDisplay.setText(expression);
     }
 
 

@@ -1,18 +1,22 @@
 package com.calculatorproject;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
+import java.util.StringTokenizer;
+import java.util.function.BiFunction;
 
 public class ShuntingYard {
 
-
-
-    static String infixToPostfix (String infix) {
+    static String infixToPostfix(String infix) {
 
         final String ops = "-+÷×^";
 
@@ -63,4 +67,74 @@ public class ShuntingYard {
 
         return stringBuilder.toString();
     }
+
+    static double evaluateRPN(String postfix) {
+
+        Stack<Double> tokens = new Stack<>();
+
+        for (String token : postfix.split(" ")) {
+            Sign sign = Sign.find(token);
+
+            if (sign != null) {
+                calcSign(tokens, sign);
+            } else {
+                tokens.push(Double.parseDouble(token));
+            }
+        }
+
+        return tokens.pop();
+    }
+
+
+    protected static Stack<Double> calcSign(Stack<Double> tokens, Sign sign) {
+        tokens.push(sign.apply(tokens.pop(), tokens.pop()));
+        return tokens;
+    }
+
+    public enum Sign {
+
+        ADD("+") {
+            public double apply(double num1, double num2) {
+                return num2 + num1;
+            }
+        },
+        REMOVE("-") {
+            public double apply(double num1, double num2) {
+                return num2 - num1;
+            }
+        },
+        MULTIPLY("×") {
+            public double apply(double num1, double num2) {
+                return num2 * num1;
+            }
+        },
+        DIVIDE("÷") {
+            public double apply(double num1, double num2) {
+                return num2 / num1;
+            }
+        };
+
+        private final String operatorText;
+
+        private Sign(String operatorText) {
+            this.operatorText = operatorText;
+        }
+
+        public abstract double apply(double x1, double x2);
+
+        private static final Map<String, Sign> map;
+
+        static {
+            map = new HashMap<>();
+            for (Sign sign : Sign.values()) {
+                map.put(sign.operatorText, sign);
+            }
+        }
+
+        public static Sign find(String sign) {
+            return map.get(sign);
+        }
+
+    }
+
 }
