@@ -31,5 +31,54 @@ public class Calculations {
     public double getResult() {
         return mOperand;
     }
+
+    public String toString() {
+        return Double.toString(mOperand);
+    }
+
+    protected double performOperation(String operator) {
+
+        switch(operator) {
+
+            case CLEAR:
+                mOperand = 0;
+                mWaitingOperator = "";
+                mWaitingOperand = 0;
+
+                break;
+
+                // TODO: add operations such as memory and trigonometry
+
+            default:
+
+                performWaitingOperation();
+                mWaitingOperator = operator;
+                mWaitingOperand = mOperand;
+        }
+
+        return mOperand;
+    }
+
+    protected void performWaitingOperation() {
+        switch (mWaitingOperator) {
+
+            case ADD:
+                mOperand = mWaitingOperand + mOperand;
+                break;
+
+            case SUBTRACT:
+                mOperand = mWaitingOperand - mOperand;
+                break;
+
+            case MULTIPLY:
+                mOperand = mWaitingOperand * mOperand;
+                break;
+
+            case DIVIDE:
+                if (mOperand != 0) {
+                    mOperand = mWaitingOperand / mOperand;
+                }
+        }
+    }
 }
 
