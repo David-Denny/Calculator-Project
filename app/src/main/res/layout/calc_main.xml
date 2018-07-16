@@ -282,7 +282,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/output" />
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
     <Button
         android:id="@+id/rightBracket"
@@ -294,7 +294,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter8"
         app:layout_constraintStart_toEndOf="@+id/leftBracket"
-        app:layout_constraintTop_toBottomOf="@+id/output" />
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
 
 </android.support.constraint.ConstraintLayout>
