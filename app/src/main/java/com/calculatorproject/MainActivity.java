@@ -8,20 +8,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText calculatorDisplay;
-    Boolean userIsTypingNumber = false;
-    String DIGITS = "01234567890.";
-    private Calculations mCalculations;
-
-    DecimalFormat decimalFormat = new DecimalFormat("@###########");
-
+    private String equation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-
-        decimalFormat.setMinimumFractionDigits(0);
-        decimalFormat.setMinimumIntegerDigits(1);
-        decimalFormat.setMaximumIntegerDigits(8);
-
+        Button enter0 = findViewById(R.id.enter0);
 
         // Make button variables
         findViewById(R.id.enter0).setOnClickListener(this);
@@ -58,11 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.enterDIVIDE).setOnClickListener(this);
         findViewById(R.id.enterDEL).setOnClickListener(this);
         findViewById(R.id.enterAC).setOnClickListener(this);
-
-        mCalculations = new Calculations();
+        findViewById(R.id.leftBracket).setOnClickListener(this);
+        findViewById(R.id.rightBracket).setOnClickListener(this);
 
         // initialise calculatorDisplay EditText
-        calculatorDisplay = findViewById(R.id.output);
 
     }
 
@@ -89,45 +75,86 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /** Finds button by ID and will perform a different function depending on the ID.*/
-
     @Override
     public void onClick(View view) {
 
-        String buttonPressed = ( (Button) view).getText().toString();
-        Toast.makeText(this, buttonPressed,+ Toast.LENGTH_SHORT).show();
+        switch (view.getId()) {
 
-        if (DIGITS.contains(buttonPressed)) {
+            case R.id.enterDEL:
+                equation = equation.substring(equation.length() -1 );
+                break;
 
-            // a digit is entered
-            if (userIsTypingNumber) {
+            case R.id.enterAC:
+                equation = "";
+                break;
 
-                if (buttonPressed.equals(".") && calculatorDisplay.getText().toString().contains(".")) {
-                    // prevents multiple decimals
-                } else {
-                    calculatorDisplay.append(buttonPressed);
-                }
+            case R.id.enter0:
+                equation = equation + 0;
+                break;
 
-            } else {
+            case R.id.enter1:
+                equation = equation + 1;
+                break;
 
-                if (buttonPressed.equals(".")) {
-                    calculatorDisplay.setText(0 + buttonPressed);
-                } else {
-                    calculatorDisplay.setText(buttonPressed);
-                }
+            case R.id.enter2:
+                equation = equation + 2;
+                break;
 
-                userIsTypingNumber = true;
-            }
-        } else {
-            // operator has been entered
+            case R.id.enter3:
+                equation = equation + 3;
+                break;
 
-            if (userIsTypingNumber) {
-                mCalculations.setOperand(Double.parseDouble(calculatorDisplay.getText().toString()));
-                userIsTypingNumber = false;
-            }
+            case R.id.enter4:
+                equation = equation + 4;
+                break;
 
-            mCalculations.performOperation(buttonPressed);
-            calculatorDisplay.setText(decimalFormat.format(mCalculations.getResult()));
+            case R.id.enter5:
+                equation = equation + 5;
+                break;
+
+            case R.id.enter6:
+                equation = equation + 6;
+                break;
+
+            case R.id.enter7:
+                equation = equation + 7;
+                break;
+
+            case R.id.enter8:
+                equation = equation + 8;
+                break;
+
+            case R.id.enter9:
+                equation = equation + 9;
+                break;
+
+            case R.id.leftBracket:
+                equation = equation + "(";
+                break;
+
+            case R.id.rightBracket:
+                equation = equation + ")";
+                break;
+
+            case R.id.enterADD:
+                equation = equation + "+";
+                break;
+
+            case R.id.enterMULT:
+                equation = equation + "×";
+                break;
+
+            case R.id.enterDIVIDE:
+                equation = equation + "÷";
+                break;
+
+            case R.id.enterMINUS:
+                equation = equation + "−";
+                break;
+
+            case R.id.enterEQUALS:
+                // TODO: use ShuntingYard class to convert infix to postfix
         }
     }
+
 }
