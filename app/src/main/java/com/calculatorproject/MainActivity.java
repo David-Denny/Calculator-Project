@@ -3,13 +3,16 @@ package com.calculatorproject;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.math.BigDecimal;
+import java.util.EmptyStackException;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,9 +21,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
-    private double mAnswer;
+    private BigDecimal mAnswer;
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
+    private int mErrorCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mShuntingYard = new ShuntingYard();
 
+        // error code -1 means
+        mErrorCode = -1;
+
     }
 
 
@@ -92,10 +99,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+
         switch (view.getId()) {
 
             case R.id.enterDEL:
-                expression = expression.substring(expression.length() -1 );
+
+                if (expression.length() > 0) {
+                    expression = expression.substring(0, expression.length() - 1);
+                    mNumberIsBeingWritten = false;
+                }
                 break;
 
                 /*
@@ -158,6 +170,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 break;
 
+            case R.id.enterDECIMAL:
+                expression = expression + ".";
+                mNumberIsBeingWritten = false;
+                break;
+
             case R.id.leftBracket:
                 expression = expression + " ( ";
                 mNumberIsBeingWritten = false;
@@ -188,14 +205,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
+
                 //TODO: add further operations, e.g. square
 
             case R.id.enterEQUALS:
 
-                mPostfix = ShuntingYard.infixToPostfix(expression);
-                mAnswer = ShuntingYard.evaluateRPN(mPostfix);
+                if (expression.length() > 0) {
 
-                mOutputDisplay.setText("= " + String.valueOf(mAnswer));
+                    mPostfix = ShuntingYard.infixToPostfix(expression);
+
+                    try {
+                        mAnswer = ShuntingYard.evaluateRPN(mPostfix);
+                        mOutputDisplay.setText("= " + String.valueOf(mAnswer));
+                    } catch (EmptyStackException e) {
+                        e.printStackTrace();
+                        // error code in the 100s means the error is from the expression being formed
+                        // wrong
+                        mErrorCode = 100;
+                    }
+                }
+
 
         }
 
@@ -204,7 +233,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             expression = expression.replaceFirst("\\s++$", "");
         }
 
-        mCalculatorDisplay.setText(expression);
+        if (mErrorCode == -1) {
+            mCalculatorDisplay.setText(expression);
+        } else if (mErrorCode == 100){
+            Toast.makeText(this, "ERROR: expression is malformed",
+                    Toast.LENGTH_SHORT).show();
+
+            mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.error));
+            mCalculatorDisplay.setText("ERROR: expression is malformed. Click AC to continue.");
+
+            mErrorCode = -1;
+            mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
+        }
+
+
     }
 
 

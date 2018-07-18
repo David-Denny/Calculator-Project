@@ -1,12 +1,14 @@
 package com.calculatorproject;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
+import android.widget.Toast;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +17,7 @@ import java.util.StringTokenizer;
 import java.util.function.BiFunction;
 
 public class ShuntingYard {
+    private static Context mContext;
 
     static String infixToPostfix(String infix) {
 
@@ -68,9 +71,9 @@ public class ShuntingYard {
         return stringBuilder.toString();
     }
 
-    static double evaluateRPN(String postfix) {
+    static BigDecimal evaluateRPN(String postfix) {
 
-        Stack<Double> tokens = new Stack<>();
+        Stack<BigDecimal> tokens = new Stack<>();
 
         for (String token : postfix.split(" ")) {
             Sign sign = Sign.find(token);
@@ -78,7 +81,9 @@ public class ShuntingYard {
             if (sign != null) {
                 calcSign(tokens, sign);
             } else {
-                tokens.push(Double.parseDouble(token));
+                BigDecimal bigToken = new BigDecimal(token);
+                tokens.push(bigToken);
+
             }
         }
 
@@ -86,7 +91,7 @@ public class ShuntingYard {
     }
 
 
-    protected static Stack<Double> calcSign(Stack<Double> tokens, Sign sign) {
+    protected static Stack<BigDecimal> calcSign(Stack<BigDecimal> tokens, Sign sign) {
         tokens.push(sign.apply(tokens.pop(), tokens.pop()));
         return tokens;
     }
@@ -94,23 +99,23 @@ public class ShuntingYard {
     public enum Sign {
 
         ADD("+") {
-            public double apply(double num1, double num2) {
-                return num2 + num1;
+            public BigDecimal apply(BigDecimal num1, BigDecimal num2) {
+                return num2.add(num1);
             }
         },
         REMOVE("-") {
-            public double apply(double num1, double num2) {
-                return num2 - num1;
+            public BigDecimal apply(BigDecimal num1, BigDecimal num2) {
+                return num2.subtract(num1);
             }
         },
         MULTIPLY("×") {
-            public double apply(double num1, double num2) {
-                return num2 * num1;
+            public BigDecimal apply(BigDecimal num1, BigDecimal num2) {
+                return num2.multiply(num1);
             }
         },
         DIVIDE("÷") {
-            public double apply(double num1, double num2) {
-                return num2 / num1;
+            public BigDecimal apply(BigDecimal num1, BigDecimal num2) {
+                return num2.divide(num1);
             }
         };
 
@@ -120,7 +125,7 @@ public class ShuntingYard {
             this.operatorText = operatorText;
         }
 
-        public abstract double apply(double x1, double x2);
+        public abstract BigDecimal apply(BigDecimal x1, BigDecimal x2);
 
         private static final Map<String, Sign> map;
 
