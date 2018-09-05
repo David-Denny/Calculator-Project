@@ -3,6 +3,7 @@ package com.calculatorproject;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.math.BigDecimal;
 import java.util.EmptyStackException;
 
 
@@ -62,12 +62,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.enterAC).setOnClickListener(this);
         findViewById(R.id.leftBracket).setOnClickListener(this);
         findViewById(R.id.rightBracket).setOnClickListener(this);
-        findViewById(R.id.power).setOnClickListener(this);
+        findViewById(R.id.XYpower).setOnClickListener(this);
 
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
         mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
         mOutputDisplay = findViewById(R.id.outputDisplay);
         mOutputDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
+
+        Button XYPowerButton = findViewById(R.id.XYpower);
+        XYPowerButton.setText(Html.fromHtml("x<sup><small> y</small></sup>"));
+
         expression = "";
 
         mShuntingYard = new ShuntingYard();
@@ -205,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
-            case R.id.power:
+            case R.id.XYpower:
                 expression = expression + " ^ ";
                 mNumberIsBeingWritten = false;
                 break;
