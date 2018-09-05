@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
+    // using BigDecimal rather than long or double as it will return exact results and prevent
+    // floating point arithmetic rounding errors even though it's slower. Precision is of utmost
+    // importance as the calculator could be used for financial calculations or similar.
     private BigDecimal mAnswer;
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
@@ -61,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.rightBracket).setOnClickListener(this);
 
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
+        mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
         mOutputDisplay = findViewById(R.id.outputDisplay);
-
+        mOutputDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
         expression = "";
 
         mShuntingYard = new ShuntingYard();

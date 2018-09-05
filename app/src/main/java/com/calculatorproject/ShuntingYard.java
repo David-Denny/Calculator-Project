@@ -1,23 +1,14 @@
 package com.calculatorproject;
 
 import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-import java.util.StringTokenizer;
-import java.util.function.BiFunction;
 
 public class ShuntingYard {
-    private static Context mContext;
 
     static String infixToPostfix(String infix) {
 
@@ -115,7 +106,8 @@ public class ShuntingYard {
         },
         DIVIDE("÷") {
             public BigDecimal apply(BigDecimal num1, BigDecimal num2) {
-                return num2.divide(num1);
+                MathContext mathContext = new MathContext(10, RoundingMode.HALF_UP);
+                return num2.divide(num1, mathContext);
             }
         };
 
