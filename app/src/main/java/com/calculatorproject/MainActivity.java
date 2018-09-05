@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // using BigDecimal rather than long or double as it will return exact results and prevent
     // floating point arithmetic rounding errors even though it's slower. Precision is of utmost
     // importance as the calculator could be used for financial calculations or similar.
-    private BigDecimal mAnswer;
+    private double mAnswer;
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
     private int mErrorCode;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.enterAC).setOnClickListener(this);
         findViewById(R.id.leftBracket).setOnClickListener(this);
         findViewById(R.id.rightBracket).setOnClickListener(this);
+        findViewById(R.id.power).setOnClickListener(this);
 
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
         mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
@@ -113,11 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mNumberIsBeingWritten = false;
                 }
                 break;
-
-                /*
-                TODO: Should only add a space after it if the user is not currently in
-                todo: the middle of writing a number.
-                */
 
             case R.id.enterAC:
                 expression = "";
@@ -209,6 +205,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
+            case R.id.power:
+                expression = expression + " ^ ";
+                mNumberIsBeingWritten = false;
+                break;
 
                 //TODO: add further operations, e.g. square
 
