@@ -12,7 +12,7 @@ public class ShuntingYard {
 
     static String infixToPostfix(String infix) {
 
-        final String ops = "-+÷×^";
+        final String ops = "-+÷×^√";
 
         StringBuilder stringBuilder = new StringBuilder();
         Stack<Integer> stack = new Stack<>();
@@ -113,7 +113,11 @@ public class ShuntingYard {
             public Double apply(Double num1, Double num2) {
                 return Math.pow(num2, num1);
             }
-
+        },
+        SQUAREROOT("√") {
+            public Double apply(Double num1, Double num2) {
+                return Math.pow(num1, 1.0 / num2);
+            }
         };
 
         private final String operatorText;

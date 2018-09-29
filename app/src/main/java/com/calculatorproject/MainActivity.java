@@ -21,9 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
-    // using BigDecimal rather than long or double as it will return exact results and prevent
-    // floating point arithmetic rounding errors even though it's slower. Precision is of utmost
-    // importance as the calculator could be used for financial calculations or similar.
     private double mAnswer;
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
@@ -61,15 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.leftBracket).setOnClickListener(this);
         findViewById(R.id.rightBracket).setOnClickListener(this);
         findViewById(R.id.XYpower).setOnClickListener(this);
+        findViewById(R.id.squareRoot).setOnClickListener(this);
 
+        // reset the display text sizes onCreate().
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
         mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
         mOutputDisplay = findViewById(R.id.outputDisplay);
         mOutputDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
 
+        // set HTML markup on the power button so the superscript appears correctly.
         Button XYPowerButton = findViewById(R.id.XYpower);
         XYPowerButton.setText(Html.fromHtml("x<sup><small> y</small></sup>"));
 
+        // reset the expression onCreate().
         expression = "";
 
         mShuntingYard = new ShuntingYard();
@@ -223,6 +224,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 expression = expression + " ^ ";
                 mNumberIsBeingWritten = false;
                 break;
+
+            case R.id.squareRoot:
+                expression = expression + " 2 √ ";
+                mNumberIsBeingWritten = false;
+                break;
+
 
                 //TODO: add further operations, e.g. roots
 
