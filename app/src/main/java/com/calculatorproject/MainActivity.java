@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        Button enter0 = findViewById(R.id.enter0);
-
         // Make button variables
         findViewById(R.id.enter0).setOnClickListener(this);
         findViewById(R.id.enter1).setOnClickListener(this);
@@ -114,7 +112,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.enterDEL:
 
                 if (expression.length() > 0) {
-                    expression = expression.substring(0, expression.length() - 1);
+
+                    // Removes whitespace in between characters (inserted to ensure conversion to RPN
+                    // works correctly.
+                    String expressionNoWhiteSpace = expression.replaceAll("\\s", "");
+
+                    // removes last character
+                    expressionNoWhiteSpace = expressionNoWhiteSpace.substring(0,
+                            expressionNoWhiteSpace.length() -1);
+
+                    // inserts whitespace back into the expression (regex means all characters are
+                    // replaced itself and a space except the final one.
+                    expression = expressionNoWhiteSpace.replaceAll(".(?=.)", "$0 ");
+
                     mNumberIsBeingWritten = false;
                 }
                 break;
@@ -214,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
-                //TODO: add further operations, e.g. square
+                //TODO: add further operations, e.g. roots
 
             case R.id.enterEQUALS:
 
