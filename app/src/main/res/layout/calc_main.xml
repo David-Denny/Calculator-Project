@@ -297,15 +297,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
+
     <Button
-        android:id="@+id/XYpower"
+        android:id="@+id/squarePower"
         android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/power"
+        android:text="x^2"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
@@ -324,8 +325,38 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
-        app:layout_constraintStart_toEndOf="@+id/XYpower"
+        app:layout_constraintStart_toEndOf="@+id/xyPower"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"/>
+
+    <Button
+        android:id="@+id/xyPower"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="x^y"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintStart_toEndOf="@+id/rightBracket"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+
+    <Button
+        android:id="@+id/xyRoot"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="y√x"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/squareRoot"
+        app:layout_constraintStart_toEndOf="@+id/xyPower"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
     <Button
         android:id="@+id/rightBracket"

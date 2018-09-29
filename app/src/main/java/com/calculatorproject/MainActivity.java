@@ -57,8 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.enterAC).setOnClickListener(this);
         findViewById(R.id.leftBracket).setOnClickListener(this);
         findViewById(R.id.rightBracket).setOnClickListener(this);
-        findViewById(R.id.XYpower).setOnClickListener(this);
+        findViewById(R.id.xyPower).setOnClickListener(this);
         findViewById(R.id.squareRoot).setOnClickListener(this);
+        findViewById(R.id.squarePower).setOnClickListener(this);
+        findViewById(R.id.xyRoot).setOnClickListener(this);
 
         // reset the display text sizes onCreate().
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
@@ -66,9 +68,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mOutputDisplay = findViewById(R.id.outputDisplay);
         mOutputDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
 
-        // set HTML markup on the power button so the superscript appears correctly.
-        Button XYPowerButton = findViewById(R.id.XYpower);
-        XYPowerButton.setText(Html.fromHtml("x<sup><small> y</small></sup>"));
+        // set HTML markup on buttons so the superscript and appears correctly.
+        Button xyPowerButton = findViewById(R.id.xyPower);
+        Button squarePowerButton = findViewById(R.id.squarePower);
+        Button xyRootButton = findViewById(R.id.xyRoot);
+
+        xyPowerButton.setText(Html.fromHtml("x<sup><small> y</small></sup>"));
+        squarePowerButton.setText(Html.fromHtml("x<sup><small> 2</small></sup>"));
+        xyRootButton.setText(Html.fromHtml(getString(R.string.xyRoot)));
+
+
 
         // reset the expression onCreate().
         expression = "";
@@ -114,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (expression.length() > 0) {
 
-                    // Removes whitespace in between characters (inserted to ensure conversion to RPN
-                    // works correctly.
+                    // Removes whitespace in between characters (inserted to ensure conversion to
+                    // RPN works correctly.
                     String expressionNoWhiteSpace = expression.replaceAll("\\s", "");
 
                     // removes last character
@@ -220,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
-            case R.id.XYpower:
+            case R.id.xyPower:
                 expression = expression + " ^ ";
                 mNumberIsBeingWritten = false;
                 break;
@@ -230,7 +239,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 break;
 
+            case R.id.squarePower:
+                expression = expression + " ^ 2";
+                mNumberIsBeingWritten = false;
+                break;
 
+            case R.id.xyRoot:
+                expression = expression + " √ ";
+                mNumberIsBeingWritten = false;
+                break;
                 //TODO: add further operations, e.g. roots
 
             case R.id.enterEQUALS:
@@ -260,19 +277,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (mErrorCode == -1) {
             mCalculatorDisplay.setText(expression);
+
         } else if (mErrorCode == 100){
+            // show Toast to user explaining error
             Toast.makeText(this, "ERROR: expression is malformed",
                     Toast.LENGTH_SHORT).show();
 
+            // change text size to allow for more text
             mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.error));
+
+            // display error to user again through calculator display
             mCalculatorDisplay.setText("ERROR: expression is malformed. Click AC to continue.");
 
+            // reset error code
             mErrorCode = -1;
             mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
+
         }
 
 
     }
-
 
 }
