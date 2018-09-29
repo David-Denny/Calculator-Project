@@ -111,8 +111,7 @@ public class ShuntingYard {
         },
         SQUARE("^") {
             public Double apply(Double num1, Double num2) {
-                Double result = Math.pow(num2, num1);
-                return result;
+                return Math.pow(num2, num1);
             }
 
         };
