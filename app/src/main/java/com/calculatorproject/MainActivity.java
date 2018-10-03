@@ -250,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 expression = expression + " √ ";
                 mNumberIsBeingWritten = false;
                 break;
-                //TODO: add further operations, e.g. roots
 
             case R.id.enterEQUALS:
 
@@ -277,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             expression = expression.replaceFirst("\\s++$", "");
         }
 
+        // -1 means no error
         if (mErrorCode == -1) {
             mCalculatorDisplay.setText(expression);
 
@@ -300,30 +300,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+     /*
+     * This method is used to prevent an error where having a digit next a bracket (e.g. "2(5)")
+     * didn't register as multiplication.
+     *
+     * Whenever a opening bracket is entered by the user, this method is called and checks if the
+     * character before it is a digit. If the character is a digit, a multiplication sign is inserted
+     * into the expression so it is calculated correctly by the ShuntingYard class.
+     */
     public void checkBracketMultiplication() {
 
-        // removes whitespace
-        String expressionNoWhiteSpace = expression.replaceAll("\\s", "");
+        // char variable containing the character that may or may not be a digit.
+        char character = expression.charAt(expression.length() -4);
 
-        // the index value of the character before the bracket
-        int numberIndex = expressionNoWhiteSpace.length() - 2;
-
-        // the character at the index before the bracket.
-        char character = expressionNoWhiteSpace.charAt(numberIndex);
-
-        // if the character is a digit, the string will be broken up and a multiplication sign will
-        // be inserted between the digit and the opening bracket.
+        // if the character before the bracket is a digit, insert a multiplication sign with
+        // appropriate whitespace in between the bracket and digit.
         if (Character.isDigit(character)) {
-            expressionNoWhiteSpace = expressionNoWhiteSpace.substring(0,
-                    expressionNoWhiteSpace.length() -1)
-                    + "×"
-                    + expressionNoWhiteSpace.substring(expressionNoWhiteSpace.length() - 1,
-                    expressionNoWhiteSpace.length());
+            StringBuilder string = new StringBuilder(expression);
+            string.replace(string.length() - 3, string.length() -3, " ×");
+            expression = string.toString();
         }
 
-        // inserts whitespace back into the expression (regex means all characters are
-        // replaced itself and a space.
-        expression = expressionNoWhiteSpace.replaceAll(".(?=)", "$0 ");
     }
 
 }
