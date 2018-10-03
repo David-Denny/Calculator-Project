@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -202,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.leftBracket:
                 expression = expression + " ( ";
                 mNumberIsBeingWritten = false;
+                checkBracketMultiplication();
                 break;
 
             case R.id.rightBracket:
@@ -296,6 +298,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
+    }
+
+    public void checkBracketMultiplication() {
+
+        // removes whitespace
+        String expressionNoWhiteSpace = expression.replaceAll("\\s", "");
+
+        // the index value of the character before the bracket
+        int numberIndex = expressionNoWhiteSpace.length() - 2;
+
+        // the character at the index before the bracket.
+        char character = expressionNoWhiteSpace.charAt(numberIndex);
+
+        // if the character is a digit, the string will be broken up and a multiplication sign will
+        // be inserted between the digit and the opening bracket.
+        if (Character.isDigit(character)) {
+            expressionNoWhiteSpace = expressionNoWhiteSpace.substring(0,
+                    expressionNoWhiteSpace.length() -1)
+                    + "×"
+                    + expressionNoWhiteSpace.substring(expressionNoWhiteSpace.length() - 1,
+                    expressionNoWhiteSpace.length());
+        }
+
+        // inserts whitespace back into the expression (regex means all characters are
+        // replaced itself and a space.
+        expression = expressionNoWhiteSpace.replaceAll(".(?=)", "$0 ");
     }
 
 }
