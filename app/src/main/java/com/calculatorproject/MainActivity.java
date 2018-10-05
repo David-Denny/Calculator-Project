@@ -19,6 +19,8 @@ import java.util.EmptyStackException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String expression;
+    private String displayExpression;
+    private boolean isTypingPower;
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
     private int mErrorCode;
+    private int mCurrentNumLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,18 +77,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button squarePowerButton = findViewById(R.id.squarePower);
         Button xyRootButton = findViewById(R.id.xyRoot);
 
-        xyPowerButton.setText(Html.fromHtml("x<sup><small> y</small></sup>"));
-        squarePowerButton.setText(Html.fromHtml("x<sup><small> 2</small></sup>"));
+        xyPowerButton.setText(Html.fromHtml(getString(R.string.xyPower)));
+        squarePowerButton.setText(Html.fromHtml(getString(R.string.squarePower)));
         xyRootButton.setText(Html.fromHtml(getString(R.string.xyRoot)));
-
-
 
         // reset the expression onCreate().
         expression = "";
+        displayExpression = "";
 
         mShuntingYard = new ShuntingYard();
 
-        // error code -1 means
+        // error code -1 means no error
         mErrorCode = -1;
 
     }
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     // removes last character
                     expressionNoWhiteSpace = expressionNoWhiteSpace.substring(0,
-                            expressionNoWhiteSpace.length() -1);
+                            expressionNoWhiteSpace.length() - 1);
 
                     // inserts whitespace back into the expression (regex means all characters are
                     // replaced itself and a space except the final one.
@@ -142,114 +144,184 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.enterAC:
                 expression = "";
+                displayExpression = "";
                 mOutputDisplay.setText("");
+                mCurrentNumLength = 0;
                 break;
 
             case R.id.enter0:
                 expression = expression + "0 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("0");
                 break;
 
             case R.id.enter1:
                 expression = expression + "1 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("1");
                 break;
 
             case R.id.enter2:
                 expression = expression + "2 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("2");
                 break;
 
             case R.id.enter3:
                 expression = expression + "3 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("3");
                 break;
 
             case R.id.enter4:
                 expression = expression + "4 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("4");
                 break;
 
             case R.id.enter5:
                 expression = expression + "5 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("5");
                 break;
 
             case R.id.enter6:
                 expression = expression + "6 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("6");
                 break;
 
             case R.id.enter7:
                 expression = expression + "7 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("7");
                 break;
 
             case R.id.enter8:
                 expression = expression + "8 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("8");
                 break;
 
             case R.id.enter9:
                 expression = expression + "9 ";
                 mNumberIsBeingWritten = true;
+                mCurrentNumLength++;
+
+                appendPowerToDisplay("8");
                 break;
 
             case R.id.enterDECIMAL:
                 expression = expression + ".";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                appendPowerToDisplay(".");
                 break;
 
             case R.id.leftBracket:
                 expression = expression + " ( ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
                 checkBracketMultiplication();
+
+                appendPowerToDisplay("(");
                 break;
 
             case R.id.rightBracket:
                 expression = expression + " ) ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                appendPowerToDisplay(")");
                 break;
 
             case R.id.enterADD:
                 expression = expression + " + ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + " + ";
                 break;
 
             case R.id.enterMULT:
                 expression = expression + " × ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + " × ";
                 break;
 
             case R.id.enterDIVIDE:
                 expression = expression + " ÷ ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + " ÷ ";
                 break;
 
             case R.id.enterMINUS:
                 expression = expression + " - ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + " - ";
                 break;
 
             case R.id.xyPower:
                 expression = expression + " ^ ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + "<sup> ";
+                isTypingPower = true;
+                break;
+
+            case R.id.xyRoot:
+                expression = expression + " √ ";
+
+                appendRootToDisplayExpression();
+
+                mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
                 break;
 
             case R.id.squareRoot:
                 expression = expression + " 2 √ ";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + "<sup> 2 </sup> √ ";
                 break;
 
             case R.id.squarePower:
                 expression = expression + " ^ 2";
                 mNumberIsBeingWritten = false;
+                mCurrentNumLength = 0;
+
+                displayExpression = displayExpression + "<sup> 2 </sup>";
                 break;
 
-            case R.id.xyRoot:
-                expression = expression + " √ ";
-                mNumberIsBeingWritten = false;
-                break;
 
             case R.id.enterEQUALS:
 
@@ -271,16 +343,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        if(mNumberIsBeingWritten) {
+        if (mNumberIsBeingWritten) {
             // removes trailing whitespace if a number is written to allow multi-digit numbers
             expression = expression.replaceFirst("\\s++$", "");
         }
 
         // -1 means no error
         if (mErrorCode == -1) {
-            mCalculatorDisplay.setText(expression);
 
-        } else if (mErrorCode == 100){
+            if (!mNumberIsBeingWritten) {
+                displayExpression = displayExpression + " ";
+            }
+            mCalculatorDisplay.setText(Html.fromHtml(displayExpression));
+
+        } else if (mErrorCode == 100) {
             // show Toast to user explaining error
             Toast.makeText(this, "ERROR: expression is malformed",
                     Toast.LENGTH_SHORT).show();
@@ -300,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-     /*
+    /*
      * This method is used to prevent an error where having a digit next a bracket (e.g. "2(5)")
      * didn't register as multiplication.
      *
@@ -312,18 +388,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // checks length so there isn't an ArrayOutOfBoundsException if ".length() - 4" is called on
         // an expression with less than 3 characters.
-        if (expression.length() >  4) {
+        if (expression.length() > 4) {
 
             // checking if the character is a number
-            if (Character.isDigit(expression.charAt(expression.length() -4))) {
+            if (Character.isDigit(expression.charAt(expression.length() - 4))) {
 
                 // replaces space with a multiplication sign
                 StringBuilder string = new StringBuilder(expression);
                 string.replace(string.length() - 3, string.length() - 3, " ×");
                 expression = string.toString();
 
-            // checking if the character is a bracket
-            } else if (expression.charAt(expression.length() -5) == ')') {
+                // checking if the character is a bracket
+            } else if (expression.charAt(expression.length() - 5) == ')') {
 
                 // replaces space with a multiplication sign
                 StringBuilder string = new StringBuilder(expression);
@@ -334,4 +410,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /*
+     * This method is used to insert HTML markup to ensure that when the power button is used,
+     * the next character entered by the user is in superscript.
+     */
+    public void appendPowerToDisplay(String character) {
+
+        if (isTypingPower) {
+            displayExpression = displayExpression + character + "</sup>";
+            isTypingPower = false;
+        } else {
+            displayExpression = displayExpression + character;
+        }
+    }
+
+    /*
+     * Depending on the length of the expression, HTML markup will be inserted proactively into
+     * the expression so the digit before the radical sign appears as superscript.
+     */
+    public void appendRootToDisplayExpression() {
+
+        StringBuilder string = new StringBuilder(displayExpression);
+
+        // inserts the opening tag (mCurrentNumLength is used to ensure the entire number is inside the <sup> HTML tags)
+        string.replace(string.length() - mCurrentNumLength, string.length() - mCurrentNumLength, " <sup>")
+
+                // appends the closing tag and radical sign
+                .append(" </sup>  √ ");
+
+        displayExpression = string.toString();
+        mNumberIsBeingWritten = false;
+    }
 }
