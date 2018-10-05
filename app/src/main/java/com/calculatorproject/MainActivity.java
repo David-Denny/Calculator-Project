@@ -305,20 +305,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * didn't register as multiplication.
      *
      * Whenever a opening bracket is entered by the user, this method is called and checks if the
-     * character before it is a digit. If the character is a digit, a multiplication sign is inserted
-     * into the expression so it is calculated correctly by the ShuntingYard class.
+     * character before it is a digit. If the character is a digit, a multiplication sign is
+     * inserted into the expression so it is calculated correctly by the ShuntingYard class.
      */
     public void checkBracketMultiplication() {
 
-        // char variable containing the character that may or may not be a digit.
-        char character = expression.charAt(expression.length() -4);
+        // checks length so there isn't an ArrayOutOfBoundsException if ".length() - 4" is called on
+        // an expression with less than 3 characters.
+        if (expression.length() >  4) {
 
-        // if the character before the bracket is a digit, insert a multiplication sign with
-        // appropriate whitespace in between the bracket and digit.
-        if (Character.isDigit(character)) {
-            StringBuilder string = new StringBuilder(expression);
-            string.replace(string.length() - 3, string.length() -3, " ×");
-            expression = string.toString();
+            // checking if the character is a number
+            if (Character.isDigit(expression.charAt(expression.length() -4))) {
+
+                // replaces space with a multiplication sign
+                StringBuilder string = new StringBuilder(expression);
+                string.replace(string.length() - 3, string.length() - 3, " ×");
+                expression = string.toString();
+
+            // checking if the character is a bracket
+            } else if (expression.charAt(expression.length() -5) == ')') {
+
+                // replaces space with a multiplication sign
+                StringBuilder string = new StringBuilder(expression);
+                string.replace(string.length() - 3, string.length() - 3, "×");
+                expression = string.toString();
+            }
         }
 
     }
