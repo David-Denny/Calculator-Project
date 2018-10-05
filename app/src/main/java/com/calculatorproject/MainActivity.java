@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -299,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.xyRoot:
                 expression = expression + " √ ";
 
-                appendRootToDisplayExpression();
+                appendRootToDisplay();
 
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
@@ -428,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Depending on the length of the expression, HTML markup will be inserted proactively into
      * the expression so the digit before the radical sign appears as superscript.
      */
-    public void appendRootToDisplayExpression() {
+    public void appendRootToDisplay() {
 
         StringBuilder string = new StringBuilder(displayExpression);
 
