@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("0");
+                appendToDisplay("0");
                 break;
 
             case R.id.enter1:
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("1");
+                appendToDisplay("1");
                 break;
 
             case R.id.enter2:
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("2");
+                appendToDisplay("2");
                 break;
 
             case R.id.enter3:
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("3");
+                appendToDisplay("3");
                 break;
 
             case R.id.enter4:
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("4");
+                appendToDisplay("4");
                 break;
 
             case R.id.enter5:
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("5");
+                appendToDisplay("5");
                 break;
 
             case R.id.enter6:
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("6");
+                appendToDisplay("6");
                 break;
 
             case R.id.enter7:
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("7");
+                appendToDisplay("7");
                 break;
 
             case R.id.enter8:
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("8");
+                appendToDisplay("8");
                 break;
 
             case R.id.enter9:
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendPowerToDisplay("8");
+                appendToDisplay("8");
                 break;
 
             case R.id.enterDECIMAL:
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendPowerToDisplay(".");
+                appendToDisplay(".");
                 break;
 
             case R.id.leftBracket:
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 checkBracketMultiplication();
 
-                appendPowerToDisplay("(");
+                appendToDisplay("(");
                 break;
 
             case R.id.rightBracket:
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendPowerToDisplay(")");
+                appendToDisplay(")");
                 break;
 
             case R.id.enterADD:
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                displayExpression = displayExpression + " + ";
+                appendToDisplay("+");
                 break;
 
             case R.id.enterMULT:
@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                displayExpression = displayExpression + " × ";
+                appendToDisplay("×");
                 break;
 
             case R.id.enterDIVIDE:
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                displayExpression = displayExpression + " ÷ ";
+                appendToDisplay("-1");
                 break;
 
             case R.id.enterMINUS:
@@ -283,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                displayExpression = displayExpression + " - ";
+                appendToDisplay("-");
                 break;
 
             case R.id.xyPower:
@@ -291,7 +291,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                displayExpression = displayExpression + "<sup> ";
+
+                appendToDisplay("^");
                 isTypingPower = true;
                 break;
 
@@ -299,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 expression = expression + " √ ";
 
                 appendRootToDisplay();
-
+                appendToDisplay("√");
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
@@ -314,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.squarePower:
-                expression = expression + " ^ 2";
+                expression = expression + " ^ 2 ";
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
@@ -409,23 +410,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*
-     * This method is used to insert HTML markup to ensure that when the power button is used,
-     * the next character entered by the user is in superscript.
-     */
-    public void appendPowerToDisplay(String character) {
+    /* This method is invoked whenever the user clicks a button that will change the calculator's
+    * display.
+    *
+    * The method concatenates the user's input to the displayExpression. There are special
+    * exceptions for different inputs, for example, a power sign means that the '<sup>' tag should
+    * be appended to the displayExpression
+    */
+    public void appendToDisplay(String input) {
 
-        if (isTypingPower) {
-            displayExpression = displayExpression + character + "</sup>";
-            isTypingPower = false;
+        // default case where the user is just inputting a number
+        if (Character.isDigit(input.charAt(0))) {
+            displayExpression = displayExpression + input;
+
+            // case where the user inputs a power sign which should be replaced by a superscript
+            // HTML tag.
+        } else if (input.equals("^")) {
+            displayExpression = displayExpression + "<sup>";
+
+            // special case where a non-digit character has been entered so the closing superscript
+            // tag must be included to cancel the power and then insert the user's input.
         } else {
-            displayExpression = displayExpression + character;
+            displayExpression = displayExpression + "</sup> " + input;
+
         }
+
     }
+
 
     /*
      * Depending on the length of the expression, HTML markup will be inserted proactively into
      * the expression so the digit before the radical sign appears as superscript.
+     *
+     * Appending roots is in a separate function than the other characters as it has to
+     * retroactively edit the display string and is a different case compared to the others.
+     *
+     * Therefore, for understandability's sake I have created it's own function.
      */
     public void appendRootToDisplay() {
 
