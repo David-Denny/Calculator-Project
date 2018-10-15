@@ -289,85 +289,121 @@
         android:id="@+id/leftBracket"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="8dp"
         android:text="("
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
+        app:layout_constraintVertical_bias="0.13999999" />
 
 
     <Button
         android:id="@+id/squarePower"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:text="x^2"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
-        app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintStart_toEndOf="@+id/rightBracket" />
 
     <Button
         android:id="@+id/squareRoot"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:text="√x"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/enter9"
-        app:layout_constraintStart_toEndOf="@+id/xyPower"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"/>
+        app:layout_constraintBottom_toTopOf="@+id/enterDEL"
+        app:layout_constraintStart_toEndOf="@+id/squarePower" />
 
     <Button
         android:id="@+id/xyPower"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="x^y"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
     <Button
         android:id="@+id/xyRoot"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="y√x"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squareRoot"
         app:layout_constraintStart_toEndOf="@+id/xyPower"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
 
     <Button
         android:id="@+id/rightBracket"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text=")"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter8"
         app:layout_constraintStart_toEndOf="@+id/leftBracket"
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+    <ImageButton
+        android:id="@+id/shiftLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:onClick="shiftPosition"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
+        android:src="@drawable/ic_round_arrow_back_24px"
+        android:background="@null"/>
+
+    <ImageButton
+        android:id="@+id/shiftRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:onClick="shiftPosition"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
+        android:src="@drawable/ic_round_arrow_forward_24px"
+        android:background="@null"/>
+
+    <TextView
+        android:id="@+id/cursorShiftHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
 
