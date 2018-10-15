@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Boolean mNumberIsBeingWritten = true;
     private int mErrorCode;
     private int mCurrentNumLength;
+    private int pointerIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // error code -1 means no error
         mErrorCode = -1;
 
+        // TODO: weird bug where it takes two entries to get to 1 and takes two to the left to minus
+        // TODO: 1 but only when it's the first in a series
+        // starts pointer at 0
+        pointerIndex = 0;
     }
 
 
@@ -118,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+        Log.d("onclick pointer", String.valueOf(pointerIndex));
+        pointerIndex ++;
+
 
         switch (view.getId()) {
 
@@ -139,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     mNumberIsBeingWritten = false;
                 }
+
+                // -2 to counteract the +1 at the start of this method
+                pointerIndex = pointerIndex - 2;
                 break;
 
             case R.id.enterAC:
@@ -146,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayExpression = "";
                 mOutputDisplay.setText("");
                 mCurrentNumLength = 0;
+                pointerIndex = 0;
                 break;
 
             case R.id.enter0:
@@ -459,5 +472,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         displayExpression = string.toString();
         mNumberIsBeingWritten = false;
+    }
+
+
+    public void shiftPosition(View view) {
+
+        if (view.getId() == R.id.shiftLeft) {
+
+            if (pointerIndex > 0) {
+                pointerIndex --;
+            }
+
+            Log.d("pointer left", String.valueOf(pointerIndex));
+        } else if (view.getId() == R.id.shiftRight) {
+
+            pointerIndex ++;
+
+            Log.d("pointer right", String.valueOf(pointerIndex));
+        }
     }
 }
