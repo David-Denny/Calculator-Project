@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("8");
+                appendToDisplay("9");
                 break;
 
             case R.id.enterDECIMAL:
