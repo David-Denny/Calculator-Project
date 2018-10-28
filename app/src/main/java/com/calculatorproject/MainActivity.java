@@ -436,6 +436,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String cleansedExpression = displayExpression.replaceAll("\\s", "");
         StringBuilder string = new StringBuilder(cleansedExpression);
 
+        Log.d("Real Expression", expression);
         // prevent StringIndexOutOfBoundsException
         if (pointerIndex != 0 ) {
 
@@ -490,6 +491,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mNumberIsBeingWritten = false;
     }
 
+    public void insertIntoRealExpression(String input) {
+        // TODO: insert chars into the correct place in the string like the display expression
+    }
 
     public void shiftPosition(View view) {
 
