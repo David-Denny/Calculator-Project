@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int mErrorCode;
     private int mCurrentNumLength;
     private int pointerIndex;
+    final String ops = "-+÷×^√  ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +125,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        Log.d("onclick pointer", String.valueOf(pointerIndex));
         pointerIndex ++;
-
+        Log.d("onclick pointer", String.valueOf(pointerIndex));
 
         switch (view.getId()) {
 
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("0");
+                appendToDisplay("0 ");
                 break;
 
             case R.id.enter1:
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("1");
+                appendToDisplay("1 ");
                 break;
 
             case R.id.enter2:
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("2");
+                appendToDisplay("2 ");
                 break;
 
             case R.id.enter3:
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("3");
+                appendToDisplay("3 ");
                 break;
 
             case R.id.enter4:
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("4");
+                appendToDisplay("4 ");
                 break;
 
             case R.id.enter5:
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("5");
+                appendToDisplay("5 ");
                 break;
 
             case R.id.enter6:
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("6");
+                appendToDisplay("6 ");
                 break;
 
             case R.id.enter7:
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("7");
+                appendToDisplay("7 ");
                 break;
 
             case R.id.enter8:
@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("8");
+                appendToDisplay("8 ");
                 break;
 
             case R.id.enter9:
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("9");
+                appendToDisplay("9 ");
                 break;
 
             case R.id.enterDECIMAL:
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay("+");
+                appendToDisplay(" +");
                 break;
 
             case R.id.enterMULT:
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay("×");
+                appendToDisplay(" ×");
                 break;
 
             case R.id.enterDIVIDE:
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay("-1");
+                appendToDisplay(" ÷");
                 break;
 
             case R.id.enterMINUS:
@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay("-");
+                appendToDisplay(" -");
                 break;
 
             case R.id.xyPower:
@@ -340,9 +340,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (expression.length() > 0) {
 
-                    mPostfix = ShuntingYard.infixToPostfix(expression);
 
                     try {
+
+                        mPostfix = ShuntingYard.infixToPostfix(expression);
                         mAnswer = ShuntingYard.evaluateRPN(mPostfix);
                         mOutputDisplay.setText("= " + String.valueOf(mAnswer));
                     } catch (EmptyStackException e) {
@@ -432,9 +433,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     */
     public void appendToDisplay(String input) {
 
-        // default case where the user is just inputting a number
-        if (Character.isDigit(input.charAt(0))) {
+
+        // default case where the user is just inputting a number or an operator
+        if (Character.isDigit(input.charAt(0))
+                || ops.indexOf(input.charAt(0)) != -1) {
             displayExpression = displayExpression + input;
+
+            if (mNumberIsBeingWritten) {
+                displayExpression = displayExpression.replaceFirst("\\s++$", "");
+            }
 
             // case where the user inputs a power sign which should be replaced by a superscript
             // HTML tag.
@@ -447,7 +454,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             displayExpression = displayExpression + "</sup> " + input;
 
         }
-
     }
 
 
@@ -477,6 +483,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void shiftPosition(View view) {
 
+        String cleansedExpression = displayExpression.replaceAll("\\s", "").replaceAll("_", "");
+
+        Log.d("Clean Expression", cleansedExpression);
+
         if (view.getId() == R.id.shiftLeft) {
 
             if (pointerIndex > 0) {
@@ -484,11 +494,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             Log.d("pointer left", String.valueOf(pointerIndex));
-        } else if (view.getId() == R.id.shiftRight) {
+
+        } else if (view.getId() == R.id.shiftRight && pointerIndex < cleansedExpression.length()) {
 
             pointerIndex ++;
 
             Log.d("pointer right", String.valueOf(pointerIndex));
         }
+
+        StringBuilder string = new StringBuilder(cleansedExpression);
+
+        Log.d("Length", String.valueOf(string.length()));
+
+        if (pointerIndex <= string.length()) {
+            string.insert(pointerIndex, "_");
+
+        }
+
+
+        displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
+
+        Log.d("Display Expression", displayExpression);
+
+        mCalculatorDisplay.setText(Html.fromHtml(displayExpression));
     }
 }
