@@ -433,27 +433,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     */
     public void appendToDisplay(String input) {
 
+        String cleansedExpression = displayExpression.replaceAll("\\s", "");
+        StringBuilder string = new StringBuilder(cleansedExpression);
 
-        // default case where the user is just inputting a number or an operator
-        if (Character.isDigit(input.charAt(0))
-                || ops.indexOf(input.charAt(0)) != -1) {
-            displayExpression = displayExpression + input;
+        // prevent StringIndexOutOfBoundsException
+        if (pointerIndex != 0 ) {
 
-            if (mNumberIsBeingWritten) {
-                displayExpression = displayExpression.replaceFirst("\\s++$", "");
+            // default case where the user is just inputting a number or an operator
+            if (Character.isDigit(input.charAt(0))
+                    || ops.indexOf(input.charAt(0)) != -1) {
+
+                string.insert(pointerIndex - 1, input);
+
+                if (mNumberIsBeingWritten) {
+                    displayExpression = displayExpression.replaceFirst("\\s++$", "");
+                }
+
+                // case where the user inputs a power sign which should be replaced by a superscript
+                // HTML tag.
+            } else if (input.equals("^")) {
+                string.insert(pointerIndex, input + "<sup");
+
+                // special case where a non-digit character has been entered so the closing superscript
+                // tag must be included to cancel the power and then insert the user's input.
+            } else {
+                string.insert(pointerIndex, "</sup> " + input);
             }
 
-            // case where the user inputs a power sign which should be replaced by a superscript
-            // HTML tag.
-        } else if (input.equals("^")) {
-            displayExpression = displayExpression + "<sup>";
-
-            // special case where a non-digit character has been entered so the closing superscript
-            // tag must be included to cancel the power and then insert the user's input.
         } else {
-            displayExpression = displayExpression + "</sup> " + input;
-
+            string.append(input);
         }
+        displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
     }
 
 
@@ -483,6 +493,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void shiftPosition(View view) {
 
+        Log.d("Unclean Expression", displayExpression);
         String cleansedExpression = displayExpression.replaceAll("\\s", "").replaceAll("_", "");
 
         Log.d("Clean Expression", cleansedExpression);
@@ -502,20 +513,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("pointer right", String.valueOf(pointerIndex));
         }
 
-        StringBuilder string = new StringBuilder(cleansedExpression);
+        // add underscore to the position
 
-        Log.d("Length", String.valueOf(string.length()));
+        StringBuilder string = new StringBuilder(cleansedExpression);
 
         if (pointerIndex <= string.length()) {
             string.insert(pointerIndex, "_");
 
         }
-
-
         displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
-
-        Log.d("Display Expression", displayExpression);
-
         mCalculatorDisplay.setText(Html.fromHtml(displayExpression));
+        Log.d("Display Expression", displayExpression);
     }
 }
