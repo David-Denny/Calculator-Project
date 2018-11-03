@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -92,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // error code -1 means no error
         mErrorCode = -1;
 
-        // TODO: weird bug where it takes two entries to get to 1 and takes two to the left to minus
-        // TODO: 1 but only when it's the first in a series
         // starts pointer at 0
         pointerIndex = 0;
     }
@@ -343,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     try {
 
+                        expression= expression.replaceAll("_", "");
                         mPostfix = ShuntingYard.infixToPostfix(expression);
                         mAnswer = ShuntingYard.evaluateRPN(mPostfix);
                         mOutputDisplay.setText("= " + String.valueOf(mAnswer));
@@ -360,6 +360,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mNumberIsBeingWritten) {
             // removes trailing whitespace if a number is written to allow multi-digit numbers
             expression = expression.replaceFirst("\\s++$", "");
+            displayExpression = displayExpression.replaceFirst("\\s++$", "");
         }
 
         // -1 means no error
@@ -446,9 +447,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 string.insert(pointerIndex - 1, input);
 
+                Log.d("String Display", string.toString());
                 if (mNumberIsBeingWritten) {
-                    displayExpression = displayExpression.replaceFirst("\\s++$", "");
+
                 }
+
 
                 // case where the user inputs a power sign which should be replaced by a superscript
                 // HTML tag.
@@ -465,6 +468,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             string.append(input);
         }
         displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
+        Log.d("Display", displayExpression);
     }
 
 
