@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int mCurrentNumLength;
     private int pointerIndex;
     final String ops = "-+÷×^√  ";
+    private int realPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,161 +158,160 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mOutputDisplay.setText("");
                 mCurrentNumLength = 0;
                 pointerIndex = 0;
+                realPosition = 0;
                 break;
 
             case R.id.enter0:
-                expression = expression + "0 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("0 ");
+                insertIntoRealExpression("0 ");
+                insertIntoDisplay("0 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter1:
-                expression = expression + "1 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("1 ");
+                insertIntoRealExpression("1 ");
+                insertIntoDisplay("1 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter2:
-                expression = expression + "2 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("2 ");
+                insertIntoRealExpression("2 ");
+                insertIntoDisplay("2 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter3:
-                expression = expression + "3 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("3 ");
+                insertIntoRealExpression("3 ");
+                insertIntoDisplay("3 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter4:
-                expression = expression + "4 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("4 ");
+                insertIntoRealExpression("4 ");
+                insertIntoDisplay("4 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter5:
-                expression = expression + "5 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("5 ");
+                insertIntoRealExpression("5 ");
+                insertIntoDisplay("5 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter6:
-                expression = expression + "6 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("6 ");
+                insertIntoRealExpression("6 ");
+                insertIntoDisplay("6 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter7:
-                expression = expression + "7 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("7 ");
+                insertIntoRealExpression("7 ");
+                insertIntoDisplay("7 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter8:
-                expression = expression + "8 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("8 ");
+                insertIntoRealExpression("8 ");
+                insertIntoDisplay("8 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enter9:
-                expression = expression + "9 ";
-                mNumberIsBeingWritten = true;
                 mCurrentNumLength++;
 
-                appendToDisplay("9 ");
+                insertIntoRealExpression("9 ");
+                insertIntoDisplay("9 ");
+                mNumberIsBeingWritten = true;
                 break;
 
             case R.id.enterDECIMAL:
-                expression = expression + ".";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(".");
+                insertIntoRealExpression(". ");
+                insertIntoDisplay(".");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.leftBracket:
-                expression = expression + " ( ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
-
                 checkBracketMultiplication();
 
-                appendToDisplay("(");
+                insertIntoRealExpression("( ");
+                insertIntoDisplay("(");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.rightBracket:
-                expression = expression + " ) ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(")");
+                insertIntoRealExpression(") ");
+                insertIntoDisplay(")");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterADD:
-                expression = expression + " + ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(" +");
+                insertIntoRealExpression(" + ");
+                insertIntoDisplay(" +");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterMULT:
-                expression = expression + " × ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(" ×");
+                insertIntoRealExpression(" × ");
+                insertIntoDisplay(" ×");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterDIVIDE:
-                expression = expression + " ÷ ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(" ÷");
+                insertIntoRealExpression(" ÷ ");
+                insertIntoDisplay(" ÷");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.enterMINUS:
-                expression = expression + " - ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-                appendToDisplay(" -");
+                insertIntoRealExpression(" - ");
+                insertIntoDisplay(" -");
+                mNumberIsBeingWritten = false;
                 break;
 
             case R.id.xyPower:
-                expression = expression + " ^ ";
-                mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
-
-                appendToDisplay("^");
+                insertIntoRealExpression(" ^ ");
+                insertIntoDisplay("^");
+                mNumberIsBeingWritten = false;
                 isTypingPower = true;
                 break;
 
             case R.id.xyRoot:
-                expression = expression + " √ ";
 
+                insertIntoRealExpression(" √ ");
                 appendRootToDisplay();
-                appendToDisplay("√");
+                insertIntoDisplay("√");
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
@@ -323,6 +322,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
 
+                insertIntoRealExpression(" √ ");
                 displayExpression = displayExpression + "<sup> 2 </sup> √ ";
                 break;
 
@@ -330,8 +330,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 expression = expression + " ^ 2 ";
                 mNumberIsBeingWritten = false;
                 mCurrentNumLength = 0;
-
-                displayExpression = displayExpression + "<sup> 2 </sup>";
+                insertIntoRealExpression(" √ ");
+                insertShortcutToDisplay("square");
                 break;
 
 
@@ -432,12 +432,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     * exceptions for different inputs, for example, a power sign means that the '<sup>' tag should
     * be appended to the displayExpression
     */
-    public void appendToDisplay(String input) {
+    public void insertIntoDisplay(String input) {
 
         String cleansedExpression = displayExpression.replaceAll("\\s", "");
         StringBuilder string = new StringBuilder(cleansedExpression);
 
-        Log.d("Real Expression", expression);
         // prevent StringIndexOutOfBoundsException
         if (pointerIndex != 0 ) {
 
@@ -446,11 +445,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     || ops.indexOf(input.charAt(0)) != -1) {
 
                 string.insert(pointerIndex - 1, input);
-
-                Log.d("String Display", string.toString());
-                if (mNumberIsBeingWritten) {
-
-                }
 
 
                 // case where the user inputs a power sign which should be replaced by a superscript
@@ -471,6 +465,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("Display", displayExpression);
     }
 
+    public void insertShortcutToDisplay(String input) {
+
+        String cleansedExpression = displayExpression.replaceAll("\\s", "");
+        StringBuilder string = new StringBuilder(cleansedExpression);
+
+        Log.d("string", string.toString());
+        Log.d("position", String.valueOf(pointerIndex));
+
+        if (string.length() > 2) {
+            if (input.equals("square")) {
+                string.insert(pointerIndex - 1, "<sup> 2 </sup>");
+            }
+        } else {
+            string.append("<sup> 2 </sup>");
+        }
+
+
+        displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
+        mCalculatorDisplay.setText(Html.fromHtml(displayExpression));
+    }
 
     /*
      * Depending on the length of the expression, HTML markup will be inserted proactively into
@@ -496,13 +510,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void insertIntoRealExpression(String input) {
-        // TODO: insert chars into the correct place in the string like the display expression
+        StringBuilder string = new StringBuilder(expression);
+
+        Log.d("real string", string.toString());
+        Log.d("input", input);
+
+        //TODO: Fix this, the position variable isn't correct or the input isn't inserted
+        // TODO; at the right bit or something, I don't know
+
+        if (string.length() == 0) {
+            string.append(input);
+        } else {
+
+            // digits
+            if (Character.isDigit(input.charAt(0))) {
+                string.insert(realPosition, input);
+                realPosition = realPosition + 2;
+
+                if (mNumberIsBeingWritten) {
+                    realPosition --;
+                }
+                // operators
+            } else if (ops.contains(input.replaceAll("\\s", ""))) {
+
+                string.insert(realPosition + 1, input);
+                realPosition = realPosition + 3;
+
+                // brackets
+            } else {
+                string.insert(realPosition, input);
+                realPosition = realPosition + 2;
+            }
+
+        }
+        expression = string.toString();
     }
 
     public void shiftPosition(View view) {
 
         Log.d("Unclean Expression", displayExpression);
-        String cleansedExpression = displayExpression.replaceAll("\\s", "").replaceAll("_", "");
+        String cleansedExpression = displayExpression.replaceAll("\\s", "").replaceAll("\\|", "");
 
         Log.d("Clean Expression", cleansedExpression);
 
@@ -526,7 +573,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StringBuilder string = new StringBuilder(cleansedExpression);
 
         if (pointerIndex <= string.length()) {
-            string.insert(pointerIndex, "_");
+            string.insert(pointerIndex, "|");
 
         }
         displayExpression = string.toString().replaceAll(".(?=.)", "$0 ");
