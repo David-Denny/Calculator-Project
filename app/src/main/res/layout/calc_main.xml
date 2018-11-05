@@ -116,12 +116,12 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="−"
+        android:text="-"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterEQUALS"
         app:layout_constraintEnd_toEndOf="parent"
         android:onClick="inputOperator"
-        android:tag="−"/>
+        android:tag="-"/>
 
     <Button
         android:id="@+id/enterEQUALS"
