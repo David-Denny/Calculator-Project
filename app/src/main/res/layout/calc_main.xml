@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.calculatorproject.MainActivity">
+    tools:context="com.calculatorproject.Calculator">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -79,7 +79,9 @@
         android:layout_marginStart="8dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="inputDigit"
+        android:tag="0"/>
 
     <Button
         android:id="@+id/enterAC"
@@ -91,7 +93,7 @@
         android:text="AC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDIVIDE"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/enterDIVIDE"
@@ -103,7 +105,9 @@
         android:text="÷"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMINUS"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="inputOperator"
+        android:tag="÷"/>
 
     <Button
         android:id="@+id/enterMINUS"
@@ -115,7 +119,9 @@
         android:text="−"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterEQUALS"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="inputOperator"
+        android:tag="−"/>
 
     <Button
         android:id="@+id/enterEQUALS"
@@ -127,7 +133,8 @@
         android:text="="
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="submitInfix"/>
 
     <Button
         android:id="@+id/enterDEL"
@@ -151,7 +158,9 @@
         android:text="×"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterADD"
-        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE" />
+        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE"
+        android:onClick="inputOperator"
+        android:tag="×"/>
 
     <Button
         android:id="@+id/enterADD"
@@ -163,7 +172,9 @@
         android:text="+"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterANS"
-        app:layout_constraintEnd_toStartOf="@+id/enterMINUS" />
+        app:layout_constraintEnd_toStartOf="@+id/enterMINUS"
+        android:onClick="inputOperator"
+        android:tag="+"/>
 
     <Button
         android:id="@+id/enterANS"
@@ -187,7 +198,9 @@
         android:layout_marginStart="8dp"
         android:text="6"
         app:layout_constraintBottom_toTopOf="@+id/enter3"
-        app:layout_constraintStart_toEndOf="@+id/enter5" />
+        app:layout_constraintStart_toEndOf="@+id/enter5"
+        android:onClick="inputDigit"
+        android:tag="6"/>
 
     <Button
         android:id="@+id/enter5"
@@ -199,7 +212,9 @@
         android:textSize="24sp"
         android:text="5"
         app:layout_constraintBottom_toTopOf="@+id/enter2"
-        app:layout_constraintStart_toEndOf="@+id/enter4" />
+        app:layout_constraintStart_toEndOf="@+id/enter4"
+        android:onClick="inputDigit"
+        android:tag="5"/>
 
     <Button
         android:id="@+id/enter9"
@@ -211,7 +226,9 @@
         android:layout_marginStart="8dp"
         android:text="9"
         app:layout_constraintBottom_toTopOf="@+id/enter6"
-        app:layout_constraintStart_toEndOf="@+id/enter8" />
+        app:layout_constraintStart_toEndOf="@+id/enter8"
+        android:onClick="inputDigit"
+        android:tag="9"/>
 
     <Button
         android:id="@+id/enter8"
@@ -223,7 +240,9 @@
         android:layout_marginStart="8dp"
         android:text="8"
         app:layout_constraintBottom_toTopOf="@+id/enter5"
-        app:layout_constraintStart_toEndOf="@+id/enter7" />
+        app:layout_constraintStart_toEndOf="@+id/enter7"
+        android:onClick="inputDigit"
+        android:tag="8"/>
 
     <Button
         android:id="@+id/enter7"
@@ -235,7 +254,9 @@
         android:layout_marginStart="8dp"
         android:text="7"
         app:layout_constraintBottom_toTopOf="@+id/enter4"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="inputDigit"
+        android:tag="7"/>
 
     <Button
         android:id="@+id/enter4"
@@ -247,7 +268,9 @@
         android:layout_marginStart="8dp"
         android:text="4"
         app:layout_constraintBottom_toTopOf="@+id/enter1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="inputDigit"
+        android:tag="4"/>
 
     <Button
         android:id="@+id/enter1"
@@ -259,7 +282,9 @@
         android:layout_marginStart="8dp"
         android:text="1"
         app:layout_constraintBottom_toTopOf="@+id/enter0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="inputDigit"
+        android:tag="1"/>
 
     <Button
         android:id="@+id/enter3"
@@ -271,7 +296,9 @@
         android:layout_marginStart="8dp"
         android:text="3"
         app:layout_constraintBottom_toTopOf="@+id/enterBLANK"
-        app:layout_constraintStart_toEndOf="@+id/enter2" />
+        app:layout_constraintStart_toEndOf="@+id/enter2"
+        android:onClick="inputDigit"
+        android:tag="3"/>
 
     <Button
         android:id="@+id/enter2"
@@ -283,7 +310,9 @@
         android:layout_marginStart="8dp"
         android:text="2"
         app:layout_constraintBottom_toTopOf="@+id/enterDECIMAL"
-        app:layout_constraintStart_toEndOf="@+id/enter1" />
+        app:layout_constraintStart_toEndOf="@+id/enter1"
+        android:onClick="inputDigit"
+        android:tag="2"/>
 
     <Button
         android:id="@+id/leftBracket"
