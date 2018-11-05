@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         pointerIndex ++;
+
         Log.d("onclick pointer", String.valueOf(pointerIndex));
 
         switch (view.getId()) {
@@ -342,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     try {
 
-                        expression= expression.replaceAll("_", "");
+                        expression = expression.replaceAll("_", "");
                         mPostfix = ShuntingYard.infixToPostfix(expression);
                         mAnswer = ShuntingYard.evaluateRPN(mPostfix);
                         mOutputDisplay.setText("= " + String.valueOf(mAnswer));
@@ -512,18 +513,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void insertIntoRealExpression(String input) {
         StringBuilder string = new StringBuilder(expression);
 
-        Log.d("real string", string.toString());
-        Log.d("input", input);
-
-        //TODO: Fix this, the position variable isn't correct or the input isn't inserted
-        // TODO; at the right bit or something, I don't know
-
         if (string.length() == 0) {
             string.append(input);
         } else {
 
             // digits
             if (Character.isDigit(input.charAt(0))) {
+
                 string.insert(realPosition, input);
                 realPosition = realPosition + 2;
 
@@ -533,7 +529,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // operators
             } else if (ops.contains(input.replaceAll("\\s", ""))) {
 
-                string.insert(realPosition + 1, input);
+                string.insert(realPosition, input);
                 realPosition = realPosition + 3;
 
                 // brackets
@@ -543,15 +539,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         }
+        Log.d("real string", string.toString());
         expression = string.toString();
     }
 
     public void shiftPosition(View view) {
 
-        Log.d("Unclean Expression", displayExpression);
         String cleansedExpression = displayExpression.replaceAll("\\s", "").replaceAll("\\|", "");
-
-        Log.d("Clean Expression", cleansedExpression);
 
         if (view.getId() == R.id.shiftLeft) {
 
