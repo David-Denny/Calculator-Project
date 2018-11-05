@@ -14,7 +14,8 @@ public class ShuntingYard {
 
         // string that represents every operator. Each operator's precedence can be found
         // by dividing the index of the operator by 2.
-
+        final String ops = "-+÷×^√";
+        
         // iterates through each token in the user's infix
         for (String token : infix.split("\\s")) {
             if (token.isEmpty()) {
@@ -35,7 +36,7 @@ public class ShuntingYard {
                     
                 } else {
                     
-                    while (!stack.isEmpty()) {        final String ops = "-+÷×^√";
+                    while (!stack.isEmpty()) {
 
         // Create the postfix stringBuilder
         StringBuilder stringBuilder = new StringBuilder();
