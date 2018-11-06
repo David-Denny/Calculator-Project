@@ -13,26 +13,26 @@
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
     <TextView
         android:id="@+id/calculatorDisplay"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimary"
         android:ems="10"
+        android:padding="8dp"
+        android:textColor="#000"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-        android:background="@color/colorPrimary"
-        android:textColor="#000"
-        android:textSize="24sp"/>
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <TextView
         android:id="@+id/outputDisplay"
@@ -40,9 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:textSize="24sp"
         android:padding="8dp"
         android:textColor="#000"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/calculatorDisplay"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -50,10 +50,10 @@
         android:id="@+id/enterBLANK"
         android:layout_width="55dp"
         android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:textSize="24sp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/enterDECIMAL" />
 
@@ -61,11 +61,11 @@
         android:id="@+id/enterDECIMAL"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="24sp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:text="."
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/enter0" />
 
@@ -73,77 +73,77 @@
         android:id="@+id/enter0"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="24sp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="0"/>
+        android:tag="0"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enterAC"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="inputAC"
         android:text="AC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDIVIDE"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="inputAC"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/enterDIVIDE"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="inputOperator"
+        android:tag="÷"
         android:text="÷"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMINUS"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="inputOperator"
-        android:tag="÷"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/enterMINUS"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="inputOperator"
+        android:tag="-"
         android:text="-"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterEQUALS"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="inputOperator"
-        android:tag="-"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/enterEQUALS"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="submitInfix"
         android:text="="
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="submitInfix"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/enterDEL"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:text="DEL"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMULT"
@@ -153,37 +153,37 @@
         android:id="@+id/enterMULT"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="inputOperator"
+        android:tag="×"
         android:text="×"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterADD"
-        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE"
-        android:onClick="inputOperator"
-        android:tag="×"/>
+        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE" />
 
     <Button
         android:id="@+id/enterADD"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="inputOperator"
+        android:tag="+"
         android:text="+"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterANS"
-        app:layout_constraintEnd_toStartOf="@+id/enterMINUS"
-        android:onClick="inputOperator"
-        android:tag="+"/>
+        app:layout_constraintEnd_toStartOf="@+id/enterMINUS" />
 
     <Button
         android:id="@+id/enterANS"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:text="ANS"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -193,127 +193,127 @@
         android:id="@+id/enter6"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="24sp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="6"
-        app:layout_constraintBottom_toTopOf="@+id/enter3"
-        app:layout_constraintStart_toEndOf="@+id/enter5"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="6"/>
+        android:tag="6"
+        android:text="6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter3"
+        app:layout_constraintStart_toEndOf="@+id/enter5" />
 
     <Button
         android:id="@+id/enter5"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:textSize="24sp"
-        android:text="5"
-        app:layout_constraintBottom_toTopOf="@+id/enter2"
-        app:layout_constraintStart_toEndOf="@+id/enter4"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="5"/>
+        android:tag="5"
+        android:text="5"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter2"
+        app:layout_constraintStart_toEndOf="@+id/enter4" />
 
     <Button
         android:id="@+id/enter9"
         android:layout_width="55dp"
-        android:textSize="24sp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="9"
-        app:layout_constraintBottom_toTopOf="@+id/enter6"
-        app:layout_constraintStart_toEndOf="@+id/enter8"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="9"/>
+        android:tag="9"
+        android:text="9"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter6"
+        app:layout_constraintStart_toEndOf="@+id/enter8" />
 
     <Button
         android:id="@+id/enter8"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="8"
-        app:layout_constraintBottom_toTopOf="@+id/enter5"
-        app:layout_constraintStart_toEndOf="@+id/enter7"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="8"/>
+        android:tag="8"
+        android:text="8"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter5"
+        app:layout_constraintStart_toEndOf="@+id/enter7" />
 
     <Button
         android:id="@+id/enter7"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="7"
-        app:layout_constraintBottom_toTopOf="@+id/enter4"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="7"/>
+        android:tag="7"
+        android:text="7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enter4"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="4"
-        app:layout_constraintBottom_toTopOf="@+id/enter1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="4"/>
+        android:tag="4"
+        android:text="4"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter1"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enter1"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:textSize="24sp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="1"
-        app:layout_constraintBottom_toTopOf="@+id/enter0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="1"/>
+        android:tag="1"
+        android:text="1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enter0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enter3"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="24sp"
         android:layout_marginStart="8dp"
-        android:text="3"
-        app:layout_constraintBottom_toTopOf="@+id/enterBLANK"
-        app:layout_constraintStart_toEndOf="@+id/enter2"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="3"/>
+        android:tag="3"
+        android:text="3"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enterBLANK"
+        app:layout_constraintStart_toEndOf="@+id/enter2" />
 
     <Button
         android:id="@+id/enter2"
         android:layout_width="55dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="24sp"
         android:layout_marginStart="8dp"
-        android:text="2"
-        app:layout_constraintBottom_toTopOf="@+id/enterDECIMAL"
-        app:layout_constraintStart_toEndOf="@+id/enter1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
-        android:tag="2"/>
+        android:tag="2"
+        android:text="2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/enterDECIMAL"
+        app:layout_constraintStart_toEndOf="@+id/enter1" />
 
     <Button
         android:id="@+id/leftBracket"
@@ -322,12 +322,17 @@
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="("
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/enter7"
+        app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintEnd_toStartOf="@+id/rightBracket"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:onClick="inputBracket"
+        android:tag="("/>
 
 
     <Button
@@ -368,6 +373,8 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintEnd_toStartOf="@+id/xyRoot"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
         app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
@@ -383,6 +390,8 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squareRoot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/xyPower"
         app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
 
@@ -393,12 +402,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text=")"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/enter8"
+        app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintEnd_toStartOf="@+id/xyPower"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/leftBracket"
         app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
-        app:layout_constraintVertical_bias="0.13999999" />
+        android:onClick="inputBracket"
+        android:tag=")"/>
 
     <ImageButton
         android:id="@+id/shiftLeft"
@@ -407,12 +420,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
+        android:background="@null"
         android:onClick="shiftPosition"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
         android:src="@drawable/ic_round_arrow_back_24px"
-        android:background="@null"/>
+        app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
     <ImageButton
         android:id="@+id/shiftRight"
@@ -421,12 +433,11 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
+        android:background="@null"
         android:onClick="shiftPosition"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
         android:src="@drawable/ic_round_arrow_forward_24px"
-        android:background="@null"/>
+        app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
 
     <TextView
         android:id="@+id/cursorShiftHolder"

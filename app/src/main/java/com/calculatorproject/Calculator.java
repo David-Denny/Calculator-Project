@@ -27,7 +27,6 @@ public class Calculator extends AppCompatActivity {
     private int mPosition;
 
     // TODO: add square and root functionality (again)
-    // TODO: add brackets back in
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,20 +73,21 @@ public class Calculator extends AppCompatActivity {
 
         // insert input into correct mPosition
         String input = (String) view.getTag();
+
         StringBuilder string = new StringBuilder(mInfix);
         string.insert(mPosition, input);
-
         mInfix = string.toString();
 
         // increment mPosition variable
         mPosition++;
 
         // display to user
-        mCalculatorDisplay.setText(mInfix);
+        updatePositionMarker();
     }
 
     public void inputOperator(View view) {
 
+        // get input operator from the view parameter's Tag (XML characteristic)
         String input = (String) view.getTag();
 
         // add buffer spaces
@@ -105,7 +105,33 @@ public class Calculator extends AppCompatActivity {
         mPosition = mPosition + 3;
 
         // display to user
-        mCalculatorDisplay.setText(mInfix);
+        updatePositionMarker();
+    }
+
+    //TODO: add bracket multiplication checking
+
+    public void inputBracket(View view) {
+
+        // get input from the view's tag
+        String input = (String) view.getTag();
+
+        // add buffer spaces to input
+        StringBuilder stringBuilderInput = new StringBuilder(input);
+        stringBuilderInput.insert(0, " ")
+                            .append(" ");
+        input = stringBuilderInput.toString();
+
+        // insert input into infix
+        StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
+        stringBuilderInfix.insert(mPosition, input);
+        mInfix = stringBuilderInfix.toString();
+
+        // update position
+        mPosition = mPosition + 3;
+
+        // update GUI to show new infix
+        updatePositionMarker();
+
     }
 
     public void submitInfix(View view) {
@@ -158,7 +184,7 @@ public class Calculator extends AppCompatActivity {
                 }
             }
 
-        } else { // user taps left button
+        } else { // user shifts left
 
             // validation check to prevent StringIndexOutOfBoundsException
             if (mPosition > 0) {
@@ -167,11 +193,11 @@ public class Calculator extends AppCompatActivity {
                 if (mInfix.charAt(mPosition - 1) == ' ') {
 
                     // decreases position variable by 2 to cover the whitespace
-                    mPosition = mPosition - 2;
+                    mPosition = mPosition - 3;
 
                 } else {
 
-                    // decreases position varaible
+                    // decreases position variable
                     mPosition--;
                 }
             }
