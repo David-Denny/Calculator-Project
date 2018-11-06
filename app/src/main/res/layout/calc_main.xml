@@ -67,7 +67,9 @@
         android:text="."
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/enter0" />
+        app:layout_constraintStart_toEndOf="@+id/enter0"
+        android:onClick="inputDigit"
+        android:tag="."/>
 
     <Button
         android:id="@+id/enter0"
@@ -346,7 +348,8 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
-        app:layout_constraintStart_toEndOf="@+id/rightBracket" />
+        app:layout_constraintStart_toEndOf="@+id/rightBracket"
+        android:onClick="inputOpShortcut"/>
 
     <Button
         android:id="@+id/squareRoot"
@@ -359,7 +362,8 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDEL"
-        app:layout_constraintStart_toEndOf="@+id/squarePower" />
+        app:layout_constraintStart_toEndOf="@+id/squarePower"
+        android:onClick="inputOpShortcut"/>
 
     <Button
         android:id="@+id/xyPower"
@@ -376,7 +380,10 @@
         app:layout_constraintEnd_toStartOf="@+id/xyRoot"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
+        android:onClick="inputOperator"
+        android:tag="^"/>
+
 
     <Button
         android:id="@+id/xyRoot"
@@ -393,7 +400,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/xyPower"
-        app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftRight"
+        android:onClick="inputOperator"
+        android:tag="√"/>
 
     <Button
         android:id="@+id/rightBracket"

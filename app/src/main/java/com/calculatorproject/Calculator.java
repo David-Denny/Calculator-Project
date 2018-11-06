@@ -1,9 +1,11 @@
 package com.calculatorproject;
 
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -82,7 +84,7 @@ public class Calculator extends AppCompatActivity {
         mPosition++;
 
         // display to user
-        updatePositionMarker();
+        updateDisplay();
     }
 
     public void inputOperator(View view) {
@@ -105,7 +107,37 @@ public class Calculator extends AppCompatActivity {
         mPosition = mPosition + 3;
 
         // display to user
-        updatePositionMarker();
+        updateDisplay();
+    }
+
+    // TODO: add markers that signify where the HTML tags should be placed on update
+    // (and removed when used in equals function)
+
+    public void inputOpShortcut(View view) {
+
+        StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
+
+        // if user taps square power button
+        if (view.getId() == R.id.squarePower) {
+
+            // requires a whitespace at the start as it will always immediately follow a digit
+            // TODO: add special case where no starting whitespace is added when there is a bracket
+            stringBuilderInfix.insert(mPosition, " ^ 2");
+
+        } else { // if user taps square root button
+
+            // requires a trailing whitespace as a number or bracket will immediately follow
+            stringBuilderInfix.insert(mPosition, "2 √ ");
+        }
+
+        // update position
+        mPosition = mPosition + 4;
+
+        // set member infix variable to stringBuilder
+        mInfix = stringBuilderInfix.toString();
+
+        // update GUI
+        updateDisplay();
     }
 
     //TODO: add bracket multiplication checking
@@ -130,7 +162,7 @@ public class Calculator extends AppCompatActivity {
         mPosition = mPosition + 3;
 
         // update GUI to show new infix
-        updatePositionMarker();
+        updateDisplay();
 
     }
 
@@ -182,6 +214,8 @@ public class Calculator extends AppCompatActivity {
                     // increments position variable
                     mPosition++;
                 }
+            } else {
+                Log.d("WTF", "BITCH");
             }
 
         } else { // user shifts left
@@ -203,16 +237,17 @@ public class Calculator extends AppCompatActivity {
             }
         }
 
-        // add underscore as a position marker to GUI
-        updatePositionMarker();
+        // update display
+        updateDisplay();
 
     }
 
 
-    public void updatePositionMarker() {
+    public void updateDisplay() {
 
         // remove the position marker
         String cleanExpression = removePositionMarker(mInfix);
+
 
         // add underscore as a position marker to GUI
         StringBuilder underscoreString = new StringBuilder(cleanExpression);
