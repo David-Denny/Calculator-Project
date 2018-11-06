@@ -82,6 +82,7 @@ public class Calculator extends AppCompatActivity {
         // increment mPosition variable
         mPosition++;
 
+        // display to user
         mCalculatorDisplay.setText(mInfix);
     }
 
@@ -103,21 +104,31 @@ public class Calculator extends AppCompatActivity {
         // adds +3 for the character and 2 whitespaces
         mPosition = mPosition + 3;
 
+        // display to user
         mCalculatorDisplay.setText(mInfix);
     }
 
     public void submitInfix(View view) {
 
+        // validation check to prevent StringIndexOutOfBounds
         if (mInfix.length() > 0) {
 
+            // try-catch to prevent crashes from badly formed input expressions
             try {
 
+                // get postfix
                 mPostfix = ShuntingYard.infixToPostfix(removePositionMarker(mInfix));
+
+                // get answer
                 mAnswer = ShuntingYard.evaluateRPN(mPostfix);
 
+                // display answer to user
                 mOutputDisplay.setText(getString(R.string.answer, String.valueOf(mAnswer)));
+
             } catch (EmptyStackException e) {
                 e.printStackTrace();
+
+                //TODO: Add better errors
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
         }
