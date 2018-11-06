@@ -26,6 +26,8 @@ public class Calculator extends AppCompatActivity {
     final String ops = "-+÷×^√  ";
     private int mPosition;
 
+    // TODO: add square and root functionality (again)
+    // TODO: add brackets back in
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

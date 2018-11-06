@@ -6,6 +6,8 @@ import java.util.Stack;
 
 public class ShuntingYard {
 
+    // TODO: add documentation comments for the class and method overviews
+
     static String infixToPostfix(String infix) {
 
         // string that represents every operator. Each operator's precedence can be found by
