@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,7 +24,7 @@ public class Calculator extends AppCompatActivity {
     private Boolean mNumberIsBeingWritten = true;
     private int mCurrentNumLength;
     final String ops = "-+÷×^√  ";
-    private int position;
+    private int mPosition;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,17 +61,26 @@ public class Calculator extends AppCompatActivity {
 
     }
 
+    public void inputAC(View view) {
+
+        // reset all displays and variables
+        mInfix = "";
+        mPosition = 0;
+        mCalculatorDisplay.setText("");
+        mOutputDisplay.setText("");
+    }
+
     public void inputDigit(View view) {
 
-        // insert input into correct position
+        // insert input into correct mPosition
         String input = (String) view.getTag();
         StringBuilder string = new StringBuilder(mInfix);
-        string.insert(position, input);
+        string.insert(mPosition, input);
 
         mInfix = string.toString();
 
-        // increment position variable
-        position++;
+        // increment mPosition variable
+        mPosition++;
 
         mCalculatorDisplay.setText(mInfix);
     }
@@ -87,13 +95,13 @@ public class Calculator extends AppCompatActivity {
                 .insert(stringInput.length(), " ");
         input = stringInput.toString();
 
-        // insert input into correct position
+        // insert input into correct mPosition
         StringBuilder string = new StringBuilder(mInfix);
-        string.insert(position, input);
+        string.insert(mPosition, input);
         mInfix = string.toString();
 
         // adds +3 for the character and 2 whitespaces
-        position = position + 3;
+        mPosition = mPosition + 3;
 
         mCalculatorDisplay.setText(mInfix);
     }

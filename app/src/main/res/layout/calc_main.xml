@@ -93,7 +93,8 @@
         android:text="AC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDIVIDE"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="inputAC"/>
 
     <Button
         android:id="@+id/enterDIVIDE"
