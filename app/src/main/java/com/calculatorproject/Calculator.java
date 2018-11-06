@@ -38,8 +38,6 @@ public class Calculator extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        // Make button variables
-
         // reset the display text sizes onCreate().
         mCalculatorDisplay = findViewById(R.id.calculatorDisplay);
         mCalculatorDisplay.setTextSize(getResources().getDimension(R.dimen.regular));
@@ -113,7 +111,8 @@ public class Calculator extends AppCompatActivity {
         if (mInfix.length() > 0) {
 
             try {
-                mPostfix = ShuntingYard.infixToPostfix(mInfix);
+
+                mPostfix = ShuntingYard.infixToPostfix(removePositionMarker(mInfix));
                 mAnswer = ShuntingYard.evaluateRPN(mPostfix);
 
                 mOutputDisplay.setText(getString(R.string.answer, String.valueOf(mAnswer)));
@@ -122,5 +121,74 @@ public class Calculator extends AppCompatActivity {
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void shiftPosition(View view) {
+
+        // user taps right button
+        if (view.getId() == R.id.shiftRight) {
+
+            // validation to prevent StringIndexOutOfBoundsException
+            if (mPosition < mInfix.length() - 1) {
+
+                // validation check to prevent StringIndexOutOfBoundsException
+                if (mInfix.length() - mPosition > 2) {
+
+                    // skips whitespace
+                    if (mInfix.charAt(mPosition + 2) == ' ') {
+
+                        // increments position variable by 2 to cover the whitespace
+                        mPosition = mPosition + 2;
+                    }
+                } else {
+
+                    // increments position variable
+                    mPosition++;
+                }
+            }
+
+        } else { // user taps left button
+
+            // validation check to prevent StringIndexOutOfBoundsException
+            if (mPosition > 0) {
+
+                // skips whitespaces
+                if (mInfix.charAt(mPosition - 1) == ' ') {
+
+                    // decreases position variable by 2 to cover the whitespace
+                    mPosition = mPosition - 2;
+
+                } else {
+
+                    // decreases position varaible
+                    mPosition--;
+                }
+            }
+        }
+
+        // add underscore as a position marker to GUI
+        updatePositionMarker();
+
+    }
+
+
+    public void updatePositionMarker() {
+
+        // remove the position marker
+        String cleanExpression = removePositionMarker(mInfix);
+
+        // add underscore as a position marker to GUI
+        StringBuilder underscoreString = new StringBuilder(cleanExpression);
+        underscoreString.insert(mPosition, "_");
+        mInfix = underscoreString.toString();
+
+        // update display
+        mCalculatorDisplay.setText(mInfix);
+    }
+
+    public String removePositionMarker(String infix) {
+
+        // replace underscore with empty string to remove it
+        return infix.replaceAll("_", "");
     }
 }
