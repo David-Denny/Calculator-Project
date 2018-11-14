@@ -4,9 +4,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * This class handles everything relevant to the process of getting a value from the user's
+ * input expression.
+ *
+ * The user's input is converted to a postfix in Reverse Polish Notation using the infixToPostfix
+ * method. The postfix can then be used to calculate a result that is returned to the user.
+ *
+ * @author David Denny
+ * */
+
 public class ShuntingYard {
 
     // TODO: add documentation comments for the class and method overviews
+
+    /**
+     * Method that takes the user's input and iterates through it to create a postfix in the form
+     * of Reverse Polish Notation and returns the postfix.
+     *
+     * @param infix user's input string
+     * @return postfix
+     * */
 
     static String infixToPostfix(String infix) {
 
@@ -107,7 +125,13 @@ public class ShuntingYard {
         return mPostfix.toString();
     }
 
-
+    /**
+     * Method to take the postfix string and convert it into a numerical result to be returned the
+     * user.
+     *
+     * @param postfix user's postfix that is used to calculate a result
+     * @return numerical value that is the result of the user's input expression
+     **/
     static Double evaluateRPN(String postfix) {
 
         // make a stack containing Doubles
