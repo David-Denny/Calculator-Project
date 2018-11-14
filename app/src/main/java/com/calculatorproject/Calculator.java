@@ -25,7 +25,7 @@ public class Calculator extends AppCompatActivity {
     private String mPostfix;
     private Boolean mNumberIsBeingWritten = true;
     private int mCurrentNumLength;
-    final String ops = "-+÷×^√  ";
+    final String ops = "-+÷×^√";
     private int mPosition;
 
     // TODO: add square and root functionality (again)
@@ -161,12 +161,37 @@ public class Calculator extends AppCompatActivity {
         // update position
         mPosition = mPosition + 3;
 
+        validateBracketMultiplication();
         // update GUI to show new infix
         updateDisplay();
 
     }
 
+    public void validateBracketMultiplication() {
+
+        StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
+
+        // validate length to prevent StringIndexOutOfBounds
+        if (mInfix.length() > 2) {
+
+            // check if opening bracket
+            if (mInfix.charAt(mPosition - 2) == '('
+                    // check if previous token is a digit
+                    && Character.isDigit(mInfix.charAt(mPosition - 4))) {
+
+                // insert multiplication token
+                stringBuilderInfix.insert(mPosition - 2, "× ");
+
+                // update position variable
+                mPosition = mPosition + 2;
+            }
+        }
+
+        mInfix = stringBuilderInfix.toString();
+    }
+
     public void submitInfix(View view) {
+
 
         // validation check to prevent StringIndexOutOfBounds
         if (mInfix.length() > 0) {
@@ -241,7 +266,6 @@ public class Calculator extends AppCompatActivity {
         updateDisplay();
 
     }
-
 
     public void updateDisplay() {
 
