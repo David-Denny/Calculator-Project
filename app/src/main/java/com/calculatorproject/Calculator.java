@@ -16,19 +16,14 @@ import java.util.EmptyStackException;
 public class Calculator extends AppCompatActivity {
 
     private String mInfix;
-    private String displayExpression;
-    private boolean isTypingPower;
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
     private double mAnswer;
     private String mPostfix;
-    private Boolean mNumberIsBeingWritten = true;
-    private int mCurrentNumLength;
     final String ops = "-+÷×^√";
     private int mPosition;
 
-    // TODO: add square and root functionality (again)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +51,6 @@ public class Calculator extends AppCompatActivity {
 
         // reset the mInfix onCreate().
         mInfix = "";
-        displayExpression = "";
 
         mShuntingYard = new ShuntingYard();
 
@@ -140,8 +134,6 @@ public class Calculator extends AppCompatActivity {
         updateDisplay();
     }
 
-    //TODO: add bracket multiplication checking
-
     public void inputBracket(View view) {
 
         // get input from the view's tag
@@ -212,7 +204,8 @@ public class Calculator extends AppCompatActivity {
                 e.printStackTrace();
 
                 //TODO: Add better errors
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ERROR: expression is malformed",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
