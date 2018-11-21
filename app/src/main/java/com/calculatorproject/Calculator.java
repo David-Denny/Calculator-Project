@@ -1,5 +1,6 @@
 package com.calculatorproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -232,8 +233,6 @@ public class Calculator extends AppCompatActivity {
                     // increments position variable
                     mPosition++;
                 }
-            } else {
-                Log.d("WTF", "BITCH");
             }
 
         } else { // user shifts left
@@ -279,5 +278,11 @@ public class Calculator extends AppCompatActivity {
 
         // replace underscore with empty string to remove it
         return infix.replaceAll("_", "");
+    }
+
+    public void onClickEquations(View view) {
+
+        // send to Equations activity
+        startActivity(new Intent(Calculator.this, Equations.class));
     }
 }

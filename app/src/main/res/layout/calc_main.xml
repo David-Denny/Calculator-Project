@@ -514,6 +514,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/equations"
+        android:onClick="onClickEquations"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/leftBracket"
         app:layout_constraintStart_toStartOf="parent"
