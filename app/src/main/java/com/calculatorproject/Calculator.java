@@ -165,7 +165,7 @@ public class Calculator extends AppCompatActivity {
         StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
 
         // validate length to prevent StringIndexOutOfBounds
-        if (mInfix.length() > 2) {
+        if (mInfix.length() > 4) {
 
             // check if opening bracket
             if (mInfix.charAt(mPosition - 2) == '('
