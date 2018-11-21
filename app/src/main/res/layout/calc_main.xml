@@ -13,7 +13,8 @@
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        tools:ignore="UnusedAttribute" />
 
 
     <TextView
@@ -55,6 +56,8 @@
         android:layout_marginBottom="8dp"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/enterANS"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enterDECIMAL" />
 
     <Button
@@ -64,12 +67,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:text="."
+        android:onClick="inputDigit"
+        android:tag="."
+        android:text="@string/decimal"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/enter0"
-        android:onClick="inputDigit"
-        android:tag="."/>
+        app:layout_constraintEnd_toStartOf="@+id/enterBLANK"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enter0" />
 
     <Button
         android:id="@+id/enter0"
@@ -80,9 +85,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="0"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/enterDECIMAL"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -93,10 +100,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputAC"
-        android:text="AC"
+        android:text="@string/ac"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDIVIDE"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enterDEL" />
 
     <Button
         android:id="@+id/enterDIVIDE"
@@ -107,10 +116,12 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
         android:tag="÷"
-        android:text="÷"
+        android:text="@string/divide"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMINUS"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enterMULT" />
 
     <Button
         android:id="@+id/enterMINUS"
@@ -121,10 +132,12 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
         android:tag="-"
-        android:text="-"
+        android:text="@string/subtract"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterEQUALS"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enterADD" />
 
     <Button
         android:id="@+id/enterEQUALS"
@@ -134,10 +147,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="submitInfix"
-        android:text="="
+        android:text="@string/equals"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enterANS" />
 
     <Button
         android:id="@+id/enterDEL"
@@ -146,10 +161,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="DEL"
+        android:text="@string/del"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMULT"
-        app:layout_constraintEnd_toStartOf="@+id/enterAC" />
+        app:layout_constraintEnd_toStartOf="@+id/enterAC"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enter9" />
 
     <Button
         android:id="@+id/enterMULT"
@@ -160,10 +177,12 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
         android:tag="×"
-        android:text="×"
+        android:text="@string/multiply"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterADD"
-        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE" />
+        app:layout_constraintEnd_toStartOf="@+id/enterDIVIDE"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enter6" />
 
     <Button
         android:id="@+id/enterADD"
@@ -174,10 +193,12 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
         android:tag="+"
-        android:text="+"
+        android:text="@string/add"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterANS"
-        app:layout_constraintEnd_toStartOf="@+id/enterMINUS" />
+        app:layout_constraintEnd_toStartOf="@+id/enterMINUS"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enter3" />
 
     <Button
         android:id="@+id/enterANS"
@@ -186,10 +207,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="ANS"
+        android:text="@string/ans"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/enterEQUALS" />
+        app:layout_constraintEnd_toStartOf="@+id/enterEQUALS"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/enterBLANK" />
 
     <Button
         android:id="@+id/enter6"
@@ -200,9 +223,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="6"
-        android:text="6"
+        android:text="@string/_6"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter3"
+        app:layout_constraintEnd_toStartOf="@+id/enterMULT"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter5" />
 
     <Button
@@ -214,9 +239,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="5"
-        android:text="5"
+        android:text="@string/_5"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter2"
+        app:layout_constraintEnd_toStartOf="@+id/enter6"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter4" />
 
     <Button
@@ -228,9 +255,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="9"
-        android:text="9"
+        android:text="@string/_9"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter6"
+        app:layout_constraintEnd_toStartOf="@+id/enterDEL"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter8" />
 
     <Button
@@ -242,9 +271,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="8"
-        android:text="8"
+        android:text="@string/_8"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter5"
+        app:layout_constraintEnd_toStartOf="@+id/enter9"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter7" />
 
     <Button
@@ -256,9 +287,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="7"
-        android:text="7"
+        android:text="@string/_7"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter4"
+        app:layout_constraintEnd_toStartOf="@+id/enter8"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -270,9 +303,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="4"
-        android:text="4"
+        android:text="@string/_4"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter1"
+        app:layout_constraintEnd_toStartOf="@+id/enter5"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -284,9 +319,10 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="1"
-        android:text="1"
+        android:text="@string/_1"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enter0"
+        app:layout_constraintEnd_toStartOf="@+id/enter2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -298,9 +334,11 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="3"
-        android:text="3"
+        android:text="@string/_3"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterBLANK"
+        app:layout_constraintEnd_toStartOf="@+id/enterADD"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter2" />
 
     <Button
@@ -312,29 +350,31 @@
         android:layout_marginBottom="8dp"
         android:onClick="inputDigit"
         android:tag="2"
-        android:text="2"
+        android:text="@string/_2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDECIMAL"
+        app:layout_constraintEnd_toStartOf="@+id/enter3"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/enter1" />
 
     <Button
         android:id="@+id/leftBracket"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="("
+        android:onClick="inputBracket"
+        android:tag="("
+        android:text="@string/opening_bracket"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/rightBracket"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
         app:layout_constraintHorizontal_chainStyle="packed"
-        android:onClick="inputBracket"
-        android:tag="("/>
+        app:layout_constraintStart_toEndOf="@+id/equationButton"
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
 
     <Button
@@ -344,12 +384,15 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:text="x^2"
+        android:onClick="inputOpShortcut"
+        android:text="@string/x_2"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
+        app:layout_constraintEnd_toStartOf="@+id/squareRoot"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        android:onClick="inputOpShortcut"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/squareRoot"
@@ -358,12 +401,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:text="√x"
+        android:onClick="inputOpShortcut"
+        android:text="@string/x"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDEL"
-        app:layout_constraintStart_toEndOf="@+id/squarePower"
-        android:onClick="inputOpShortcut"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/squarePower" />
 
     <Button
         android:id="@+id/xyPower"
@@ -373,16 +418,16 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="x^y"
+        android:onClick="inputOperator"
+        android:tag="^"
+        android:text="@string/x_y"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/xyRoot"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
-        android:onClick="inputOperator"
-        android:tag="^"/>
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
 
     <Button
@@ -392,17 +437,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="y√x"
+        android:onClick="inputOperator"
+        android:tag="√"
+        android:text="@string/y_x"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squareRoot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/xyPower"
-        app:layout_constraintTop_toBottomOf="@+id/shiftRight"
-        android:onClick="inputOperator"
-        android:tag="√"/>
+        app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
 
     <Button
         android:id="@+id/rightBracket"
@@ -412,15 +459,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text=")"
+        android:onClick="inputBracket"
+        android:tag=")"
+        android:text="@string/closing_bracket"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/xyPower"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/leftBracket"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft"
-        android:onClick="inputBracket"
-        android:tag=")"/>
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
     <ImageButton
         android:id="@+id/shiftLeft"
@@ -433,7 +480,8 @@
         android:onClick="shiftPosition"
         android:src="@drawable/ic_round_arrow_back_24px"
         app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/shiftRight"
@@ -446,7 +494,8 @@
         android:onClick="shiftPosition"
         android:src="@drawable/ic_round_arrow_forward_24px"
         app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
-        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+        app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/cursorShiftHolder"
@@ -455,6 +504,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay" />
+
+    <Button
+        android:id="@+id/equationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/equations"
+        app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintEnd_toStartOf="@+id/leftBracket"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
 
 </android.support.constraint.ConstraintLayout>

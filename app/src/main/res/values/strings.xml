@@ -5,4 +5,30 @@
     <string name="squarePower"><![CDATA[x<sup><small> 2</small></sup>]]></string>
     <string name="xyRoot"><![CDATA[<sup><small>y</small></sup>√x]]></string>
     <string name="answer">= %1$s</string>
+    <string name="equations">Equations</string>
+    <string name="y_x">y√x</string>
+    <string name="closing_bracket">)</string>
+    <string name="x_y">x^y</string>
+    <string name="x">√x</string>
+    <string name="x_2">x^2</string>
+    <string name="opening_bracket">(</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_1">1</string>
+    <string name="_4">4</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="ans">ANS</string>
+    <string name="add">+</string>
+    <string name="multiply">×</string>
+    <string name="del">DEL</string>
+    <string name="equals">=</string>
+    <string name="subtract">-</string>
+    <string name="divide">÷</string>
+    <string name="ac">AC</string>
+    <string name="_0">0</string>
+    <string name="decimal">.</string>
 </resources>
