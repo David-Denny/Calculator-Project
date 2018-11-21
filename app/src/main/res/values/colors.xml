@@ -6,4 +6,5 @@
     <color name="recyclerBackground">#2d2a2d</color>
     <color name="recyclerText">#ffffff</color>
     <color name="toolBar">#575457</color>
+    <color name="button">#d6d7d7</color>
 </resources>

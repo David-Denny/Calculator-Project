@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/recyclerBackground"
     tools:context="com.calculatorproject.Calculator">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/toolBar"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/CustomToolBar"
+        app:popupTheme="@style/CustomToolBar"
         tools:ignore="UnusedAttribute" />
 
 
@@ -481,7 +482,8 @@
         android:src="@drawable/ic_round_arrow_back_24px"
         app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:tint="@color/button"/>
 
     <ImageButton
         android:id="@+id/shiftRight"
@@ -495,7 +497,8 @@
         android:src="@drawable/ic_round_arrow_forward_24px"
         app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:tint="@color/button"/>
 
     <TextView
         android:id="@+id/cursorShiftHolder"
