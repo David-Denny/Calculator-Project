@@ -19,7 +19,30 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
         @Override
         public void onClick(View v) {
 
-            Toast.makeText(v.getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
+            int position = mRecyclerView.getChildLayoutPosition(v);
+
+            switch (position) {
+
+                // Maths
+                case 0:
+
+                    break;
+
+                // Physics
+                case 1:
+
+                    break;
+
+                // Biology
+                case 2:
+
+                    break;
+
+                // Chemistry
+                case 3:
+
+                    break;
+            }
         }
     };
 
@@ -68,5 +91,12 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
     @Override
     public int getItemCount() {
         return mContentArray.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        mRecyclerView = recyclerView;
     }
 }
