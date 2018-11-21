@@ -2,12 +2,15 @@ package com.calculatorproject;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 
 public class Equations extends AppCompatActivity {
 
     Toolbar mToolbar;
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,12 @@ public class Equations extends AppCompatActivity {
         mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
+        // initialise Recycler View
+        mRecyclerView = findViewById(R.id.equation_overview_recycler);
+        EquationsRAdapter adapter = new EquationsRAdapter(this);
+
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
