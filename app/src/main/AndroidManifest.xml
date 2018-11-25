@@ -21,6 +21,8 @@
 
         <activity android:name=".Equations"/>
 
+        <activity android:name=".MathsEquations"/>
+
         <activity android:name=".MainActivity">
 
         </activity>

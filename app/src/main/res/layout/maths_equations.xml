@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MathsEquations">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/equations_overview_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolBar"
+        android:elevation="4dp"
+        android:theme="@style/CustomToolBar"
+        app:popupTheme="@style/CustomToolBar"
+        tools:ignore="UnusedAttribute">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maths_equations"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/button"/>
+    </android.support.v7.widget.Toolbar>
+
+</android.support.constraint.ConstraintLayout>
