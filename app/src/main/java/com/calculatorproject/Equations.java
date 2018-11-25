@@ -1,10 +1,12 @@
 package com.calculatorproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 
 public class Equations extends AppCompatActivity {
@@ -28,5 +30,10 @@ public class Equations extends AppCompatActivity {
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    public void handleBackButton(View view) {
+
+        startActivity(new Intent(Equations.this, Calculator.class));
     }
 }
