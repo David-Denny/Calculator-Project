@@ -91,7 +91,7 @@
         android:textColor="@color/recyclerText"
         android:gravity="center"
         android:hint="@string/a"
-        android:textColorHint="@color/recyclerText"/>
+        android:textColorHint="@color/hintText"/>
 
     <EditText
         android:id="@+id/b_input"
@@ -107,7 +107,7 @@
         android:textColor="@color/recyclerText"
         android:gravity="center"
         android:hint="@string/b"
-        android:textColorHint="@color/recyclerText"/>
+        android:textColorHint="@color/hintText"/>
 
     <EditText
         android:id="@+id/c_input"
@@ -123,5 +123,55 @@
         android:textColor="@color/recyclerText"
         android:gravity="center"
         android:hint="@string/c"
-        android:textColorHint="@color/recyclerText"/>
+        android:textColorHint="@color/hintText"/>
+
+    <Button
+        android:id="@+id/quadratic_calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/calculate"
+        android:onClick="calculateQuadratic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_input" />
+
+    <TextView
+        android:id="@+id/quadratic_output_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_calculate_button" />
+
+    <TextView
+        android:id="@+id/quadratic_output_roots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_output_text" />
+
+    <TextView
+        android:id="@+id/quadratic_output_discriminant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_output_roots" />
+
+
 </android.support.constraint.ConstraintLayout>

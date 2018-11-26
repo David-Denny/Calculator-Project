@@ -8,4 +8,5 @@
     <color name="toolBar">#575457</color>
     <color name="button">#d6d7d7</color>
     <color name="backButton">#007bff</color>
+    <color name="hintText">#7Fffffff</color>
 </resources>
