@@ -18,7 +18,7 @@ public class MathsEquations extends AppCompatActivity {
         setContentView(R.layout.maths_equations);
 
         // initialise toolbar
-        mToolbar = findViewById(R.id.maths_equations_toolbar);
+        mToolbar = findViewById(R.id.quadratic_equation_toolbar);
         setSupportActionBar(mToolbar);
 
         // initialise RecyclerView
