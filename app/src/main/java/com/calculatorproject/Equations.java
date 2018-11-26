@@ -20,7 +20,7 @@ public class Equations extends AppCompatActivity {
         setContentView(R.layout.equations_overview);
 
         // initialise toolbar
-        mToolbar = findViewById(R.id.my_toolbar);
+        mToolbar = findViewById(R.id.equations_overview_toolbar);
         setSupportActionBar(mToolbar);
 
         // initialise Recycler View

@@ -1,6 +1,7 @@
 package com.calculatorproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
 
                 // Maths
                 case 0:
-
+                    v.getContext().startActivity(new Intent(v.getContext(), MathsEquations.class));
                     break;
 
                 // Physics
