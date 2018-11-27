@@ -25,6 +25,8 @@
         <activity android:name=".MathsEquations"/>
 
         <activity android:name=".QuadraticEquation"/>
+
+        <activity android:name=".PythagorasTheorem"/>
         <activity android:name=".MainActivity">
 
         </activity>
