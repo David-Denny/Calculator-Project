@@ -25,15 +25,15 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 android:background="@null"
                 android:onClick="handleBackButton"
+                android:padding="16dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_back_button"
+
                 android:tint="@color/backButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
