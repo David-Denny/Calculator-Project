@@ -125,11 +125,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/calculate"
         android:onClick="calculatePythagoras"
+        android:text="@string/calculate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pythagorasBInput" />
+        app:layout_constraintTop_toBottomOf="@+id/pythagoras_instruction" />
 
     <TextView
         android:id="@+id/pythagoras_output_text"
@@ -156,5 +156,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pythagoras_output_text" />
+
+    <TextView
+        android:id="@+id/pythagoras_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/leave_the_variable_you_want_blank"
+        android:textSize="17sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pythagorasBInput" />
 
 </android.support.constraint.ConstraintLayout>
