@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recyclerBackground"
-    tools:context=".PythagorasTheorem"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:context=".PythagorasTheorem">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/quadratic_equation_toolbar"
@@ -62,5 +61,100 @@
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/pythagoras_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_equation_toolbar" />
+
+    <EditText
+        android:id="@+id/pythagorasAInput"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/a"
+        android:inputType="number"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toStartOf="@+id/pythagorasBInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pythagoras_display" />
+
+    <EditText
+        android:id="@+id/pythagorasBInput"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/b"
+        android:inputType="number"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toStartOf="@+id/pythagorasCInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pythagorasAInput"
+        app:layout_constraintTop_toBottomOf="@+id/pythagoras_display" />
+
+    <EditText
+        android:id="@+id/pythagorasCInput"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/c"
+        android:inputType="number"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pythagorasBInput"
+        app:layout_constraintTop_toBottomOf="@+id/pythagoras_display" />
+
+    <Button
+        android:id="@+id/calculatePythagoras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/calculate"
+        android:onClick="calculatePythagoras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pythagorasBInput" />
+
+    <TextView
+        android:id="@+id/pythagoras_output_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculatePythagoras" />
+
+    <TextView
+        android:id="@+id/pythagoras_output_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pythagoras_output_text" />
 
 </android.support.constraint.ConstraintLayout>

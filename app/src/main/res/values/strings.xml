@@ -45,4 +45,8 @@
     <string name="quadraticOutputRepeatedRoots">x = +/- %1$s</string>
     <string name="quadraticOutputDiscriminant">Discriminant: %1$s</string>
     <string name="pythagoras_theorem">Pythagoras\' Theorem</string>
+    <string name="pythagoras_display"><![CDATA[%1$s<sup><small>2</small></sup> + %2$s<sup><small>2</small></sup> = %3$s<sup><small>2</small></sup> ]]></string>
+    <string name="pythagoras_text_hypotenuse">The hypotenuse, \"c\", is:</string>
+    <string name="pythagoras_text_a">The side, \"a\", is:</string>
+    <string name="pythagoras_text_b">The side, \"b\", is:</string>
 </resources>

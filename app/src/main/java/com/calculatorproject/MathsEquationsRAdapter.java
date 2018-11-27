@@ -33,6 +33,8 @@ public class MathsEquationsRAdapter extends RecyclerView.Adapter<MathsEquationsR
                 // Pythagoras' Theorem
                 case 1:
 
+                    v.getContext().startActivity(
+                            new Intent(v.getContext(), PythagorasTheorem.class));
                     break;
 
                 // Cosine Rule
