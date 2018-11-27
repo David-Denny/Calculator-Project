@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/recyclerBackground"
     tools:context=".CosineRule">
 
@@ -31,10 +31,10 @@
                 android:adjustViewBounds="true"
                 android:background="@null"
                 android:onClick="handleBackButton"
+                android:padding="16dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_back_button"
                 android:tint="@color/backButton"
-                android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/maths_equations"
+                android:text="@string/cosine_rule"
                 android:textColor="@color/button"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -60,5 +60,129 @@
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/cosine_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_equation_toolbar" />
+
+    <EditText
+        android:id="@+id/cosine_a_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/cosine_b_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_display"
+        android:gravity="center"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        android:hint="@string/a"/>
+
+    <EditText
+        android:id="@+id/cosine_b_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/cosine_c_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cosine_a_input"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_display"
+        android:gravity="center"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        android:hint="@string/b"/>
+
+    <EditText
+        android:id="@+id/cosine_c_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/cosine_angle_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cosine_b_input"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_display"
+        android:gravity="center"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        android:hint="@string/c"/>
+
+    <EditText
+        android:id="@+id/cosine_angle_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cosine_c_input"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_display"
+        android:gravity="center"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        android:hint="@string/a_capital"/>
+
+    <Button
+        android:id="@+id/cosine_calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="calculateCosineRule"
+        android:text="@string/calculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_instructions" />
+
+    <TextView
+        android:id="@+id/cosine_output_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_calculate_button" />
+
+    <TextView
+        android:id="@+id/cosine_output_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:textColor="@color/recyclerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_output_text" />
+
+    <TextView
+        android:id="@+id/cosine_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textSize="17sp"
+        android:textColor="@color/recyclerText"
+        android:text="@string/leave_the_variable_you_want_blank"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cosine_c_input" />
 
 </android.support.constraint.ConstraintLayout>
