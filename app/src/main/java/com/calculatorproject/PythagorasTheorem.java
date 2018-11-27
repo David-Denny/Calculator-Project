@@ -133,74 +133,81 @@ public class PythagorasTheorem extends AppCompatActivity {
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
 
-        // "c" is left empty, so calculate hypotenuse
-        if (cInput.getText().toString().equals("")) {
+        // prevents crashes from NumberFormatException when the user hasn't input the required
+        // values
+        try {
 
-            // get values of triangle sides
-            double a = Double.parseDouble(aString);
-            double b = Double.parseDouble(bString);
+            // "c" is left empty, so calculate hypotenuse
+            if (cInput.getText().toString().equals("")) {
 
-            // calculate the hypotenuse
-            double c = Math.sqrt((a * a) + (b * b));
-
-            // display answer
-            pythagorasTextOutput.setText(R.string.pythagoras_text_hypotenuse);
-            pythagorasAnswerOutput.setText(String.valueOf(c));
-
-            // "a" XOR "b" is empty so calculate the side. Exclusive Or is used here to make sure
-            // at least one side is inputted
-        } else if (aInput.getText().toString().equals("") ^ bInput.getText().toString().equals("")) {
-
-            // calculate a
-            if (aInput.getText().toString().equals("")) {
-
-                // get side and hypotenuse values
-                double b = Double.parseDouble(bString);
-                double c = Double.parseDouble(cString);
-
-                // only continue if hypotenuse is greater than the side
-                if (c > b) {
-
-                    // calculate side a
-                    double a = Math.sqrt((c * c) - (b * b));
-
-                    // display answer
-                    pythagorasTextOutput.setText(R.string.pythagoras_text_a);
-                    pythagorasAnswerOutput.setText(String.valueOf(a));
-                } else {
-
-                    Toast.makeText(this,
-                            "ERROR: a side cannot be larger than the hypotenuse.",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                // calculate b
-            } else {
-
-                // get side and hypotenuse values
+                // get values of triangle sides
                 double a = Double.parseDouble(aString);
-                double c = Double.parseDouble(cString);
+                double b = Double.parseDouble(bString);
 
-                // only continue if hypotenuse is greater than the side
-                if (c > a) {
+                // calculate the hypotenuse
+                double c = Math.sqrt((a * a) + (b * b));
 
-                    // calculate side b
-                    double b = Math.sqrt((c * c) -  (a * a));
+                // display answer
+                pythagorasTextOutput.setText(R.string.pythagoras_text_hypotenuse);
+                pythagorasAnswerOutput.setText(String.valueOf(c));
 
-                    // display answer
-                    pythagorasTextOutput.setText(R.string.pythagoras_text_b);
-                    pythagorasAnswerOutput.setText(String.valueOf(b));
+                // "a" XOR "b" is empty so calculate the side. Exclusive Or is used here to make sure
+                // at least one side is inputted
+            } else if (aInput.getText().toString().equals("") ^ bInput.getText().toString().equals("")) {
+
+                // calculate a
+                if (aInput.getText().toString().equals("")) {
+
+                    // get side and hypotenuse values
+                    double b = Double.parseDouble(bString);
+                    double c = Double.parseDouble(cString);
+
+                    // only continue if hypotenuse is greater than the side
+                    if (c > b) {
+
+                        // calculate side a
+                        double a = Math.sqrt((c * c) - (b * b));
+
+                        // display answer
+                        pythagorasTextOutput.setText(R.string.pythagoras_text_a);
+                        pythagorasAnswerOutput.setText(String.valueOf(a));
+                    } else {
+
+                        Toast.makeText(this,
+                                "ERROR: a side cannot be larger than the hypotenuse.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    // calculate b
                 } else {
 
-                    Toast.makeText(this,
-                            "ERROR: a side cannot be larger than the hypotenuse.",
-                            Toast.LENGTH_SHORT).show();
+                    // get side and hypotenuse values
+                    double a = Double.parseDouble(aString);
+                    double c = Double.parseDouble(cString);
+
+                    // only continue if hypotenuse is greater than the side
+                    if (c > a) {
+
+                        // calculate side b
+                        double b = Math.sqrt((c * c) - (a * a));
+
+                        // display answer
+                        pythagorasTextOutput.setText(R.string.pythagoras_text_b);
+                        pythagorasAnswerOutput.setText(String.valueOf(b));
+                    } else {
+
+                        Toast.makeText(this,
+                                "ERROR: a side cannot be larger than the hypotenuse.",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
-            // incorrect data is inputted so output error
-        } else {
-            Toast.makeText(this, "Something's gone wrong!", Toast.LENGTH_SHORT).show();
+        } catch (NumberFormatException e) {
+
+            // inform user of error
+            Toast.makeText(this,
+                    "ERROR: input all required values", Toast.LENGTH_SHORT).show();
         }
     }
 

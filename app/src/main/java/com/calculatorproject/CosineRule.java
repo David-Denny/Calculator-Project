@@ -148,41 +148,49 @@ public class CosineRule extends AppCompatActivity {
         assert inputManager != null;
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
+        
+        try {
 
-        // user wants to calculate "a"
-        if (aInput.getText().toString().equals("")) {
 
-            // get sides and angle values
-            double b = Double.parseDouble(bString);
-            double c = Double.parseDouble(cString);
-            double angle = Double.parseDouble(angleString);
+            // user wants to calculate "a"
+            if (aInput.getText().toString().equals("")) {
 
-            // convert angle to radians as Math.cos() interprets the input as radians
-            angle = Math.toRadians(angle);
+                // get sides and angle values
+                double b = Double.parseDouble(bString);
+                double c = Double.parseDouble(cString);
+                double angle = Double.parseDouble(angleString);
 
-            // calculate the side a
-            double a = Math.sqrt((b * b) + (c * c) * 2.0 * b * c * Math.cos(angle));
+                // convert angle to radians as Math.cos() interprets the input as radians
+                angle = Math.toRadians(angle);
 
-            // display answer to user
-            cosineTextOutput.setText(R.string.cosine_text_side);
-            cosineAnswerOutput.setText(String.valueOf(a));
+                // calculate the side a
+                double a = Math.sqrt((b * b) + (c * c) * 2.0 * b * c * Math.cos(angle));
 
-            // user wants to calculate the angle
-        } else if (angleInput.getText().toString().equals("")) {
+                // display answer to user
+                cosineTextOutput.setText(R.string.cosine_text_side);
+                cosineAnswerOutput.setText(String.valueOf(a));
 
-            double a = Double.parseDouble(aString);
-            double b = Double.parseDouble(bString);
-            double c = Double.parseDouble(cString);
+                // user wants to calculate the angle
+            } else if (angleInput.getText().toString().equals("")) {
 
-            double angle = Math.toDegrees(Math.acos(((a * a) - (b * b) - (c * c)) / (2 * b * c)));
+                double a = Double.parseDouble(aString);
+                double b = Double.parseDouble(bString);
+                double c = Double.parseDouble(cString);
 
-            cosineTextOutput.setText(R.string.cosine_text_angle);
-            cosineAnswerOutput.setText(getString(R.string.cosine_answer_angle, String.valueOf(angle)));
+                double angle = Math.toDegrees(Math.acos(((a * a) - (b * b) - (c * c)) / (2 * b * c)));
 
-            // user has made an error inputting their values
-        } else {
+                cosineTextOutput.setText(R.string.cosine_text_angle);
+                cosineAnswerOutput.setText(getString(R.string.cosine_answer_angle, String.valueOf(angle)));
+
+                // user has made an error inputting their values
+            } else {
+                Toast.makeText(this,
+                        "ERROR: your inputs are not valid", Toast.LENGTH_SHORT).show();
+            }
+        } catch (NumberFormatException e) {
+
             Toast.makeText(this,
-                    "ERROR: your inputs are not valid", Toast.LENGTH_SHORT).show();
+                    "ERROR: input all required values", Toast.LENGTH_SHORT).show();
         }
     }
 

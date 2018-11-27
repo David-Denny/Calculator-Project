@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QuadraticEquation extends AppCompatActivity {
     TextView quadraticDisplay;
@@ -129,46 +130,55 @@ public class QuadraticEquation extends AppCompatActivity {
         TextView rootOutput = findViewById(R.id.quadratic_output_roots);
         TextView discriminantOutput = findViewById(R.id.quadratic_output_discriminant);
 
-        // initialise variable values
-        double a = Double.parseDouble(aString);
-        double b = Double.parseDouble(bString);
-        double c = Double.parseDouble(cString);
+        // validation to prevent crashes from NumberFormatException caused by the user not
+        // inputting all the required values
+        try {
 
-        // calculate the discriminant
-        double discriminant = b * b - 4 * a * c;
+            // initialise variable values
+            double a = Double.parseDouble(aString);
+            double b = Double.parseDouble(bString);
+            double c = Double.parseDouble(cString);
 
-        // two real roots
-        if (discriminant > 0) {
+            // calculate the discriminant
+            double discriminant = b * b - 4 * a * c;
 
-            // calculate roots
-            double firstRoot = (- b + Math.sqrt(discriminant)) / (2 * a);
-            double secondRoot = (- b - Math.sqrt(discriminant)) / (2 * a);
+            // two real roots
+            if (discriminant > 0) {
 
-            // display roots
-            textOutput.setText(R.string.quadraticTextMultipleRoots);
-            rootOutput.setText(Html.fromHtml(getString(R.string.quadraticOutputMultipleRoots,
-                    String.valueOf(firstRoot), String.valueOf(secondRoot)))
-            );
+                // calculate roots
+                double firstRoot = (-b + Math.sqrt(discriminant)) / (2 * a);
+                double secondRoot = (-b - Math.sqrt(discriminant)) / (2 * a);
 
-            // repeated real roots
-        } else if (discriminant == 0) {
+                // display roots
+                textOutput.setText(R.string.quadraticTextMultipleRoots);
+                rootOutput.setText(Html.fromHtml(getString(R.string.quadraticOutputMultipleRoots,
+                        String.valueOf(firstRoot), String.valueOf(secondRoot)))
+                );
 
-            // calculate root
-            double root = (- b + Math.sqrt(discriminant)) / (2 * a);
+                // repeated real roots
+            } else if (discriminant == 0) {
 
-            // display root
-            textOutput.setText(R.string.quadraticRepeatedRootsText);
-            rootOutput.setText(getString(R.string.quadraticOutputRepeatedRoots, String.valueOf(root)));
+                // calculate root
+                double root = (-b + Math.sqrt(discriminant)) / (2 * a);
 
-            // no real roots
-        } else {
-            // display lack of roots to the user.
-            textOutput.setText(R.string.quadraticOutputNoRealRoots);
+                // display root
+                textOutput.setText(R.string.quadraticRepeatedRootsText);
+                rootOutput.setText(getString(R.string.quadraticOutputRepeatedRoots, String.valueOf(root)));
+
+                // no real roots
+            } else {
+                // display lack of roots to the user.
+                textOutput.setText(R.string.quadraticOutputNoRealRoots);
+            }
+
+            // display the discriminant
+            discriminantOutput.setText(
+                    getString(R.string.quadraticOutputDiscriminant, String.valueOf(discriminant)));
+        } catch (NumberFormatException e) {
+            
+            // inform user of error
+            Toast.makeText(this, "ERROR: input all required values", Toast.LENGTH_SHORT).show();
         }
-
-        // display the discriminant
-        discriminantOutput.setText(
-                getString(R.string.quadraticOutputDiscriminant, String.valueOf(discriminant)));
     }
 
 
