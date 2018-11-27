@@ -44,4 +44,5 @@
     <string name="quadraticOutputMultipleRoots"><![CDATA[x<sub><small>1</sub></small> = %1$s <br/><br/>x<sub><small>2</sub></small> = %2$s]]></string>
     <string name="quadraticOutputRepeatedRoots">x = +/- %1$s</string>
     <string name="quadraticOutputDiscriminant">Discriminant: %1$s</string>
+    <string name="pythagoras_theorem">Pythagoras\' Theorem</string>
 </resources>
