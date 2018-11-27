@@ -30,7 +30,10 @@ public class QuadraticEquation extends AppCompatActivity {
         bString = "b";
         cString = "c";
 
+        // initialise display TextView
         quadraticDisplay = findViewById(R.id.quadratic_display);
+
+        // Use string substitution to get text to be displayed and set it to the textview
         Spanned quadratic = Html.fromHtml(
                 getString(R.string.quadratic_display, aString, bString, cString));
         quadraticDisplay.setText(quadratic);
@@ -40,7 +43,7 @@ public class QuadraticEquation extends AppCompatActivity {
         EditText bInput = findViewById(R.id.b_input);
         EditText cInput = findViewById(R.id.c_input);
 
-        // Set TextWatcher to update display when user inputs into "aString" EditText
+        // Set TextWatcher to update display when user inputs into "a" EditText
         TextWatcher aTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,7 +65,7 @@ public class QuadraticEquation extends AppCompatActivity {
             }
         };
 
-        // Set TextWatcher to update display when user inputs into "bString" EditText
+        // Set TextWatcher to update display when user inputs into "b" EditText
         TextWatcher bTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,7 +86,7 @@ public class QuadraticEquation extends AppCompatActivity {
             }
         };
 
-        // Set TextWatcher to update display when user inputs into "cString" EditText
+        // Set TextWatcher to update display when user inputs into "c" EditText
         TextWatcher cTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
