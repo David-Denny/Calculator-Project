@@ -40,6 +40,8 @@ public class MathsEquationsRAdapter extends RecyclerView.Adapter<MathsEquationsR
                 // Cosine Rule
                 case 2:
 
+                    v.getContext().startActivity(
+                            new Intent(v.getContext(), CosineRule.class));
                     break;
 
                 // Sine Rule

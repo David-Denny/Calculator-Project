@@ -27,6 +27,9 @@
         <activity android:name=".QuadraticEquation"/>
 
         <activity android:name=".PythagorasTheorem"/>
+
+        <activity android:name=".CosineRule"/>
+
         <activity android:name=".MainActivity">
 
         </activity>
