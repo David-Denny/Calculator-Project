@@ -40,13 +40,12 @@ public class MathsEquationsRAdapter extends RecyclerView.Adapter<MathsEquationsR
                 // Cosine Rule
                 case 2:
 
-                    v.getContext().startActivity(
-                            new Intent(v.getContext(), CosineRule.class));
+                    v.getContext().startActivity(new Intent(v.getContext(), CosineRule.class));
                     break;
 
                 // Sine Rule
                 case 3:
-
+                    v.getContext().startActivity(new Intent(v.getContext(), SineRule.class));
                     break;
 
                 // Area of a Triangle

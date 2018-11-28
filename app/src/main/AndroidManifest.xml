@@ -30,6 +30,8 @@
 
         <activity android:name=".CosineRule"/>
 
+        <activity android:name=".SineRule"/>
+
         <activity android:name=".MainActivity">
 
         </activity>
