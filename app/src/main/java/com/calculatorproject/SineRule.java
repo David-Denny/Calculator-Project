@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import io.github.kexanie.library.MathView;
 
@@ -39,6 +38,6 @@ public class SineRule extends AppCompatActivity {
     }
     // send user back to Equations
     public void handleBackButton(View view) {
-        startActivity(new Intent(SineRule.this, MathsEquations.class));
+        startActivity(new Intent(SineRule.this, Equations.class));
     }
 }

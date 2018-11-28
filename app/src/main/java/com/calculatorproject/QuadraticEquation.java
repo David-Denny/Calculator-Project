@@ -1,21 +1,17 @@
 package com.calculatorproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import io.github.kexanie.library.MathView;
 
@@ -188,9 +184,9 @@ public class QuadraticEquation extends AppCompatActivity {
 
     }
 
-    // send user to MathsEquations class onclick
+    // send user to Equations class onclick
     public void handleBackButton(View view) {
-        startActivity(new Intent(QuadraticEquation.this, MathsEquations.class));
+        startActivity(new Intent(QuadraticEquation.this, Equations.class));
     }
 
 }

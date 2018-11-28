@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -200,6 +198,6 @@ public class CosineRule extends AppCompatActivity {
 
     public void handleBackButton(View view) {
 
-        startActivity(new Intent(CosineRule.this, MathsEquations.class));
+        startActivity(new Intent(CosineRule.this, Equations.class));
     }
 }

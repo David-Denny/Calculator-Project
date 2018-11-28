@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.ViewHolder> {
+
     private ArrayList<String> mContentArray;
     private RecyclerView mRecyclerView;
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
@@ -22,28 +22,38 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
 
             int position = mRecyclerView.getChildLayoutPosition(v);
 
-            switch (position) {
+            switch(position) {
 
-                // Maths
+                //Quadratic Equation
                 case 0:
-                    v.getContext().startActivity(new Intent(v.getContext(), MathsEquations.class));
+                    v.getContext().startActivity(
+                            new Intent(v.getContext(), QuadraticEquation.class));
                     break;
 
-                // Physics
+                // Pythagoras' Theorem
                 case 1:
 
+                    v.getContext().startActivity(
+                            new Intent(v.getContext(), PythagorasTheorem.class));
                     break;
 
-                // Biology
+                // Cosine Rule
                 case 2:
 
+                    v.getContext().startActivity(new Intent(v.getContext(), CosineRule.class));
                     break;
 
-                // Chemistry
+                // Sine Rule
                 case 3:
+                    v.getContext().startActivity(new Intent(v.getContext(), SineRule.class));
+                    break;
+
+                // Area of a Triangle
+                case 4:
 
                     break;
             }
+
         }
     };
 
@@ -64,11 +74,11 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
 
         mContentArray = new ArrayList<>();
 
-        mContentArray.add("Maths");
-        mContentArray.add("Physics");
-        mContentArray.add("Biology");
-        mContentArray.add("Chemistry");
-
+        mContentArray.add("Quadratic Equation");
+        mContentArray.add("Pythagoras' Theorem");
+        mContentArray.add("Cosine Rule");
+        mContentArray.add("Sine Rule");
+        mContentArray.add("Area of a Triangle");
     }
 
     @NonNull

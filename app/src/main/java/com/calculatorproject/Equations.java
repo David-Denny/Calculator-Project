@@ -8,23 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-
 public class Equations extends AppCompatActivity {
-
     Toolbar mToolbar;
     RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.equations_overview);
+        setContentView(R.layout.maths_equations);
 
         // initialise toolbar
-        mToolbar = findViewById(R.id.equations_overview_toolbar);
+        mToolbar = findViewById(R.id.quadratic_equation_toolbar);
         setSupportActionBar(mToolbar);
 
-        // initialise Recycler View
-        mRecyclerView = findViewById(R.id.equation_overview_recycler);
+        // initialise RecyclerView
+        mRecyclerView = findViewById(R.id.maths_equation_recycler);
         EquationsRAdapter adapter = new EquationsRAdapter(this);
 
         mRecyclerView.setAdapter(adapter);
