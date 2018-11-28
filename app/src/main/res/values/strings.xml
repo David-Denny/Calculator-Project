@@ -57,4 +57,5 @@
     <string name="cosine_text_angle">The angle, \"A\" is :</string>
     <string name="cosine_answer_angle">%1$s\u00B0</string>
     <string name="sine_rule">Sine Rule</string>
+    <string name="the_quadratic_equation">The Quadratic Equation</string>
 </resources>

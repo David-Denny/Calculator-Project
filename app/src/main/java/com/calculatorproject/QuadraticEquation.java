@@ -15,8 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import io.github.kexanie.library.MathView;
+
 public class QuadraticEquation extends AppCompatActivity {
-    TextView quadraticDisplay;
+    MathView quadraticDisplay;
     String aString;
     String bString;
     String cString;
@@ -35,9 +39,7 @@ public class QuadraticEquation extends AppCompatActivity {
         quadraticDisplay = findViewById(R.id.quadratic_display);
 
         // Use string substitution to get text to be displayed and set it to the textview
-        Spanned quadratic = Html.fromHtml(
-                getString(R.string.quadratic_display, aString, bString, cString));
-        quadraticDisplay.setText(quadratic);
+        updateDisplay();
 
         // get EditText
         EditText aInput = findViewById(R.id.a_input);
@@ -59,9 +61,7 @@ public class QuadraticEquation extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 aString = s.toString();
-                Spanned quadratic = Html.fromHtml(
-                        getString(R.string.quadratic_display, aString, bString, cString));
-                quadraticDisplay.setText(quadratic);
+                updateDisplay();
 
             }
         };
@@ -81,9 +81,7 @@ public class QuadraticEquation extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 bString = s.toString();
-                Spanned quadratic = Html.fromHtml(
-                        getString(R.string.quadratic_display, aString, bString, cString));
-                quadraticDisplay.setText(quadratic);
+                updateDisplay();
             }
         };
 
@@ -102,9 +100,7 @@ public class QuadraticEquation extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 cString = s.toString();
-                Spanned quadratic = Html.fromHtml(
-                        getString(R.string.quadratic_display, aString, bString, cString));
-                quadraticDisplay.setText(quadratic);
+                updateDisplay();
             }
         };
 
@@ -181,6 +177,16 @@ public class QuadraticEquation extends AppCompatActivity {
         }
     }
 
+    public void updateDisplay() {
+
+        String quadraticEquation = String.format(
+                "$$\\color{white}{x = \\frac{- %2$s \\pm \\sqrt{%2$s^2 - 4 \\times %1$s \\times %3$s}}{2 \\times %1$s}}$$",
+                aString, bString, cString);
+
+//         "$$\\color{white}{\\frac{%2$s \\pm \\sqrt{%2$s^2 - 4 \\times %1$s \\times %3$s}{2 \\times %1$s}}$$"
+        quadraticDisplay.setText(quadraticEquation);
+
+    }
 
     // send user to MathsEquations class onclick
     public void handleBackButton(View view) {

@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import io.github.kexanie.library.MathView;
+
 public class PythagorasTheorem extends AppCompatActivity {
 
-    TextView pythagorasDisplay;
+    MathView pythagorasDisplay;
     String aString;
     String bString;
     String cString;
@@ -201,6 +203,10 @@ public class PythagorasTheorem extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
+            } else {
+                Toast.makeText(this,
+
+                        "ERROR: make sure you leave one variable blank", Toast.LENGTH_SHORT).show();
             }
 
         } catch (NumberFormatException e) {
@@ -215,8 +221,9 @@ public class PythagorasTheorem extends AppCompatActivity {
     public void updateDisplay() {
 
         // create Spanned containing new input
-        Spanned pythagorasExpression = Html.fromHtml(
-                getString(R.string.pythagoras_display, aString, bString, cString));
+        String pythagorasExpression = String.format(
+                "$$\\color{white}{%1$s^2 + %2$s^2 = %3$s^2}$$",
+                aString, bString, cString);
 
         // display new input
         pythagorasDisplay.setText(pythagorasExpression);

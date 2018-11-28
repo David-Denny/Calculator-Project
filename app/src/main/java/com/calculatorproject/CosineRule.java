@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import io.github.kexanie.library.MathView;
+
 public class CosineRule extends AppCompatActivity {
 
-    TextView cosineDisplay;
+    MathView cosineDisplay;
     String aString;
     String bString;
     String cString;
@@ -39,7 +41,7 @@ public class CosineRule extends AppCompatActivity {
         cString = "c";
         angleString = "A";
 
-        // initialise display TextView
+        // initialise display MathView
         cosineDisplay = findViewById(R.id.cosine_display);
 
         // find and set display text
@@ -132,9 +134,11 @@ public class CosineRule extends AppCompatActivity {
 
     public void setDisplayExpression() {
 
-        // get the Spanned to be used through string substitution
-        Spanned cosineRule = Html.fromHtml(
-                getString(R.string.cosine_display, aString, bString, cString, angleString));
+        // get the String to be used with string substitution string substitution
+        String cosineRule = String.format(
+                "$$\\color{white}{%1$s^2 = %2$s^2 + %3$s^2 \\times %2$s \\times %3$s \\times cos(%4$s)}$$",
+                aString, bString, cString, angleString);
+
 
         // set TextView to user's new expression
         cosineDisplay.setText(cosineRule);
