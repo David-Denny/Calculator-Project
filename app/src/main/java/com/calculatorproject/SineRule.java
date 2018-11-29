@@ -124,6 +124,7 @@ public class SineRule extends AppCompatActivity {
             }
         };
 
+        // add TextWatchers
         aInput.addTextChangedListener(aTextWatcher);
         aAngleInput.addTextChangedListener(aCapitalTextWatcher);
         bInput.addTextChangedListener(bTextWatcher);
@@ -132,9 +133,13 @@ public class SineRule extends AppCompatActivity {
     }
 
     public void updateDisplay() {
+
+        // create new TeX code string
         String sineEquation = String.format(
                 "$$\\color{white}{\\frac{%1$s}{sin%2$s} = \\frac{%3$s}{sin%4$s}}$$",
                 aString, aAngleString, bString, bAngleString);
+
+        // display new equation
         sineDisplay.setText(sineEquation);
     }
 
@@ -146,69 +151,97 @@ public class SineRule extends AppCompatActivity {
         assert inputManager != null;
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
-        
+
+        // prevent crashes from NumberFormatExceptions (when user hasn't entered input)
         try {
 
+            // if the user wants to calculate one of the sides
             if (aInput.getText().toString().equals("") || bInput.getText().toString().equals("")) {
 
+                // get angle values and convert to radians
                 double angleA = Double.parseDouble(aAngleString);
                 double angleB = Double.parseDouble(bAngleString);
                 angleA = Math.toRadians(angleA);
                 angleB = Math.toRadians(angleB);
 
+                // if user wants to calculate side a
                 if (aInput.getText().toString().equals("")) {
 
+                    // get side b value
                     double b = Double.parseDouble(bString);
 
+                    // calculate side a using the Sine Rule
                     double a = Math.sin(angleA) * (b / Math.sin(angleB));
 
+                    // display the answer
                     sineTextOutput.setText(R.string.sine_text_a);
                     sineAnswerOutput.setText(String.valueOf(a));
+
+                    // if the user wants to calculate side b
                 } else {
 
+                    // get value of side a
                     double a =  Double.parseDouble(aString);
 
+                    // calculate side a using the Sine Rule
                     double b = Math.sin(angleB) * (a / Math.sin(angleA));
 
+                    // display the answer
                     sineTextOutput.setText(R.string.sine_text_b);
                     sineAnswerOutput.setText(String.valueOf(b));
                 }
+
+                // if the user wants to calculate an angle
             } else if (aAngleInput.getText().toString().equals("")
                     || bAngleInput.getText().toString().equals("")) {
 
+                // get side variable values
                 double a = Double.parseDouble(aString);
                 double b = Double.parseDouble(bString);
 
+                // if user wants to calculate angle A
                 if (aAngleInput.getText().toString().equals("")) {
 
+                    // get angle B value and convert to radians
                     double bAngle = Double.parseDouble(bAngleString);
                     bAngle = Math.toRadians(bAngle);
 
+                    // calculate angle A using the Sine Rule and convert to degrees
                     double aAngle = Math.toDegrees(Math.asin(a * Math.sin(bAngle) / b));
 
+                    // display result to user
                     sineTextOutput.setText(R.string.sine_text_aAngle);
                     sineAnswerOutput.setText(String.valueOf(aAngle));
+
+                    // if the user wants to calculate side B
                 } else {
 
+                    // get value of angle A and convert to radians
                     double aAngle = Double.parseDouble(aAngleString);
                     aAngle = Math.toRadians(aAngle);
 
+                    // calculate angle B and convert it to degrees
                     double bAngle = Math.toDegrees(Math.asin(b *  (Math.sin(aAngle) / a)));
 
+                    // display result to user
                     sineTextOutput.setText(R.string.sine_text_bAngle);
                     sineAnswerOutput.setText(String.valueOf(bAngle));
                 }
+
+                // user has not entered all the required inputs
             } else {
                 Toast.makeText(this,
                         "ERROR: input all required values", Toast.LENGTH_SHORT).show();
             }
-            
+
+            // prevent crash and inform user of error
         } catch (NumberFormatException e) {
             Toast.makeText(this,
                     "ERROR: input all required values", Toast.LENGTH_SHORT).show();
         }
 
     }
+
     // send user back to Equations
     public void handleBackButton(View view) {
         startActivity(new Intent(SineRule.this, Equations.class));
