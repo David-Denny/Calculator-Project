@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import io.github.kexanie.library.MathView;
 
@@ -18,12 +19,12 @@ public class SineRule extends AppCompatActivity {
     MathView sineDisplay;
     String aString;
     String bString;
-    String aCapitalString;
-    String bCapitalString;
+    String aAngleString;
+    String bAngleString;
     EditText aInput;
-    EditText aCapitalInput;
+    EditText aAngleInput;
     EditText bInput;
-    EditText bCapitalInput;
+    EditText bAngleInput;
     TextView sineTextOutput;
     TextView sineAnswerOutput;
 
@@ -35,8 +36,8 @@ public class SineRule extends AppCompatActivity {
         // initialise variables
         aString = "a";
         bString = "b";
-        aCapitalString = "A";
-        bCapitalString = "B";
+        aAngleString = "A";
+        bAngleString = "B";
 
         // get MathView display
         sineDisplay = findViewById(R.id.sine_display);
@@ -46,9 +47,9 @@ public class SineRule extends AppCompatActivity {
 
         // initialise EditTexts
         aInput = findViewById(R.id.a_sine_input);
-        aCapitalInput = findViewById(R.id.a_capital_sine_input);
+        aAngleInput = findViewById(R.id.a_capital_sine_input);
         bInput = findViewById(R.id.b_sine_input);
-        bCapitalInput = findViewById(R.id.b_capital_sine_input);
+        bAngleInput = findViewById(R.id.b_capital_sine_input);
 
         // initialise output TextViews
         sineTextOutput = findViewById(R.id.sine_output_text);
@@ -82,7 +83,7 @@ public class SineRule extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // get input
-                aCapitalString = s.toString();
+                aAngleString = s.toString();
 
                 // display new input to user
                 updateDisplay();
@@ -116,7 +117,7 @@ public class SineRule extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 // get input
-                bCapitalString = s.toString();
+                bAngleString = s.toString();
 
                 // display new input to user
                 updateDisplay();
@@ -124,16 +125,16 @@ public class SineRule extends AppCompatActivity {
         };
 
         aInput.addTextChangedListener(aTextWatcher);
-        aCapitalInput.addTextChangedListener(aCapitalTextWatcher);
+        aAngleInput.addTextChangedListener(aCapitalTextWatcher);
         bInput.addTextChangedListener(bTextWatcher);
-        bCapitalInput.addTextChangedListener(bCapitalTextWatcher);
+        bAngleInput.addTextChangedListener(bCapitalTextWatcher);
 
     }
 
     public void updateDisplay() {
         String sineEquation = String.format(
                 "$$\\color{white}{\\frac{%1$s}{sin%2$s} = \\frac{%3$s}{sin%4$s}}$$",
-                aString, aCapitalString, bString, bCapitalString);
+                aString, aAngleString, bString, bAngleString);
         sineDisplay.setText(sineEquation);
     }
 
@@ -145,6 +146,67 @@ public class SineRule extends AppCompatActivity {
         assert inputManager != null;
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
+        
+        try {
+
+            if (aInput.getText().toString().equals("") || bInput.getText().toString().equals("")) {
+
+                double angleA = Double.parseDouble(aAngleString);
+                double angleB = Double.parseDouble(bAngleString);
+                angleA = Math.toRadians(angleA);
+                angleB = Math.toRadians(angleB);
+
+                if (aInput.getText().toString().equals("")) {
+
+                    double b = Double.parseDouble(bString);
+
+                    double a = Math.sin(angleA) * (b / Math.sin(angleB));
+
+                    sineTextOutput.setText(R.string.sine_text_a);
+                    sineAnswerOutput.setText(String.valueOf(a));
+                } else {
+
+                    double a =  Double.parseDouble(aString);
+
+                    double b = Math.sin(angleB) * (a / Math.sin(angleA));
+
+                    sineTextOutput.setText(R.string.sine_text_b);
+                    sineAnswerOutput.setText(String.valueOf(b));
+                }
+            } else if (aAngleInput.getText().toString().equals("")
+                    || bAngleInput.getText().toString().equals("")) {
+
+                double a = Double.parseDouble(aString);
+                double b = Double.parseDouble(bString);
+
+                if (aAngleInput.getText().toString().equals("")) {
+
+                    double bAngle = Double.parseDouble(bAngleString);
+                    bAngle = Math.toRadians(bAngle);
+
+                    double aAngle = Math.toDegrees(Math.asin(a * Math.sin(bAngle) / b));
+
+                    sineTextOutput.setText(R.string.sine_text_aAngle);
+                    sineAnswerOutput.setText(String.valueOf(aAngle));
+                } else {
+
+                    double aAngle = Double.parseDouble(aAngleString);
+                    aAngle = Math.toRadians(aAngle);
+
+                    double bAngle = Math.toDegrees(Math.asin(b *  (Math.sin(aAngle) / a)));
+
+                    sineTextOutput.setText(R.string.sine_text_bAngle);
+                    sineAnswerOutput.setText(String.valueOf(bAngle));
+                }
+            } else {
+                Toast.makeText(this,
+                        "ERROR: input all required values", Toast.LENGTH_SHORT).show();
+            }
+            
+        } catch (NumberFormatException e) {
+            Toast.makeText(this,
+                    "ERROR: input all required values", Toast.LENGTH_SHORT).show();
+        }
 
     }
     // send user back to Equations

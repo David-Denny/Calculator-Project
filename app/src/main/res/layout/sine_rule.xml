@@ -80,15 +80,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="@string/a"
         android:inputType="numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
         app:layout_constraintEnd_toStartOf="@+id/a_capital_sine_input"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sine_display"
-        android:textColor="@color/recyclerText"
-        android:gravity="center"
-        android:textColorHint="@color/hintText"
-        android:hint="@string/a"/>
+        app:layout_constraintTop_toBottomOf="@+id/sine_display" />
 
     <EditText
         android:id="@+id/a_capital_sine_input"
@@ -96,15 +96,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="@string/a_capital"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toStartOf="@+id/b_input"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toStartOf="@+id/b_sine_input"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/a_sine_input"
-        app:layout_constraintTop_toBottomOf="@+id/sine_display"
-        android:textColor="@color/recyclerText"
-        android:gravity="center"
-        android:textColorHint="@color/hintText"
-        android:hint="@string/a_capital"/>
+        app:layout_constraintTop_toBottomOf="@+id/sine_display" />
 
     <EditText
         android:id="@+id/b_sine_input"
@@ -112,15 +112,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="@string/b"
         android:inputType="numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
         app:layout_constraintEnd_toStartOf="@+id/b_capital_sine_input"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/a_capital_sine_input"
-        app:layout_constraintTop_toBottomOf="@+id/sine_display"
-        android:textColor="@color/recyclerText"
-        android:gravity="center"
-        android:textColorHint="@color/hintText"
-        android:hint="@string/b"/>
+        app:layout_constraintTop_toBottomOf="@+id/sine_display" />
 
     <EditText
         android:id="@+id/b_capital_sine_input"
@@ -128,15 +128,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:gravity="center"
+        android:hint="@string/b_capital"
         android:inputType="numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/b_sine_input"
-        app:layout_constraintTop_toBottomOf="@+id/sine_display"
-        android:textColor="@color/recyclerText"
-        android:gravity="center"
-        android:textColorHint="@color/hintText"
-        android:hint="@string/b_capital"/>
+        app:layout_constraintTop_toBottomOf="@+id/sine_display" />
 
     <TextView
         android:id="@+id/sine_instructions"
@@ -185,8 +185,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/calculate"
         android:onClick="calculateSineRule"
+        android:text="@string/calculate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sine_instructions" />

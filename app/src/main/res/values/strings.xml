@@ -46,17 +46,22 @@
     <string name="quadraticOutputDiscriminant">Discriminant: %1$s</string>
     <string name="pythagoras_theorem">Pythagoras\' Theorem</string>
     <string name="pythagoras_display"><![CDATA[%1$s<sup><small>2</small></sup> + %2$s<sup><small>2</small></sup> = %3$s<sup><small>2</small></sup> ]]></string>
-    <string name="pythagoras_text_hypotenuse">The hypotenuse, \"c\", is:</string>
-    <string name="pythagoras_text_a">The side, \"a\", is:</string>
-    <string name="pythagoras_text_b">The side, \"b\", is:</string>
+    <string name="pythagoras_text_hypotenuse">The hypotenuse \"c\" is:</string>
+    <string name="pythagoras_text_a">The side \"a\" is:</string>
+    <string name="pythagoras_text_b">The side \"b\" is:</string>
     <string name="cosine_display"><![CDATA[%1$s<sup><small>2</small></sup> = %2$s<sup><small>2</small></sup> + %3$s<sup><small>2</small></sup>×2×%2$s×%3$s×cos(%4$s)]]></string>
     <string name="a_capital">A</string>
-    <string name="cosine_text_side">The side, \"a\" is:</string>
+    <string name="cosine_text_side">The side \"a\" is:</string>
     <string name="leave_the_variable_you_want_blank">Leave the variable you want blank</string>
     <string name="cosine_rule">Cosine Rule</string>
-    <string name="cosine_text_angle">The angle, \"A\" is :</string>
+    <string name="cosine_text_angle">The angle \"A\" is :</string>
     <string name="cosine_answer_angle">%1$s\u00B0</string>
     <string name="sine_rule">Sine Rule</string>
     <string name="the_quadratic_equation">The Quadratic Equation</string>
     <string name="b_capital">B</string>
+    <string name="sine_text_a">The side \"a\" is:</string>
+    <string name="sine_text_b">The side \"b\" is:</string>
+    <string name="sine_text_aAngle">The angle \"A\" is:</string>
+    <string name="sine_text_bAngle">The angle \"B\" is:</string>
+
 </resources>
