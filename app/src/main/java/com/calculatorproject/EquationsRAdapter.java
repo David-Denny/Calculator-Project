@@ -50,7 +50,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
 
                 // Area of a Triangle
                 case 4:
-
+                    v.getContext().startActivity(new Intent(v.getContext(), AreaTriangle.class));
                     break;
             }
 

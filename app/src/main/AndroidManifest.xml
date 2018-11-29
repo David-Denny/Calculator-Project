@@ -30,6 +30,8 @@
 
         <activity android:name=".SineRule"/>
 
+        <activity android:name=".AreaTriangle"/>
+
         <activity android:name=".MainActivity">
 
         </activity>
