@@ -63,5 +63,8 @@
     <string name="sine_text_b">The side \"b\" is:</string>
     <string name="sine_text_aAngle">The angle \"A\" is:</string>
     <string name="sine_text_bAngle">The angle \"B\" is:</string>
+    <string name="area_of_a_triangle">Area of a Triangle</string>
+    <string name="c_capital">C</string>
+    <string name="area_triangle_text">The area of the triangle is:</string>
 
 </resources>

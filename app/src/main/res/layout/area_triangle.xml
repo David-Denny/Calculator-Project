@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recyclerBackground"
-    tools:context=".AreaTriangle"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".AreaTriangle">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/quadratic_equation_toolbar"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/sine_rule"
+                android:text="@string/area_of_a_triangle"
                 android:textColor="@color/button"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -61,5 +61,114 @@
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>
 
+    <io.github.kexanie.library.MathView
+        android:id="@+id/area_triangle_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quadratic_equation_toolbar" />
+
+    <EditText
+        android:id="@+id/area_triangle_a_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/a"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toStartOf="@+id/area_triangle_b_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_display" />
+
+    <EditText
+        android:id="@+id/area_triangle_b_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/b"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toStartOf="@+id/area_triangle_c_angle_input"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/area_triangle_a_input"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_display" />
+
+    <EditText
+        android:id="@+id/area_triangle_c_angle_input"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/c_capital"
+        android:inputType="numberSigned|numberDecimal"
+        android:textColor="@color/recyclerText"
+        android:textColorHint="@color/hintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/area_triangle_b_input"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_display" />
+
+    <TextView
+        android:id="@+id/area_triangle_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/leave_the_variable_you_want_blank"
+        android:textColor="@color/recyclerText"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_b_input" />
+
+    <Button
+        android:id="@+id/area_triangle_calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="calculateAreaOfATriangle"
+        android:text="@string/calculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_instructions" />
+
+    <TextView
+        android:id="@+id/area_triangle_output_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/recyclerText"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_calculate_button" />
+
+    <TextView
+        android:id="@+id/area_triangle_output_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/recyclerText"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/area_triangle_output_text" />
 
 </android.support.constraint.ConstraintLayout>
