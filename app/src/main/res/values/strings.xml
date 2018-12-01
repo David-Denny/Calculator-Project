@@ -42,7 +42,7 @@
     <string name="quadraticTextMultipleRoots">There are two real roots:</string>
     <string name="quadraticRepeatedRootsText">There is one repeated root:</string>
     <string name="quadraticOutputMultipleRoots"><![CDATA[x<sub><small>1</sub></small> = %1$s <br/><br/>x<sub><small>2</sub></small> = %2$s]]></string>
-    <string name="quadraticOutputRepeatedRoots">x = +/- %1$s</string>
+    <string name="quadraticOutputRepeatedRoots">x = %1$s</string>
     <string name="quadraticOutputDiscriminant">Discriminant: %1$s</string>
     <string name="pythagoras_theorem">Pythagoras\' Theorem</string>
     <string name="pythagoras_display"><![CDATA[%1$s<sup><small>2</small></sup> + %2$s<sup><small>2</small></sup> = %3$s<sup><small>2</small></sup> ]]></string>

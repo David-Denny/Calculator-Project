@@ -175,11 +175,12 @@ public class QuadraticEquation extends AppCompatActivity {
 
     public void updateDisplay() {
 
+        // create TeX code
         String quadraticEquation = String.format(
                 "$$\\color{white}{x = \\frac{- %2$s \\pm \\sqrt{%2$s^2 - 4 \\times %1$s \\times %3$s}}{2 \\times %1$s}}$$",
                 aString, bString, cString);
 
-//         "$$\\color{white}{\\frac{%2$s \\pm \\sqrt{%2$s^2 - 4 \\times %1$s \\times %3$s}{2 \\times %1$s}}$$"
+        // render and display TeX code
         quadraticDisplay.setText(quadraticEquation);
 
     }
