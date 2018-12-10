@@ -103,8 +103,6 @@ public class Calculator extends AppCompatActivity {
         updateDisplay();
     }
 
-    // TODO: add markers that signify where the HTML tags should be placed on update
-    // (and removed when used in equals function)
 
     public void inputOpShortcut(View view) {
 
@@ -114,7 +112,6 @@ public class Calculator extends AppCompatActivity {
         if (view.getId() == R.id.squarePower) {
 
             // requires a whitespace at the start as it will always immediately follow a digit
-            // TODO: add special case where no starting whitespace is added when there is a bracket
             stringBuilderInfix.insert(mPosition, " ^ 2");
 
         } else { // if user taps square root button
@@ -179,6 +176,43 @@ public class Calculator extends AppCompatActivity {
         }
 
         mInfix = stringBuilderInfix.toString();
+    }
+
+    public void delete(View view) {
+
+        StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
+
+
+        // validate string length to prevent crashes from StringIndexOutOfBounds
+        if (stringBuilderInfix.length() > 2) {
+
+            // delete a single character by itself
+            if (Character.isDigit(stringBuilderInfix.charAt(mPosition - 1))
+                    || ops.contains(String.valueOf(stringBuilderInfix.charAt(mPosition - 1)))) {
+
+                // delete character
+                stringBuilderInfix.deleteCharAt(mPosition - 1);
+                mPosition --;
+
+            // delete single character including whitespace (e.g. when there's an operator)
+            } else if (stringBuilderInfix.charAt(mPosition -1) == ' ') {
+
+                // remove token
+                stringBuilderInfix.deleteCharAt(mPosition - 1);
+
+                // position must be updated before editing infix to prevent crashes
+                mPosition --;
+
+                // remove whitespace
+                stringBuilderInfix.deleteCharAt(mPosition - 1);
+                mPosition --;
+            }
+
+
+        }
+
+        mInfix = stringBuilderInfix.toString();
+        updateDisplay();
     }
 
     public void submitInfix(View view) {
