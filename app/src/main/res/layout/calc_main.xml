@@ -15,7 +15,49 @@
         android:elevation="4dp"
         android:theme="@style/CustomToolBar"
         app:popupTheme="@style/CustomToolBar"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="UnusedAttribute" >
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/app_name"
+                android:textColor="@color/button"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_settings_20px"
+                android:tint="@color/recyclerBackground"
+                android:padding="16dp"
+                android:onClick="settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
 
 
     <TextView
@@ -384,6 +426,8 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputOpShortcut"
         android:text="@string/x_2"
@@ -391,25 +435,19 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enter9"
         app:layout_constraintEnd_toStartOf="@+id/squareRoot"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/rightBracket" />
 
     <Button
         android:id="@+id/squareRoot"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputOpShortcut"
         android:text="@string/x"
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/enterDEL"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/squarePower" />
+        app:layout_constraintEnd_toEndOf="@+id/xyRoot" />
 
     <Button
         android:id="@+id/xyPower"
@@ -480,10 +518,10 @@
         android:background="@null"
         android:onClick="shiftPosition"
         android:src="@drawable/ic_round_arrow_back_24px"
+        android:tint="@color/button"
         app:layout_constraintEnd_toStartOf="@+id/cursorShiftHolder"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
-        tools:ignore="ContentDescription"
-        android:tint="@color/button"/>
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/shiftRight"
@@ -495,10 +533,10 @@
         android:background="@null"
         android:onClick="shiftPosition"
         android:src="@drawable/ic_round_arrow_forward_24px"
+        android:tint="@color/button"
         app:layout_constraintStart_toEndOf="@+id/cursorShiftHolder"
         app:layout_constraintTop_toBottomOf="@+id/calculatorDisplay"
-        tools:ignore="ContentDescription"
-        android:tint="@color/button"/>
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/cursorShiftHolder"
@@ -516,8 +554,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/equations"
         android:onClick="onClickEquations"
+        android:text="@string/equations"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/leftBracket"
         app:layout_constraintStart_toStartOf="parent"

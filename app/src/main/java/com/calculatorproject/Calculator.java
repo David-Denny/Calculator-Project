@@ -225,7 +225,19 @@ public class Calculator extends AppCompatActivity {
 
                         // increments position variable by 2 to cover the whitespace
                         mPosition = mPosition + 2;
+
+                        // skips two whitespaces
+                    } else if(mInfix.charAt(mPosition + 1) == ' ') {
+
+                        // increment position by 3 when cursor is to the right of a digit to cover
+                        // two whitespaces
+                        mPosition = mPosition + 3;
+
+                    } else if (Character.isDigit(mInfix.charAt(mPosition + 1))) {
+
+                        mPosition = mPosition + 1;
                     }
+
                 } else {
 
                     // increments position variable
@@ -282,5 +294,8 @@ public class Calculator extends AppCompatActivity {
 
         // send to Equations activity
         startActivity(new Intent(Calculator.this, Equations.class));
+    }
+
+    public void settings(View view) {
     }
 }
