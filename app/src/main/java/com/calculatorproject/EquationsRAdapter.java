@@ -20,6 +20,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
         @Override
         public void onClick(View v) {
 
+            // get position for switch-case statement
             int position = mRecyclerView.getChildLayoutPosition(v);
 
             switch(position) {
@@ -65,6 +66,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
         public ViewHolder(View itemView) {
             super(itemView);
 
+            // set member variables
             mRow = itemView.findViewById(R.id.default_recycler_row);
             mContent = itemView.findViewById(R.id.default_recycler_content);
         }
@@ -74,6 +76,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
 
         mContentArray = new ArrayList<>();
 
+        // add content to array to be later used to populate the RecyclerView
         mContentArray.add("Quadratic Equation");
         mContentArray.add("Pythagoras' Theorem");
         mContentArray.add("Cosine Rule");
@@ -85,9 +88,11 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
     @Override
     public EquationsRAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        // inflates each row of the RecyclerView
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.recycler_default_row, parent, false);
 
+        // sets the onClickListener on each row
         view.setOnClickListener(mOnClickListener);
         return new ViewHolder(view);
     }
@@ -95,12 +100,15 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull EquationsRAdapter.ViewHolder holder, int position) {
 
+        // set text for each element of the RecyclerView
         TextView contentTextView = holder.mContent;
         contentTextView.setText(mContentArray.get(position));
     }
 
     @Override
     public int getItemCount() {
+
+        // returns size of RecyclerView
         return mContentArray.size();
     }
 
@@ -108,6 +116,7 @@ public class EquationsRAdapter extends RecyclerView.Adapter<EquationsRAdapter.Vi
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
 
+        // set member variable to RecyclerView so it can be used to find the position
         mRecyclerView = recyclerView;
     }
 }
