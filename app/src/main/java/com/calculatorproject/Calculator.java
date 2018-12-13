@@ -330,6 +330,12 @@ public class Calculator extends AppCompatActivity {
         startActivity(new Intent(Calculator.this, Equations.class));
     }
 
+    public void onClickConversions(View view) {
+
+        // send to Conversion activity
+        startActivity(new Intent(Calculator.this, Conversions.class));
+    }
+
     public void settings(View view) {
     }
 }
