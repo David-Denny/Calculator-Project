@@ -66,5 +66,6 @@
     <string name="area_of_a_triangle">Area of a Triangle</string>
     <string name="c_capital">C</string>
     <string name="area_triangle_text">The area of the triangle is:</string>
+    <string name="conversions">Conversions</string>
 
 </resources>

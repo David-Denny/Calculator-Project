@@ -15,7 +15,7 @@
         android:elevation="4dp"
         android:theme="@style/CustomToolBar"
         app:popupTheme="@style/CustomToolBar"
-        tools:ignore="UnusedAttribute" >
+        tools:ignore="UnusedAttribute">
 
 
         <android.support.constraint.ConstraintLayout
@@ -47,11 +47,11 @@
                 android:layout_marginBottom="8dp"
                 android:adjustViewBounds="true"
                 android:background="@null"
+                android:onClick="settings"
+                android:padding="16dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_baseline_settings_20px"
                 android:tint="@color/recyclerBackground"
-                android:padding="16dp"
-                android:onClick="settings"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -204,8 +204,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/del"
         android:onClick="delete"
+        android:text="@string/del"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/enterMULT"
         app:layout_constraintEnd_toStartOf="@+id/enterAC"
@@ -405,18 +405,15 @@
         android:id="@+id/leftBracket"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputBracket"
         android:tag="("
         android:text="@string/opening_bracket"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/squarePower"
+        app:layout_constraintBottom_toTopOf="@+id/conversionButton"
         app:layout_constraintEnd_toStartOf="@+id/rightBracket"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/equationButton"
         app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
 
@@ -454,8 +451,6 @@
         android:id="@+id/xyPower"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
@@ -467,18 +462,14 @@
         app:layout_constraintEnd_toStartOf="@+id/xyRoot"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/rightBracket"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
 
 
     <Button
         android:id="@+id/xyRoot"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputOperator"
         android:tag="√"
@@ -495,8 +486,6 @@
         android:id="@+id/rightBracket"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="inputBracket"
@@ -507,7 +496,7 @@
         app:layout_constraintEnd_toStartOf="@+id/xyPower"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/leftBracket"
-        app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
+        app:layout_constraintTop_toBottomOf="@+id/shiftRight" />
 
     <ImageButton
         android:id="@+id/shiftLeft"
@@ -551,16 +540,29 @@
         android:id="@+id/equationButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="onClickEquations"
         android:text="@string/equations"
         app:layout_constraintBottom_toTopOf="@+id/squarePower"
         app:layout_constraintEnd_toStartOf="@+id/leftBracket"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shiftLeft" />
+
+    <Button
+        android:id="@+id/conversionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="onClickConversions"
+        android:text="@string/conversions"
+        app:layout_constraintBottom_toTopOf="@+id/enter8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equationButton" />
 
 
 </android.support.constraint.ConstraintLayout>
