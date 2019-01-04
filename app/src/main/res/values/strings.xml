@@ -67,5 +67,6 @@
     <string name="c_capital">C</string>
     <string name="area_triangle_text">The area of the triangle is:</string>
     <string name="conversions">Conversions</string>
+    <string name="back">Back</string>
 
 </resources>
