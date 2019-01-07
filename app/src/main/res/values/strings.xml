@@ -70,5 +70,11 @@
     <string name="back">Back</string>
     <string name="hexadecimal">Hexadecimal</string>
     <string name="binary">Binary</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="sin_inverse">sin^-1</string>
+    <string name="cos_inverse">cos^-1</string>
+    <string name="tan_inverse">tan^-1</string>
 
 </resources>
