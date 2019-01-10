@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.List;
 
 public class Calculator extends AppCompatActivity {
 
@@ -18,10 +21,10 @@ public class Calculator extends AppCompatActivity {
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
     private ShuntingYard mShuntingYard;
-    private double mAnswer;
-    private String mPostfix;
     final String ops = "-+÷×^√";
     private int mPosition;
+    private boolean containsTrig;
+    final String trigOps = "sctzef";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,14 @@ public class Calculator extends AppCompatActivity {
         xyPowerButton.setText(Html.fromHtml(getString(R.string.xyPower)));
         squarePowerButton.setText(Html.fromHtml(getString(R.string.squarePower)));
         xyRootButton.setText(Html.fromHtml(getString(R.string.xyRoot)));
+
+        Button arcsinButton = findViewById(R.id.sin_inverse);
+        Button arccosButton = findViewById(R.id.cos_inverse);
+        Button arctanButton = findViewById(R.id.tan_inverse);
+
+        arcsinButton.setText(Html.fromHtml(getString(R.string.sin_inverse)));
+        arccosButton.setText(Html.fromHtml(getString(R.string.cos_inverse)));
+        arctanButton.setText(Html.fromHtml(getString(R.string.tan_inverse)));
 
         // reset the mInfix onCreate().
         mInfix = "";
@@ -80,6 +91,38 @@ public class Calculator extends AppCompatActivity {
         updateDisplay();
     }
 
+    public void inputTrigonometry(View view) {
+
+        // get operator from view's tag
+        String input = (String) view.getTag();
+
+        // add buffer spaces to input
+
+        if (mInfix.length() > 1) {
+
+            StringBuilder stringInput = new StringBuilder(input);
+            stringInput.insert(0, " ");
+            input = stringInput.toString();
+
+            mPosition ++;
+        }
+
+
+        // insert input into infix String
+        StringBuilder string = new StringBuilder(mInfix);
+        string.insert(mPosition, input);
+        mInfix = string.toString();
+
+        // update position
+        mPosition ++;
+
+        // update trigonometry flag
+        containsTrig = true;
+
+        // update display
+        updateDisplay();
+    }
+
     public void inputOperator(View view) {
 
         // get input operator from the view parameter's Tag (XML characteristic)
@@ -102,7 +145,6 @@ public class Calculator extends AppCompatActivity {
         // display to user
         updateDisplay();
     }
-
 
     public void inputOpShortcut(View view) {
 
@@ -184,7 +226,7 @@ public class Calculator extends AppCompatActivity {
 
 
         // validate string length to prevent crashes from StringIndexOutOfBounds
-        if (stringBuilderInfix.length() > 2) {
+        if (stringBuilderInfix.length() > 1) {
 
             // delete a single character by itself
             if (Character.isDigit(stringBuilderInfix.charAt(mPosition - 1))
@@ -224,11 +266,30 @@ public class Calculator extends AppCompatActivity {
             // try-catch to prevent crashes from badly formed input expressions
             try {
 
+                // todo: possibly get rid of this
+//                if (containsTrig) {
+//
+//                    List<String> infixList = new ArrayList<>(Arrays.asList(mInfix.split(" ")));
+//                    String trigOps = "sctzef";
+//
+//                    for (String token : infixList) {
+//                        if (trigOps.contains(token)) {
+//
+//                            switch (token) {
+//
+//                                case "s":
+//
+//
+//                            }
+//                        }
+//                    }
+//                }
+
                 // get postfix
-                mPostfix = ShuntingYard.infixToPostfix(removePositionMarker(mInfix));
+                String mPostfix = ShuntingYard.infixToPostfix(removePositionMarker(mInfix));
 
                 // get answer
-                mAnswer = ShuntingYard.evaluateRPN(mPostfix);
+                double mAnswer = ShuntingYard.evaluateRPN(mPostfix);
 
                 // display answer to user
                 mOutputDisplay.setText(getString(R.string.answer, String.valueOf(mAnswer)));
@@ -236,7 +297,6 @@ public class Calculator extends AppCompatActivity {
             } catch (EmptyStackException e) {
                 e.printStackTrace();
 
-                //TODO: Add better errors
                 Toast.makeText(this, "ERROR: expression is malformed",
                         Toast.LENGTH_SHORT).show();
             }
@@ -267,7 +327,8 @@ public class Calculator extends AppCompatActivity {
                         // two whitespaces
                         mPosition = mPosition + 3;
 
-                    } else if (Character.isDigit(mInfix.charAt(mPosition + 1))) {
+                    } else if (Character.isDigit(mInfix.charAt(mPosition + 1))
+                            || trigOps.contains(String.valueOf(mInfix.charAt(mPosition + 1)))) {
 
                         mPosition = mPosition + 1;
                     }
