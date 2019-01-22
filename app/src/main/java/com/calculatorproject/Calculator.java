@@ -228,7 +228,8 @@ public class Calculator extends AppCompatActivity {
 
             // delete a single character by itself
             if (Character.isDigit(stringBuilderInfix.charAt(mPosition - 1))
-                    || ops.contains(String.valueOf(stringBuilderInfix.charAt(mPosition - 1)))) {
+                    || ops.contains(String.valueOf(stringBuilderInfix.charAt(mPosition - 1)))
+                    || stringBuilderInfix.charAt(mPosition - 1) == '.') {
 
                 // delete character
                 stringBuilderInfix.deleteCharAt(mPosition - 1);

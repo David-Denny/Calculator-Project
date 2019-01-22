@@ -223,11 +223,49 @@ public class ShuntingYard {
             }
         },
         SIN("s") {
-            @Override
             public Double apply(Double num1, Double num2) {
+
+                // returns the sin of the input number, ignores the placeholder num2
                 return Math.sin(Math.toRadians(num1));
             }
-        };
+        },
+        COS("c") {
+            public Double apply(Double num1, Double num2) {
+
+                // returns the cos of the input number, ignores the placeholder num2
+                return Math.cos(Math.toRadians(num1));
+            }
+        },
+        TAN("t") {
+            public Double apply(Double num1, Double num2) {
+
+                // returns the tan of the input number, ignores the placeholder num2
+                return Math.tan(Math.toRadians(num1));
+            }
+        },
+        ARCSIN("z") {
+            public Double apply(Double num1, Double num2) {
+
+                // returns the arcsin of the input number, ignores the placeholder num2
+                return Math.toDegrees(Math.asin(num1));
+            }
+        },
+        ARCCOS("e") {
+            public Double apply(Double num1, Double num2) {
+
+                // returns the arccos of the input number, ignores the placeholder num2
+                return Math.toDegrees(Math.acos(num1));
+            }
+        },
+        ARCTAN("f") {
+            public Double apply(Double num1, Double num2) {
+
+                // returns the arctan of the input number, ignores the placeholder num2
+                return Math.toDegrees(Math.atan(num1));
+            }
+        }
+
+        ;
 
         // operator text constructor
         private final String mOperatorText;
