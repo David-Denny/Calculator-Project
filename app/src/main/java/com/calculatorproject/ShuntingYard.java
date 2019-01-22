@@ -30,7 +30,7 @@ public class ShuntingYard {
 
         // string that represents every operator. Each operator's precedence can be found by
         // dividing the index of the operator by 2
-        final String mOps = "-+÷×^√";
+        final String mOps = "-+÷×^√sctzef";
 
         // creates the postfix stringBuilder
         StringBuilder mPostfix = new StringBuilder();
@@ -220,6 +220,12 @@ public class ShuntingYard {
 
                 // returns the second number rooted by the first
                 return Math.pow(num1, 1.0 / num2);
+            }
+        },
+        SIN("s") {
+            @Override
+            public Double apply(Double num1, Double num2) {
+                return Math.sin(Math.toRadians(num1));
             }
         };
 

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -23,8 +25,8 @@ public class Calculator extends AppCompatActivity {
     private ShuntingYard mShuntingYard;
     final String ops = "-+÷×^√";
     private int mPosition;
-    private boolean containsTrig;
     final String trigOps = "sctzef";
+    private int counter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class Calculator extends AppCompatActivity {
 
         // reset the mInfix onCreate().
         mInfix = "";
+        counter = 0;
 
         mShuntingYard = new ShuntingYard();
 
@@ -73,6 +76,7 @@ public class Calculator extends AppCompatActivity {
         mPosition = 0;
         mCalculatorDisplay.setText("");
         mOutputDisplay.setText("");
+        counter = 0;
     }
 
     public void inputDigit(View view) {
@@ -97,15 +101,12 @@ public class Calculator extends AppCompatActivity {
         String input = (String) view.getTag();
 
         // add buffer spaces to input
+        StringBuilder stringInput = new StringBuilder(input);
+        stringInput.
+                insert(stringInput.length(), " ")
+                .insert(0, "0 ");
 
-        if (mInfix.length() > 1) {
-
-            StringBuilder stringInput = new StringBuilder(input);
-            stringInput.insert(0, " ");
-            input = stringInput.toString();
-
-            mPosition ++;
-        }
+        input = stringInput.toString();
 
 
         // insert input into infix String
@@ -114,10 +115,7 @@ public class Calculator extends AppCompatActivity {
         mInfix = string.toString();
 
         // update position
-        mPosition ++;
-
-        // update trigonometry flag
-        containsTrig = true;
+        mPosition = mPosition + 4;
 
         // update display
         updateDisplay();
@@ -266,24 +264,6 @@ public class Calculator extends AppCompatActivity {
             // try-catch to prevent crashes from badly formed input expressions
             try {
 
-                // todo: possibly get rid of this
-//                if (containsTrig) {
-//
-//                    List<String> infixList = new ArrayList<>(Arrays.asList(mInfix.split(" ")));
-//                    String trigOps = "sctzef";
-//
-//                    for (String token : infixList) {
-//                        if (trigOps.contains(token)) {
-//
-//                            switch (token) {
-//
-//                                case "s":
-//
-//
-//                            }
-//                        }
-//                    }
-//                }
 
                 // get postfix
                 String mPostfix = ShuntingYard.infixToPostfix(removePositionMarker(mInfix));
@@ -375,8 +355,50 @@ public class Calculator extends AppCompatActivity {
         underscoreString.insert(mPosition, "_");
         mInfix = underscoreString.toString();
 
+        // convert infix to array so it can be used in a for-each loop
+        ArrayList<String> infixList = new ArrayList<>(Arrays.asList(mInfix.split("")));
+
+        // create array of replacement strings
+        String[] trigArray = new String[]{"sin", "cos", "tan", "arcsin", "arccos", "arctan"};
+
+        // create new display StringBuilder
+        StringBuilder displayInfix = new StringBuilder();
+
+        // iterate over each element in the infix
+        for (String character : infixList) {
+
+            // if the current element is a trigonometric operator
+            if (trigOps.contains(character)) {
+
+                // if counter is above 0 to prevent strange bug where there was always a "sin" at
+                // the start of the string
+                if (counter > 0) {
+
+                    // get index of character in the trigOps string
+                    int trigIndex = trigOps.indexOf(character);
+
+                    // remove the place holder "0 "
+                    displayInfix.deleteCharAt(displayInfix.length() -1 )
+                            .deleteCharAt(displayInfix.length() - 1);
+                    // replace operator with string from the array
+                    displayInfix.append(trigArray[trigIndex]);
+                }
+
+                // iterate counter
+                counter ++;
+
+            } else {
+
+                // add character to string as normal
+                displayInfix.append(character);
+            }
+        }
+
+        // reset counter
+        counter = 0;
+
         // update display
-        mCalculatorDisplay.setText(mInfix);
+        mCalculatorDisplay.setText(displayInfix.toString());
     }
 
     public String removePositionMarker(String infix) {
