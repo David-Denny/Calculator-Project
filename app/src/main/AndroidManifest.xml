@@ -34,9 +34,10 @@
 
         <activity android:name=".Conversions"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Settings"/>
 
-        </activity>
+        <activity android:name=".MainActivity"/>
+
     </application>
 
 </manifest>

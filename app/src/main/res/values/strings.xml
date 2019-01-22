@@ -76,5 +76,6 @@
     <string name="sin_inverse"><![CDATA[sin<sup><small>-1</small></sup>]]></string>
     <string name="cos_inverse"><![CDATA[cos<sup><small>-1</small></sup>]]></string>
     <string name="tan_inverse"><![CDATA[tan<sup><small>-1</small></sup>]]></string>
+    <string name="decimal_points">Decimal Points:</string>
 
 </resources>

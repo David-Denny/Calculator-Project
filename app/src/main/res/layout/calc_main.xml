@@ -51,10 +51,9 @@
                 android:padding="16dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_baseline_settings_20px"
-                android:tint="@color/recyclerBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>

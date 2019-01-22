@@ -18,4 +18,13 @@
         <item name="android:textColorPrimary">@color/button</item>
     </style>
 
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#4ae965</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#ffffff</item>
+    </style>
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
 </resources>
