@@ -2,6 +2,8 @@ package com.calculatorproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -105,6 +107,18 @@ public class QuadraticEquation extends AppCompatActivity {
         bInput.addTextChangedListener(bTextWatcher);
         cInput.addTextChangedListener(cTextWatcher);
 
+        // gets SharedPreferences
+        SharedPreferences mPrefs = this.getSharedPreferences("calculator", Context.MODE_PRIVATE);
+
+        // orientation is locked depending on user's choice. Defaults to portrait if no choice is
+        // made in Settings class (as true corresponds to portrait)
+        if (mPrefs.getBoolean("isPortrait", true)) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
     }
 
     public void calculateQuadratic(View view) {
