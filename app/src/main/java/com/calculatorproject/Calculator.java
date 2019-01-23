@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -27,6 +28,8 @@ public class Calculator extends AppCompatActivity {
     final String trigOps = "sctzef";
     private int counter;
     private double roundValue;
+    private boolean hapticFeedback;
+    private Vibrator v;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,9 +103,16 @@ public class Calculator extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
+        v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        hapticFeedback = mPrefs.getBoolean("feedbackIsChecked", true);
     }
 
     public void inputAC(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         // reset all displays and variables
         mInfix = "";
@@ -113,6 +123,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void inputDigit(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         // insert input into correct mPosition
         String input = (String) view.getTag();
@@ -129,6 +144,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void inputTrigonometry(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         // get operator from view's tag
         String input = (String) view.getTag();
@@ -156,6 +176,11 @@ public class Calculator extends AppCompatActivity {
 
     public void inputOperator(View view) {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
+
         // get input operator from the view parameter's Tag (XML characteristic)
         String input = (String) view.getTag();
 
@@ -178,6 +203,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void inputOpShortcut(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
 
@@ -205,6 +235,11 @@ public class Calculator extends AppCompatActivity {
 
     public void inputBracket(View view) {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
+
         // get input from the view's tag
         String input = (String) view.getTag();
 
@@ -230,6 +265,11 @@ public class Calculator extends AppCompatActivity {
 
     public void validateBracketMultiplication() {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
+
         StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
 
         // validate length to prevent StringIndexOutOfBounds
@@ -252,6 +292,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void delete(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         StringBuilder stringBuilderInfix = new StringBuilder(mInfix);
 
@@ -291,6 +336,10 @@ public class Calculator extends AppCompatActivity {
 
     public void submitInfix(View view) {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(500);
+        }
 
         // validation check to prevent StringIndexOutOfBounds
         if (mInfix.length() > 0) {
@@ -319,6 +368,11 @@ public class Calculator extends AppCompatActivity {
     }
 
     public void shiftPosition(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         // user taps right button
         if (view.getId() == R.id.shiftRight) {
@@ -384,7 +438,6 @@ public class Calculator extends AppCompatActivity {
         // remove the position marker
         String cleanExpression = removePositionMarker(mInfix);
 
-
         // add underscore as a position marker to GUI
         StringBuilder underscoreString = new StringBuilder(cleanExpression);
         underscoreString.insert(mPosition, "_");
@@ -444,17 +497,32 @@ public class Calculator extends AppCompatActivity {
 
     public void onClickEquations(View view) {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
+
         // send to Equations activity
         startActivity(new Intent(Calculator.this, Equations.class));
     }
 
     public void onClickConversions(View view) {
 
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
+
         // send to Conversion activity
         startActivity(new Intent(Calculator.this, Conversions.class));
     }
 
     public void settings(View view) {
+
+        // if haptic feedback is enabled, vibrate the phone for 500ms
+        if(hapticFeedback) {
+            v.vibrate(100);
+        }
 
         // send to Settings activity
         startActivity(new Intent(Calculator.this, Settings.class));

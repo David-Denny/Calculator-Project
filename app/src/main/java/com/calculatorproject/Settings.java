@@ -33,6 +33,9 @@ public class Settings extends AppCompatActivity {
         decimalPicker.setDisplayedValues(pickerValues);
         decimalPicker.setWrapSelectorWheel(true);
 
+        // set current value
+        decimalPicker.setValue(mPrefs.getInt("decimalPoints", 1));
+
         decimalPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -91,6 +94,29 @@ public class Settings extends AppCompatActivity {
                     // changes orientation
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 }
+            }
+        });
+
+        // get views
+        SwitchCompat feedbackSwitch = findViewById(R.id.haptic_feedback_switch);
+        Boolean feedbackIsChecked = mPrefs.getBoolean("feedbackIsChecked", true);
+
+        // set state of switch from user input. Default is checked.
+        feedbackSwitch.setChecked(feedbackIsChecked);
+
+        feedbackSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if (isChecked) {
+
+                mPrefs.edit()
+                        .putBoolean("feedbackIsChecked", true)
+                        .apply();
+
+            } else {
+
+                mPrefs.edit()
+                        .putBoolean("feedbackIsChecked", false)
+                        .apply();
             }
         });
 
