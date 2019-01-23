@@ -3,35 +3,30 @@ package com.calculatorproject;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.math.MathUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
-import java.util.List;
 
 public class Calculator extends AppCompatActivity {
 
     private String mInfix;
     private TextView mCalculatorDisplay;
     private TextView mOutputDisplay;
-    private ShuntingYard mShuntingYard;
     final String ops = "-+÷×^√";
     private int mPosition;
     final String trigOps = "sctzef";
     private int counter;
     private double roundValue;
-    private SharedPreferences mPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,10 +65,8 @@ public class Calculator extends AppCompatActivity {
         mInfix = "";
         counter = 0;
 
-        mShuntingYard = new ShuntingYard();
-
         // gets SharedPreferences
-        mPrefs = this.getSharedPreferences("calculator", Context.MODE_PRIVATE);
+        SharedPreferences mPrefs = this.getSharedPreferences("calculator", Context.MODE_PRIVATE);
 
         if (mPrefs.contains("decimalPoints")) {
 
@@ -95,6 +88,16 @@ public class Calculator extends AppCompatActivity {
 
             // default rounding rounds to 10 decimal points
             roundValue = 10000000000.0;
+        }
+
+        // orientation is locked depending on user's choice. Defaults to portrait if no choice is
+        // made in Settings class (as true corresponds to portrait)
+        if (mPrefs.getBoolean("isPortrait", true)) {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
     }
