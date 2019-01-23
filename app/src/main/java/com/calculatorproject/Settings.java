@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 public class Settings extends AppCompatActivity {
 
@@ -34,7 +36,6 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-
                 decimalPicker.setValue(newVal);
 
                 // update preferences with new value
@@ -45,12 +46,48 @@ public class Settings extends AppCompatActivity {
         });
 
         SwitchCompat orientationSwitch = findViewById(R.id.orientation_switch);
+        TextView orientationLabel = findViewById(R.id.orientation_label);
 
-        // todo: add switch functionality
+        // gets portrait setting
+        Boolean isPortrait = mPrefs.getBoolean("isPortrait", true);
 
+        // changes the label to portrait or landscape depending on isPortrait variable
+        orientationLabel
+                // uses a ternary operator to set the text to either of two values depending on the
+                // value of the boolean conditional. In this case, true corresponds to portrait
+                // and false to landscape.
+                .setText(isPortrait ? getString(R.string.portrait) : getString(R.string.landscape));
+
+        // sets switch to corresponding state
+        orientationSwitch.setChecked(isPortrait);
+
+        orientationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+
+                    // alters label
+                    orientationLabel.setText(getString(R.string.portrait));
+
+                    // saves user input in SharedPreferences
+                    mPrefs.edit()
+                            .putBoolean("isPortrait", true)
+                            .apply();
+                } else {
+
+                    // alters label
+                    orientationLabel.setText(getString(R.string.landscape));
+
+                    // saves user input in SharedPreferences
+                    mPrefs.edit()
+                            .putBoolean("isPortrait", false)
+                            .apply();
+                }
+            }
+        });
 
     }
-
 
 
     public void onClickBackButton(View view) {

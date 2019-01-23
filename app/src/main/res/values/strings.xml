@@ -77,5 +77,6 @@
     <string name="cos_inverse"><![CDATA[cos<sup><small>-1</small></sup>]]></string>
     <string name="tan_inverse"><![CDATA[tan<sup><small>-1</small></sup>]]></string>
     <string name="decimal_points">Decimal Points:</string>
-
+    <string name="portrait">Portrait</string>
+    <string name="landscape">Landscape</string>
 </resources>
