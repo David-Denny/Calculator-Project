@@ -86,13 +86,14 @@
         app:layout_constraintStart_toEndOf="@+id/orientation_label"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
+
     <TextView
         android:id="@+id/decimal_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/decimal_points"
         android:textColor="@color/recyclerText"
@@ -101,7 +102,7 @@
         app:layout_constraintEnd_toStartOf="@+id/decimal_picker"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/orientation_label" />
+        app:layout_constraintTop_toBottomOf="@+id/haptic_feedback_label" />
 
     <NumberPicker
         android:id="@+id/decimal_picker"
@@ -113,6 +114,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/decimal_label"
+        app:layout_constraintTop_toBottomOf="@+id/haptic_feedback_switch" />
+
+    <TextView
+        android:id="@+id/haptic_feedback_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/haptic_feedback"
+        android:textColor="@color/recyclerText"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/orientation_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/orientation_label"
+        app:layout_constraintTop_toBottomOf="@+id/orientation_label" />
+
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/haptic_feedback_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:theme="@style/Switch"
+        app:layout_constraintEnd_toEndOf="@+id/orientation_switch"
+        app:layout_constraintStart_toStartOf="@+id/orientation_switch"
         app:layout_constraintTop_toBottomOf="@+id/orientation_switch" />
+
 
 </android.support.constraint.ConstraintLayout>
