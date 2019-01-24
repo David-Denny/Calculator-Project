@@ -29,6 +29,7 @@ public class ConversionsRAdapter extends RecyclerView.Adapter<ConversionsRAdapte
             // get position for switch-case statement
             int position = mRecyclerView.getChildLayoutPosition(v);
 
+
             switch (position) {
 
                 case 0:
@@ -56,30 +57,41 @@ public class ConversionsRAdapter extends RecyclerView.Adapter<ConversionsRAdapte
 
                         @Override
                         public void onClick(View v) {
+                            
+                            try {
 
-                            // initialise variables
-                            EditText denaryEditText = dialogDenToBin.findViewById(R.id.conversion_input_1);
-                            EditText binaryEditText = dialogDenToBin.findViewById(R.id.conversion_input_2);
+                                // initialise variables
+                                EditText denaryEditText = dialogDenToBin.findViewById(R.id.conversion_input_1);
+                                EditText binaryEditText = dialogDenToBin.findViewById(R.id.conversion_input_2);
 
-                            String denary = denaryEditText.getText().toString();
-                            String binary = binaryEditText.getText().toString();
+                                String denary = denaryEditText.getText().toString();
+                                String binary = binaryEditText.getText().toString();
 
-                            if (denary.equals("")) {
+                                if (denary.equals("")) {
 
-                                // convert binary to denary and display to user
-                                denary = String.valueOf(Integer.parseInt(binary, 2));
-                                denaryEditText.setText(denary);
-                            } else if (binary.equals("")) {
+                                    // convert binary to denary and display to user
+                                    denary = String.valueOf(Integer.parseInt(binary, 2));
+                                    denaryEditText.setText(denary);
+                                } else if (binary.equals("")) {
 
-                                // convert denary to binary and display to user
-                                binary = String.valueOf(Integer.toBinaryString(Integer.
-                                        valueOf(denary)));
-                                binaryEditText.setText(binary);
-                            } else {
+                                    // convert denary to binary and display to user
+                                    binary = String.valueOf(Integer.toBinaryString(Integer.
+                                            valueOf(denary)));
+                                    binaryEditText.setText(binary);
+                                } else {
 
-                                // alert user to their error
-                                Toast.makeText(v.getContext(),
-                                        "Leave one entry variable blank.",
+                                    // alert user to their error
+                                    Toast.makeText(v.getContext(),
+                                            "Leave one entry variable blank.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                                // prevent crashes from invalid input
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+
+                                // inform user of reason of the error
+                                Toast.makeText(v.getContext(), "ERROR: invalid input",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -117,30 +129,41 @@ public class ConversionsRAdapter extends RecyclerView.Adapter<ConversionsRAdapte
 
                         @Override
                         public void onClick(View v) {
+                            
+                            try {
 
-                            EditText denaryEditText = dialogDenToHex.findViewById(R.id.conversion_input_1);
-                            EditText hexEditText = dialogDenToHex.findViewById(R.id.conversion_input_2);
+                                EditText denaryEditText = dialogDenToHex.findViewById(R.id.conversion_input_1);
+                                EditText hexEditText = dialogDenToHex.findViewById(R.id.conversion_input_2);
 
-                            String denary = denaryEditText.getText().toString();
-                            String hex = hexEditText.getText().toString();
+                                String denary = denaryEditText.getText().toString();
+                                String hex = hexEditText.getText().toString();
 
-                            if (denary.equals("")) {
+                                if (denary.equals("")) {
 
-                                // convert and display hex to denary
-                                denary = String.valueOf(Integer.parseInt(hex, 16));
-                                denaryEditText.setText(denary);
+                                    // convert and display hex to denary
+                                    denary = String.valueOf(Integer.parseInt(hex, 16));
+                                    denaryEditText.setText(denary);
 
-                            } else if (hex.equals("")) {
+                                } else if (hex.equals("")) {
 
-                                // convert and display denary to hex
-                                hex = String.valueOf(Integer.toHexString(Integer.valueOf(denary)));
-                                hexEditText.setText(hex);
+                                    // convert and display denary to hex
+                                    hex = String.valueOf(Integer.toHexString(Integer.valueOf(denary)));
+                                    hexEditText.setText(hex);
 
-                            } else {
+                                } else {
 
-                                // display error message to user
-                                Toast.makeText(v.getContext(),
-                                        "Leave one entry variable blank.",
+                                    // display error message to user
+                                    Toast.makeText(v.getContext(),
+                                            "Leave one entry variable blank.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                            // prevent crashes from invalid input
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+
+                                // inform user of reason of the error
+                                Toast.makeText(v.getContext(), "ERROR: invalid input",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -181,32 +204,45 @@ public class ConversionsRAdapter extends RecyclerView.Adapter<ConversionsRAdapte
                         @Override
                         public void onClick(View v) {
 
-                            EditText binaryEditText = dialogBinToHex.findViewById(R.id.conversion_input_1);
-                            EditText hexEditText = dialogBinToHex.findViewById(R.id.conversion_input_2);
+                            try {
 
-                            String binary = binaryEditText.getText().toString();
-                            String hex = hexEditText.getText().toString();
 
-                            if (binary.equals("")) {
+                                EditText binaryEditText = dialogBinToHex.findViewById(R.id.conversion_input_1);
+                                EditText hexEditText = dialogBinToHex.findViewById(R.id.conversion_input_2);
 
-                                // convert hex to binary and display
-                                binary = Integer.toBinaryString(Integer.parseInt(hex, 16));
-                                binaryEditText.setText(binary);
+                                String binary = binaryEditText.getText().toString();
+                                String hex = hexEditText.getText().toString();
 
-                            } else if (hex.equals("")) {
+                                if (binary.equals("")) {
 
-                                // convert and display binary to hex
-                                hex = Integer.toString(Integer.parseInt(binary, 2), 16);
-                                hexEditText.setText(hex);
+                                    // convert hex to binary and display
+                                    binary = Integer.toBinaryString(Integer.parseInt(hex, 16));
+                                    binaryEditText.setText(binary);
 
-                            } else {
+                                } else if (hex.equals("")) {
 
-                                // display error message to user
-                                Toast.makeText(v.getContext(),
-                                        "Leave one entry variable blank.",
+                                    // convert and display binary to hex
+                                    hex = Integer.toString(Integer
+                                            .parseInt(binary, 2), 16);
+
+                                    hexEditText.setText(hex);
+
+                                } else {
+
+                                    // display error message to user
+                                    Toast.makeText(v.getContext(),
+                                            "Leave one entry variable blank.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                                // prevent crashes from invalid input
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+
+                                // inform user of reason of the error
+                                Toast.makeText(v.getContext(), "ERROR: invalid input",
                                         Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     });
 
@@ -214,6 +250,7 @@ public class ConversionsRAdapter extends RecyclerView.Adapter<ConversionsRAdapte
                     dialogBinToHex.show();
                     break;
             }
+
         }
     };
 
