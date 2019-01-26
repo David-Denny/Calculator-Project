@@ -106,18 +106,10 @@ public class Settings extends AppCompatActivity {
 
         feedbackSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
-            if (isChecked) {
+            mPrefs.edit()
+                    .putBoolean("feedbackIsChecked", isChecked)
+                    .apply();
 
-                mPrefs.edit()
-                        .putBoolean("feedbackIsChecked", true)
-                        .apply();
-
-            } else {
-
-                mPrefs.edit()
-                        .putBoolean("feedbackIsChecked", false)
-                        .apply();
-            }
         });
 
         // gets SharedPreferences
