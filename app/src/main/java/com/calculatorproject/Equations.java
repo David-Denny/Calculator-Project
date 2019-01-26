@@ -18,7 +18,7 @@ public class Equations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.maths_equations);
+        setContentView(R.layout.equations);
 
         // initialise toolbar
         mToolbar = findViewById(R.id.quadratic_equation_toolbar);
