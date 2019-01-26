@@ -35,7 +35,7 @@ public class Calculator extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.calc_main);
+        setContentView(R.layout.calculator);
 
         // Initialise toolbar
         Toolbar toolbar = findViewById(R.id.my_toolbar);
@@ -92,6 +92,7 @@ public class Calculator extends AppCompatActivity {
             // default rounding rounds to 10 decimal points
             roundValue = 10000000000.0;
         }
+
 
         // orientation is locked depending on user's choice. Defaults to portrait if no choice is
         // made in Settings class (as true corresponds to portrait)
